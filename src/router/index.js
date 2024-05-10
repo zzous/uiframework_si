@@ -7,7 +7,7 @@ const withPrefix = (prefix, routes) => routes.map(route => {
 const routes = [
     {
 
-        redirect: '/section',
+        redirect: '/guide',
         name: 'layout',
         component: () => import('@/components/Layout.vue'),
         children: [
