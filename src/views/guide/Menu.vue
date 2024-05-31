@@ -20,7 +20,7 @@
         <div class="codewrap" v-for="(item, index) in state.codeSample" :key="index">
             <div :class="['codetitle', state.className]" >
                 <span @click="toggleAcc(index)">{{item.title}}</span>
-                <button type="button" class="btn btn-line small icon" @click="copyCode(item.sampleCodeJS)"> <span class="mdi mdi-animation"></span> 복사하기</button>
+                <button type="button" class="btn btn-ss" @click="copyCode(item.sampleCodeJS)"> <span class="ico-menu"></span> 복사하기</button>
             </div>
             <div :class="['code', item.title]" >
 <pre>
@@ -102,8 +102,8 @@ const state = reactive({
 .lnb-menu-list li.depth3 .menutext:hover:before,.lnb-menu-list li.depth3.active .menutext:before, .lnb-menu-list li.depth3.thispage .menutext:before{display: none;}
 .lnb-menu-list li.depth3 .menutext em{color:#000}
 .lnb-menu-list li.depth3 .menutext em:after{content:''; display: block; width:3px; height:1px; border-radius:0; background:#666; position: absolute; left:5px; top:8px;}
-.lnb-menu-list li.depth3.active .menutext em,.lnb-menu-list li.depth3.thispage .menutext em{color:#1297F2}
-.lnb-menu-list li.depth3.active .menutext em:after, .lnb-menu-list li.depth3.thispage .menutext em:after{background:#1297F2}
+.lnb-menu-list li.depth3.active .menutext em,.lnb-menu-list li.depth3.thispage .menutext em{color:var(--point-txt-color)}
+.lnb-menu-list li.depth3.active .menutext em:after, .lnb-menu-list li.depth3.thispage .menutext em:after{background:var(--point-txt-color)}
 
 /* active */
 .lnb-menu-list  li.active > ul, .lnb-menu-list  li.thispage > ul{height: auto;}

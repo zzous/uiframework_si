@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 export function useCommFunc() {
@@ -8,6 +8,8 @@ export function useCommFunc() {
     const isPartnerShow = ref(false);
     const isImgShow = ref(false);
     const isRequestShow = ref(false);
+    const $Modal = inject('$Modal');
+    const dayJS = inject('dayJS');
     const goToPage = (params) => {
         router.push(params);
     };
@@ -37,7 +39,9 @@ export function useCommFunc() {
         isPartnerShow,
         isDownShow,
         isImgShow,
-        isRequestShow
+        isRequestShow,
+        $Modal,
+        dayJS
 
     };
 }

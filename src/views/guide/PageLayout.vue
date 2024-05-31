@@ -8,13 +8,13 @@
             <ul class="memolist">
                 <li>html5 기본 태그로 사용</li>
                 <li>2단 기본 메뉴(좌측 메뉴/우측 컨텐츠)</li>
-                <li>레이아웃 변경시 <strong class="tagstyle">&lt;div class="layout" &gt;&lt;/div&gt;</strong> 태그에 클래스 추가 하여 스타일 재정의 하여 사용 (현재 기준  mentTop 클래스 추가시 레이아웃 구조 변경)</li>
+                <!-- <li>레이아웃 변경시 <strong class="tagstyle">&lt;div class="layout" &gt;&lt;/div&gt;</strong> 태그에 클래스 추가 하여 스타일 재정의 하여 사용 (현재 기준  mentTop 클래스 추가시 레이아웃 구조 변경)</li> -->
             </ul>
         </div>
         <div class="codewrap" v-for="(item, index) in state.codeSample" :key="index">
             <div :class="['codetitle', state.className]" >
                 <span @click="toggleAcc(index)">{{item.title}}</span>
-                <button type="button" class="btn btn-line small icon" @click="copyCode(item.sampleCodeJS)"> <span class="mdi mdi-animation"></span> 복사하기</button>
+                <button type="button" class="btn btn-ss" @click="copyCode(item.sampleCodeJS)"> <span class="ico-menu"></span> 복사하기</button>
             </div>
             <div :class="['code', item.title]" >
 <pre>

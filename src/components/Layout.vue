@@ -4,7 +4,6 @@
         <div class="contentwrap">
 
             <div class="lnb">
-                
                 <div class="lnb-menu-list">
                     <ul>
                         <!-- 1depth -->
@@ -33,12 +32,12 @@
                         </li>
                     </ul>
                 </div>
-                
             </div>
+
             <div class="content">
-                <div style="margin:10px 0; padding-right:30px; text-align: right;">
-                    <button type="button" class="btn" @click="onChangePage">레이아웃 변경</button>
-                    <button type="button" class="btn" @click="goToPage('/guide')">가이드 페이지로 이동</button>
+                <div class="flex justify-end" style="margin:10px 0; padding-right:30px; text-align: right;">
+                    <!-- <button type="button" class="btn" @click="onChangePage">레이아웃 변경</button> -->
+                    <button type="button" class="btn posi" @click="goToPage('/guide')">가이드 페이지로 이동</button>
                 </div>
                 <!-- 컨텐츠 영역 -->
                 <RouterView />
@@ -47,47 +46,58 @@
         <footer>
             <div class="flex-center">Powered by STRATO Cloud Management Platform</div>
         </footer>
+        <ConfirmModal />
     </div>
 </template>
 <script setup>
 import { defineComponent, onMounted, reactive, computed, getCurrentInstance, shallowRef, watch, nextTick } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { RouterLink, RouterView } from 'vue-router';
+import ConfirmModal from '@/plugins/modal/modal/ConfirmModal.vue';
 import { useCommFunc } from '@/core/helper/common.js';
 
 const { goToPage } = useCommFunc();
 const router = useRouter();
 const route = useRoute();
+
 const state = reactive({
     menuTop: '',
     menuList: [
-        {menu: 'menu1', pagelink: '/section', depth: [] },
-        {menu: 'menu2',
+        {menu: '영역별 요소',
             pagelink: null,
             depth: [
-                {
-                    menu: 'menu2-1',
-                    pagelink: '/title',
-                    depth: []
-                },
-                {
-                    menu: 'menu2-2',
-                    pagelink: null,
-                    depth: [
-                        {menu: 'menu2-2-1', pagelink: '/tab', depth: [] },
-                        {menu: 'menu2-2-2', pagelink: '/table', depth: [] }
-                    ]
-                }
+                { menu: 'box 스타일', pagelink: '/section', depth: [] },
+                { menu: '타이틀 스타일', pagelink: '/title', depth: [] },
+                { menu: '리스트 스타일', pagelink: '/list', depth: [] }
             ]
         },
-        {menu: 'menu3',
+        {menu: 'UI 요소',
+            pagelink: null,
+            depth: [
+                { menu: '테이블 스타일', pagelink: '/table', depth: [] },
+                { menu: '아코디언 스타일', pagelink: '/accordion', depth: [] },
+                { menu: '탭 스타일', pagelink: null, depth: [{menu: '탭 스타일', pagelink: '/tab', depth: [] }] },
+                { menu: 'DatePicker 스타일', pagelink: '/datepicker', depth: [] }
+            ]
+        },
+        {menu: '폼 요소',
+            pagelink: null,
+            depth: [
+                { menu: 'button 스타일', pagelink: '/button', depth: [] },
+                { menu: 'input 스타일', pagelink: '/forminput', depth: [] },
+                { menu: 'radio 스타일', pagelink: '/formradio', depth: [] },
+                { menu: 'checkbox 스타일', pagelink: '/formcheck', depth: [] },
+                { menu: 'select 스타일', pagelink: '/formselect', depth: [] }
+            ]
+        },
+        {menu: '팝업',
             pagelink: null,
             depth: [
                 {
-                    menu: 'menu3-1',
+                    menu: '팝업',
                     pagelink: null,
                     depth: [
-                        {menu: 'menu3-1-1', pagelink: null, depth: [] },
+                        {menu: '공통 팝업', pagelink: '/modal', depth: [] },
                         {menu: 'menu3-1-2', pagelink: null, depth: [] }
                     ]
                 },
@@ -204,8 +214,8 @@ watch(route, () => {
 .lnb-menu-list li.depth3 .menutext:hover:before,.lnb-menu-list li.depth3.active .menutext:before, .lnb-menu-list li.depth3.thispage .menutext:before{display: none;}
 .lnb-menu-list li.depth3 .menutext em{color:#000}
 .lnb-menu-list li.depth3 .menutext em:after{content:''; display: block; width:3px; height:1px; border-radius:0; background:#666; position: absolute; left:5px; top:8px;}
-.lnb-menu-list li.depth3.active .menutext em,.lnb-menu-list li.depth3.thispage .menutext em{color:#1297F2}
-.lnb-menu-list li.depth3.active .menutext em:after, .lnb-menu-list li.depth3.thispage .menutext em:after{background:#1297F2}
+.lnb-menu-list li.depth3.active .menutext em,.lnb-menu-list li.depth3.thispage .menutext em{color:var(--point-txt-color)}
+.lnb-menu-list li.depth3.active .menutext em:after, .lnb-menu-list li.depth3.thispage .menutext em:after{background:var(--point-txt-color)}
 
 /* active */
 .lnb-menu-list  li.active > ul, .lnb-menu-list  li.thispage > ul{height: auto;}

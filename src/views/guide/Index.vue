@@ -24,6 +24,7 @@ import Menu from '@/views/guide/Menu.vue';
 import Section from '@/views/guide/Section.vue';
 import Title from '@/views/guide/Title.vue';
 import Tab from '@/views/guide/Tab.vue';
+import Buttons from '@/views/guide/Buttons.vue';
 const state = reactive({
     guideMenu: [
         {label: '페이지 레이아웃', name: 'PageLayout'},
@@ -32,7 +33,7 @@ const state = reactive({
         {label: '타이틀', name: 'Title'},
         {label: '탭', name: 'Tab'},
         {label: '아코디언', name: 'Accordion'},
-        {label: '버튼', name: 'Button'},
+        {label: '버튼', name: 'Buttons'},
         {label: '폼', name: 'Form'},
         {label: '테이블', name: 'Table'},
         {label: '슬라이드', name: 'Slide'},
@@ -62,6 +63,9 @@ const onChangePage = async (pageName, pageTitle) => {
             break;
         case 'Tab':
             currentPageComponent.value = Tab;
+            break;
+        case 'Buttons':
+            currentPageComponent.value = Buttons;
             break;
         default:
             currentPageComponent.value = null;

@@ -15,7 +15,7 @@
         <div class="codewrap" v-for="(item, index) in state.codeSample" :key="index">
             <div :class="['codetitle', state.className]" >
                 <span @click="toggleAcc(index)">{{item.title}}</span>
-                <button type="button" class="btn btn-line small icon" @click="copyCode(item.sampleCodeJS)"> <span class="mdi mdi-animation"></span> 복사하기</button>
+                <button type="button" class="btn btn-ss" @click="copyCode(item.sampleCodeJS)"> <span class="ico-menu"></span> 복사하기</button>
             </div>
             <div :class="['code', item.title]" >
 <pre>

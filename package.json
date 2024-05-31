@@ -10,9 +10,17 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vuepic/vue-datepicker": "^5.4.0",
+    "ag-grid-community": "^30.0.6",
+    "ag-grid-vue3": "^30.0.6",
+    "dayjs": "^1.11.11",
+    "lodash": "^4.17.21",
     "pinia": "^2.1.7",
+    "tiny-emitter": "^2.1.0",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vue-universal-modal": "^1.1.4",
+    "vue3-toastify": "^0.2.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

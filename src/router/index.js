@@ -7,7 +7,7 @@ const withPrefix = (prefix, routes) => routes.map(route => {
 const routes = [
     {
 
-        redirect: '/guide',
+        redirect: '/section',
         name: 'layout',
         component: () => import('@/components/Layout.vue'),
         children: [
@@ -38,6 +38,60 @@ const routes = [
                 path: '/title',
                 name: 'TitlePage',
                 component: () => import('@/views/sample/TitlePage.vue')
+
+            },
+            {
+                path: '/modal',
+                name: 'ModalPage',
+                component: () => import('@/views/sample/ModalPage.vue')
+
+            },
+            {
+                path: '/accordion',
+                name: 'AccordionPage',
+                component: () => import('@/views/sample/AccordionPage.vue')
+
+            },
+            {
+                path: '/list',
+                name: 'ListPage',
+                component: () => import('@/views/sample/ListPage.vue')
+
+            },
+            {
+                path: '/forminput',
+                name: 'FormInputPage',
+                component: () => import('@/views/sample/FormInputPage.vue')
+
+            },
+            {
+                path: '/formradio',
+                name: 'FormRadioPage',
+                component: () => import('@/views/sample/FormRadioPage.vue')
+
+            },
+            {
+                path: '/formcheck',
+                name: 'FormCheckboxPage',
+                component: () => import('@/views/sample/FormCheckboxPage.vue')
+
+            },
+            {
+                path: '/formselect',
+                name: 'FormSelectPage',
+                component: () => import('@/views/sample/FormSelectPage.vue')
+
+            },
+            {
+                path: '/datepicker',
+                name: 'DatePickerPage',
+                component: () => import('@/views/sample/DatePickerPage.vue')
+
+            },
+            {
+                path: '/button',
+                name: 'ButtonPage',
+                component: () => import('@/views/sample/ButtonPage.vue')
 
             }
         ]
