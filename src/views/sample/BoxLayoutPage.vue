@@ -332,4 +332,9 @@ const state = reactive({
 
 .boxlist.same{flex-wrap:wrap;flex-direction: row;}
 .boxlist.same .boxitem{width:48%; height:48%;}
+
+.barbox{display:flex; width:100%; height:100%; justify-content: center; align-items:center; position: relative;}
+.barChart{width:100px;height:8px; border-radius: 4px; background:#F0F0F0; position: relative;}
+.barChart .bar{height:8px; border-radius: 4px; background:#1297F2; position:absolute; left:0; top:0}
+.datarate{margin-left:10px;}
 </style>
