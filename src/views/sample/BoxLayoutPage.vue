@@ -1,7 +1,7 @@
 <template>
     <div class="pageView">
         <div class="cardwrap">
-            <CardBox :cardWidth="500" :cardTitle="'테넌트 별 가상서버 사용 상태'">
+            <CardBox :cardWidth="500" :cardTitle="'테넌트 별 가상서버 사용 상태'"  style="min-height:320px;">
                 <template #cardContent>
                     <donutChart :donetlegend="state.donetlegend1" :colors="state.colors1" :totalValue="72"></donutChart>
                 </template>
@@ -83,6 +83,7 @@
             <CardBox :cardWidth="500" :cardTitle="'삭제 예정 가상서버'">
                 <template #cardContent>
                     <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                    rowSelection="multiple"
                         class="ag-theme-alpine" :domLayout="'autoHeight'">
                     </AgGridVue>
                 </template>
@@ -332,6 +333,7 @@ const state = reactive({
 
 .boxlist.same{flex-wrap:wrap;flex-direction: row;}
 .boxlist.same .boxitem{width:48%; height:48%;}
+
 
 .barbox{display:flex; width:100%; height:100%; justify-content: center; align-items:center; position: relative;}
 .barChart{width:100px;height:8px; border-radius: 4px; background:#F0F0F0; position: relative;}
