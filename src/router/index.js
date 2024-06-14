@@ -17,13 +17,6 @@ const routes = [
                 component: () => import('@/views/sample/SectionPage.vue')
 
             },
-
-            {
-                path: '/boxlayout',
-                name: 'BoxLayoutPage',
-                component: () => import('@/views/sample/BoxLayoutPage.vue')
-
-            },
             ...withPrefix('/tab', [
                 {
                     path: '/',
@@ -99,12 +92,6 @@ const routes = [
                 path: '/button',
                 name: 'ButtonPage',
                 component: () => import('@/views/sample/ButtonPage.vue')
-
-            },
-            {
-                path: '/ckeditor',
-                name: 'CkeditorPage',
-                component: () => import('@/views/sample/CkeditorPage.vue')
 
             }
         ]

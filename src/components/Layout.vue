@@ -63,10 +63,6 @@ const route = useRoute();
 const state = reactive({
     menuTop: '',
     menuList: [
-        {menu: '대시보드',
-            pagelink: '/boxlayout',
-            depth: []
-        },
         {menu: '영역별 요소',
             pagelink: null,
             depth: [
@@ -82,7 +78,6 @@ const state = reactive({
                 { menu: '아코디언 스타일', pagelink: '/accordion', depth: [] },
                 { menu: '탭 스타일', pagelink: null, depth: [{menu: '탭 스타일', pagelink: '/tab', depth: [] }] },
                 { menu: 'DatePicker 스타일', pagelink: '/datepicker', depth: [] }
-                
             ]
         },
         {menu: '폼 요소',
@@ -92,8 +87,7 @@ const state = reactive({
                 { menu: 'input 스타일', pagelink: '/forminput', depth: [] },
                 { menu: 'radio 스타일', pagelink: '/formradio', depth: [] },
                 { menu: 'checkbox 스타일', pagelink: '/formcheck', depth: [] },
-                { menu: 'select 스타일', pagelink: '/formselect', depth: [] },
-                { menu: 'Editor 스타일', pagelink: '/ckeditor', depth: [] }
+                { menu: 'select 스타일', pagelink: '/formselect', depth: [] }
             ]
         },
         {menu: '팝업',

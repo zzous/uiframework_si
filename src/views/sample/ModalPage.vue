@@ -19,17 +19,22 @@
         </div>
         <div class="guideTitle">툴팁</div>
         <div class="flex">
-            <div class="flex">
-                내용이 많은 경우 슬롯으로 처리
-                <ToolTip :toolBtn="'툴팁'">
-                    <template #toolTipcon>
-                        <div>가상 서버가  <br />생성되어 있는 <br /> 클라우드 서비스의 <br />기간별 평균사용 추이 입니다.</div>
-                    </template>
-                </ToolTip>
+            <div class="toolTip">
+                <button type="button" class="btn-tooltip" @click="onClickTip($event, 'left')">툴팁 - LEFT</button>
+                <div class="tooltipbox" :style="`top:${(state.offsetTop)}px; left:${(state.offsetLeft)}px`" @click="onCloseTip">툴팁 설명입니다.</div>
             </div>
-            <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />
-            <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'bottom'" />
-            <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />
+            <div class="toolTip">
+                <button type="button" class="btn-tooltip" @click="onClickTip($event, 'right')">툴팁 - LEFT</button>
+                <div class="tooltipbox right" :style="`top:${(state.offsetTop)}px; left:${(state.offsetLeft)}px`" @click="onCloseTip">툴팁 설명입니다.</div>
+            </div>
+            <div class="toolTip">
+                <button type="button" class="btn-tooltip" @click="onClickTip($event, 'top')">툴팁 - TOP</button>
+                <div class="tooltipbox top" :style="`top:${(state.offsetTop)}px; left:${(state.offsetLeft)}px`" @click="onCloseTip">툴팁 설명입니다.</div>
+            </div>
+            <div class="toolTip">
+                <button type="button" class="btn-tooltip" @click="onClickTip($event, 'bottom')">툴팁 - BOTTOM</button>
+                <div class="tooltipbox bottom" :style="`top:${(state.offsetTop)}px; left:${(state.offsetLeft)}px`" @click="onCloseTip">툴팁 설명입니다.</div>
+            </div>
         </div>
     </div>
     <DefaultModal :isShow="isShow" :modalTitle="'팝업 제목'" :buttonConfirm="'저장'" :buttonCancel="'취소'"
@@ -46,7 +51,6 @@ import {  reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCommFunc } from '@/core/helper/common.js';
 import DefaultModal from '@/plugins/modal/modal/DefaultModal.vue';
-import ToolTip from '@/components/ToolTip.vue';
 const {  $Modal } = useCommFunc();
 const state = reactive({
     offsetTop: null,
@@ -102,5 +106,27 @@ const showToast = (type) => {
     
 };
 
+const onClickTip = (e, type) => {
+    const ele = e.target.nextSibling;
+    const clientRect =  window.pageYOffset + e.target.getBoundingClientRect().top;
+    const clientRectleft =  window.pageXOffset + e.target.getBoundingClientRect().left;
+    if (type === 'left') {
+        state.offsetTop = clientRect - 10;
+        state.offsetLeft = clientRectleft + 30;
+    } else if (type === 'bottom') {
+        state.offsetTop = clientRect + 30;
+        state.offsetLeft = clientRectleft - 50;
+    } else if (type === 'right') {
+        state.offsetTop = clientRect - 10;
+        state.offsetLeft = clientRectleft - 115;
+    } else if (type === 'top') {
+        state.offsetTop = clientRect - 40;
+        state.offsetLeft = clientRectleft - 50;
+    }
+    ele.classList.contains('open') ? ele.classList.remove('open') : ele.classList.add('open');
+};
+const onCloseTip = (e) => {
+    e.target.classList.remove('open');
+};
 
 </script>
