@@ -339,5 +339,4 @@ const state = reactive({
 .barChart{width:100px;height:8px; border-radius: 4px; background:#F0F0F0; position: relative;}
 .barChart .bar{height:8px; border-radius: 4px; background:#1297F2; position:absolute; left:0; top:0}
 .datarate{margin-left:10px;}
-
 </style>
