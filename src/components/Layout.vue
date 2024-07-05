@@ -58,6 +58,7 @@
                                 <button class="mybtn btn-setting"></button>
                                 <button class="mybtn btn-company"></button>
                                 <button class="mybtn btn-logout"></button>
+                                <button class="mybtn btn-guide" @click="router.push('/guide')"></button>
                             </div>
 
                         </div>
@@ -94,11 +95,11 @@ const state = reactive({
     menuTop: '',
     menuList: [
         {menu: '가이드 활용 페이지',
-            pagelink:null,
+            pagelink: null,
             depth: [
                 { menu: '카드형태 페이지', pagelink: '/boxlayout', depth: [] },
                 { menu: '테이블 페이지', pagelink: '', depth: [] },
-                { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] },
+                { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] }
             ]
         },
         {menu: '영역별 요소',
