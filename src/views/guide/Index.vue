@@ -22,19 +22,24 @@ import { useRouter } from 'vue-router';
 import PageLayout from '@/views/guide/PageLayout.vue';
 import Menu from '@/views/guide/Menu.vue';
 import Section from '@/views/guide/Section.vue';
+import Card from '@/views/guide/Card.vue';
 import Title from '@/views/guide/Title.vue';
 import Tab from '@/views/guide/Tab.vue';
 import Buttons from '@/views/guide/Buttons.vue';
+import Accordion from '@/views/guide/Accordion.vue';
+import FormInput from '@/views/guide/FormInput.vue';
+import FormInputCheck from '@/views/guide/FormInputCheck.vue';
 const state = reactive({
     guideMenu: [
         {label: '페이지 레이아웃', name: 'PageLayout'},
-        {label: '영역 분배', name: 'Section'},
+        {label: '카드', name: 'Card'},
         {label: '메뉴', name: 'Menu'},
         {label: '타이틀', name: 'Title'},
         {label: '탭', name: 'Tab'},
         {label: '아코디언', name: 'Accordion'},
         {label: '버튼', name: 'Buttons'},
-        {label: '폼', name: 'Form'},
+        {label: '폼-input', name: 'FormInput'},
+        {label: '폼-radio,checkbox', name: 'FormInputCheck'},
         {label: '테이블', name: 'Table'},
         {label: '슬라이드', name: 'Slide'},
         {label: '모달팝업', name: 'Modal'},
@@ -55,8 +60,8 @@ const onChangePage = async (pageName, pageTitle) => {
         case 'Menu':
             currentPageComponent.value = Menu;
             break;
-        case 'Section':
-            currentPageComponent.value = Section;
+        case 'Card':
+            currentPageComponent.value = Card;
             break;
         case 'Title':
             currentPageComponent.value = Title;
@@ -66,6 +71,15 @@ const onChangePage = async (pageName, pageTitle) => {
             break;
         case 'Buttons':
             currentPageComponent.value = Buttons;
+            break;
+        case 'Accordion':
+            currentPageComponent.value = Accordion;
+            break;
+        case 'FormInput':
+            currentPageComponent.value = FormInput;
+            break;
+        case 'FormInputCheck':
+            currentPageComponent.value = FormInputCheck;
             break;
         default:
             currentPageComponent.value = null;

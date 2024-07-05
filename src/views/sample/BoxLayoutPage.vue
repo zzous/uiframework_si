@@ -1,24 +1,123 @@
 <template>
     <div class="pageView">
+        <div style="margin-bottom:20px">
+            <!-- <button class="btn">대시보드 변경</button> -->
+        </div>
         <div class="cardwrap">
+            <CardBox :cardWidth="300" :cardTitle="'오늘 나의 업무'" :cardSubtext="'사용자가 처리해야할 업무입니다.'" style="min-height:100px;">
+                <template #cardContent>
+                    <div style="display: flex;height: calc(100% - 72px); ">
+                        <div style="border-radius:10px; flex:1; height:100%; background:#3c3e4a; text-align: left; padding:10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16" fill="#dcfc34">
+                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+                            </svg>
+                            <div>
+                                <span style="font-size:15px; display: block; color:#dcfc34">
+                                    할일
+                                </span>
+                                <strong style="font-size:35px;margin-top:10px; display:block;text-align: center;color:#dcfc34">36건</strong>
+                            </div>
+                        </div>
+                        
+                        <div style="border-radius:10px; flex:1; height:100%; margin-left:10px; background:#c9c9d4;text-align: left;padding:10px 20px;">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="30" height="30"  viewBox="0 0 16 16" >
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                            </svg>
+                            <div>
+                                <span style="font-size:15px; display: block;">
+                                결재할 업무
+                                </span>
+                                <strong style="font-size:35px; margin-top:10px;display:block; text-align: center">28건</strong>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </CardBox>
+            <CardBox :cardWidth="300" :cardTitle="'나의 작업 현황'" :cardSubtext="'할당된 업무 중 완료처리된 내용입니다'">
+                <template #cardContent>
+                    <div class="ui-no-date"><p>완료 처리된 내용이 없습니다.</p></div>
+                </template>
+            </CardBox>
+            <CardBox :cardWidth="300" :cardTitle="'나의 결재 현황'" :cardSubtext="'대기중인 업무와 처리된 업무 내용입니다'">
+                <template #cardContent>
+                    <div style="height: calc(100% - 72px); ">
+                        <BarChartHor :unit="state.unit" :chartBar="state.chartBar1" :chartId="'ChartBar2'" :chartClass="'chartNolegend'"  :chartColorType="['854cf5','189F92', 'F38C25' ]"></BarChartHor>
+                    </div>
+                </template>
+            </CardBox>
+            <CardBox :cardWidth="800" :cardTitle="'나의 할일'"  :cardSubtext="'사용자가 작업 해야할 작업 목록입니다'">
+                <template #cardContent>
+                    <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                    rowSelection="multiple"
+                        class="ag-theme-alpine" :domLayout="'autoHeight'">
+                    </AgGridVue>
+                </template>
+            </CardBox>
+            <CardBox :cardWidth="800" :cardTitle="'나의 알림목록'"  :cardSubtext="'최근 알림 목록입니다.'">
+                <template #cardContent>
+                    <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                    rowSelection="multiple"
+                        class="ag-theme-alpine" :domLayout="'autoHeight'"  :cardSubtext="'사용자가 결재를 요청한 목록입니다'">
+                    </AgGridVue>
+                </template>
+            </CardBox>
+            <CardBox :cardWidth="800" :cardTitle="'내가 요청한 결재목록'"  :cardSubtext="'사용자가 결재를 요청한 목록입니다'">
+                <template #cardContent>
+                    <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                    rowSelection="multiple"
+                        class="ag-theme-alpine" :domLayout="'autoHeight'">
+                    </AgGridVue>
+                </template>
+            </CardBox>
+            <CardBox :cardWidth="800" :cardTitle="'내가 요청받은 결재목록'" :cardSubtext="'사용자가 결재 해야할 작업 목록입니다'">
+                <template #cardContent>
+                    <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                    rowSelection="multiple"
+                        class="ag-theme-alpine" :domLayout="'autoHeight'">
+                    </AgGridVue>
+                </template>
+            </CardBox>
+          
+            
+            <!-- <CardBox :cardWidth="700" :cardTitle="'세로그래프 기본'">
+                <template #cardContent>
+                    <BarChart :unit="state.unit" :chartBar="state.chartBar" :chartId="'ChartBar4'" ></BarChart>
+                </template>
+            </CardBox> -->
+        </div>
+        <div class="cardwrap" v-if="false">
             <CardBox :cardWidth="500" :cardTitle="'테넌트 별 가상서버 사용 상태'"  style="min-height:320px;">
                 <template #cardContent>
                     <donutChart :donetlegend="state.donetlegend1" :colors="state.colors1" :totalValue="72"></donutChart>
                 </template>
             </CardBox>
-          
-            <CardBox :cardWidth="500" :cardTitle="'가로 그래프 기본'">
+            
+            <CardBox :cardWidth="700" :cardTitle="'가로 그래프 기본'">
                 <template #cardContent><BarChartHor :unit="state.unit" :chartBar="state.chartBar" :chartId="'ChartBar1'" ></BarChartHor></template>
             </CardBox>
-
-            <CardBox :cardWidth="700" :cardTitle="'가로 그래프 변형(범위 삭제)'">
-                <template #cardContent><BarChartHor :unit="state.unit" :chartBar="state.chartBar1" :chartId="'ChartBar2'" :chartClass="'chartNolegend'" :chartColor="'574794'"></BarChartHor></template>
+            <CardBox :cardWidth="500" :cardTitle="'이벤트 / 장애 현황'">
+                <template #cardContent>
+                    <div class="boxlist row">
+                        <div class="boxitem confirm" v-for="(item, index) in 5" :key="index">
+                            <span>전체</span>
+                            <strong>5</strong>
+                        </div>
+                    </div>
+                </template>
             </CardBox>
+            
+            
 
             <CardBox :cardWidth="300" :cardTitle="'가로 그래프 변형(차트 별도 컬러 지정)'">
                 <template #cardContent><BarChartHor :unit="state.unit" :chartBar="state.chartBar2" :chartId="'ChartBar3'" :chartClass="'chartCompare'" :chartColorType="['574794','189F92', 'F38C25' ]"></BarChartHor></template>
             </CardBox>
-
+            <CardBox :cardWidth="700" :cardTitle="'가로 그래프 변형(범위 삭제)'">
+                <template #cardContent>
+                    <div><BarChartHor :unit="state.unit" :chartBar="state.chartBar1" :chartId="'ChartBar2'" :chartClass="'chartNolegend'" :chartColor="'574794'"></BarChartHor></div>
+                </template>
+            </CardBox>
             <CardBox  :cardWidth="1000"  :cardTitle="'자원구성현황'">
                 <template #cardContent>
                     <div class="cmpbox">
@@ -80,6 +179,7 @@
                     </div>
                 </template>
             </CardBox>
+            
             <CardBox :cardWidth="500" :cardTitle="'삭제 예정 가상서버'">
                 <template #cardContent>
                     <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
@@ -111,12 +211,9 @@ const state = reactive({
         {name: 'GHI', rate: 6800, date: '202.06.11', time: '08:00'}
     ],
     chartBar1: [
-        {name: '가상서버이름A', rate: 51, coreType: {a: '33코어', b: '65코어', all: '72코어'}, date: '202.06.11', time: '08:00'},
-        {name: '가상서버이름b', rate: 26, coreType: {a: '33코어', b: '65코어', all: '72코어'}, date: '202.06.11', time: '08:00'},
-        {name: '가상서버이름c', rate: 12, coreType: {a: '33코어', b: '65코어', all: '72코어'}, date: '202.06.11', time: '08:00'},
-        {name: '가상서버이름d', rate: 6, coreType: {a: '33코어', b: '65코어', all: '72코어'}, date: '202.06.11', time: '08:00'},
-        {name: '가상서버이름e', rate: 3, coreType: {a: '33코어', b: '65코어', all: '72코어'}, date: '202.06.11', time: '08:00'},
-        {name: '가상서버이름f', rate: 70, coreType: {a: '33코어', b: '65코어', all: '72코어'}, date: '202.06.11', time: '08:00'}
+        {name: '승인대기', rate: 51,  coreType: {a: '', b: ''},date: '202.06.11', time: '08:00'},
+        {name: '승인완료', rate: 26, coreType: {a: '', b: ''}, date: '202.06.11', time: '08:00'},
+        {name: '반려/폐기', rate: 12, coreType: {a: '', b: ''}, date: '202.06.11', time: '08:00'},
     ],
     chartBar2: [
         {name: '블록스토리지', rate: 45, coreType: {a: '579Gib', b: '1024Gib'}, date: '202.06.11', time: '08:00'},
@@ -218,6 +315,21 @@ const state = reactive({
             name: 'DATASTORE1',
             cloudtype: '가상서버이름',
             synch: '2023.04.12 13:22:14'
+        },
+        {
+            name: 'DATASTORE1',
+            cloudtype: '가상서버이름',
+            synch: '2023.04.12 13:22:14'
+        },
+        {
+            name: 'DATASTORE1',
+            cloudtype: '가상서버이름',
+            synch: '2023.04.12 13:22:14'
+        },
+        {
+            name: 'DATASTORE1',
+            cloudtype: '가상서버이름',
+            synch: '2023.04.12 13:22:14'
         }
     ],
     defaultColDef: {
@@ -234,65 +346,7 @@ const state = reactive({
 
 </script>
 <style>
-.cardwrap{display: flex; flex-wrap:wrap; position: relative; left:-20px}
-.card{flex:1;flex-shrink:1; flex-basis:400px;border:solid 1px #ddd; border-radius:5px; padding:15px;margin-left:20px; margin-bottom:20px; align-items: stretch;}
-.card .pagetitle{font-size:14px}
-.card .titlebox{border:none}
-.card .titlebox.img .pagetitle{background-size:15px; padding-left:20px}
-.ui-chart { height: 100%; min-height: 300px; padding-bottom:30px }
-.ui-bar-chart { display: flex; position: relative; height: 100%; padding-bottom: 20px; }
-.ui-bar-chart .ui-bar-x { flex: 1; border-bottom: 1px solid #d2d2d2; }
-.ui-bar-x .unit { position: absolute; bottom: -4px; right: 0; font-size: 12px; }
-.ui-bar-chart .ui-bar-y { border-right: 1px solid #d2d2d2; }
-.ui-bar-y .unit { position: absolute; top: -3px; left: 0; font-size: 12px; }
-.ui-bar-x-unit { display: flex; height: 100%; margin-right: 30px; }
-.ui-bar-x-unit li { position: relative; width: 100%; height:100%; text-align: center; }
-.ui-bar-x-unit li .bar { position: absolute; bottom: 0; left: 25%; width: 50%; background-color: #189F92; border-radius: 5px 5px 0 0; cursor: pointer; }
-.ui-chart .ratetext{display:none}
 
-.ui-bar-x-unit li .x-value, .ui-bar-x-unit li .x-value { position: absolute; bottom: -26px; left: 0; width: 100%; text-align: center; }
-.ui-bar-y-unit { display: flex; flex-direction: column-reverse; align-items: flex-end; justify-self: flex-end; height: 100%; }
-.ui-bar-y-unit li { display: flex; flex-direction: column-reverse; position: relative; height: 100%; padding-right: 20px; line-height: 0; }
-.ui-bar-y-unit li::after { content: ''; position: absolute; bottom: 0; right: 0; width: 6px; height: 1px; background-color: #d2d2d2; }
-.ui-bar-y-unit li .bar { background-color: #189F92; border-radius: 0 5px 5px 0; }
-.ui-bar-chart.hor { display: block; }
-.ui-bar-chart.hor .ui-bar-y { display: flex; height: 100%; border: none; }
-.ui-bar-chart.hor .ui-bar-y-unit { width: 100%; flex-direction: column; }
-.ui-bar-chart.hor .ui-bar-y-unit li { flex-direction: unset; align-items: center; width: 100%; line-height: normal; padding-right: 0; }
-.ui-bar-chart.hor .ui-bar-y-unit li::after { display: none; }
-.ui-bar-chart.hor .ui-bar-y-unit li .lb { display: flex; align-items: center; justify-content: end; position: relative; width: 20%; height: 100%; padding-right: 14px; text-align: right; border-right: 1px solid #d2d2d2; }
-.ui-bar-chart.hor .ui-bar-y-unit li .graph { display: block; position: relative; width: 80%; height: 100%; }
-.ui-bar-chart.hor .ui-bar-y-unit li .graph .bar { position: absolute; top: 25%; left: 0; height: 50%; border-radius: 0 5px 5px 0; background-color: #189F92; }
-.ui-bar-chart.hor .ui-bar-x { margin-left: 20%; }
-.ui-bar-chart.hor .ui-bar-x-unit { margin-right: 0; position: relative;left:-27px }
-.ui-bar-chart.hor .ui-bar-x-unit li::before { content: ''; position: absolute; top: -6px; left: 50%; width: 1px; height: 6px; background-color: #d2d2d2; }
-.ui-bar-chart.hor .ui-bar-x-unit li:nth-of-type(1)::before{display: none;}
-
-.ui-chart.chartNolegend .ui-bar-x, .ui-chart.chartCompare .ui-bar-x{display: none;}
-.ui-chart.chartNolegend .ratetext, .ui-chart.chartCompare .ratetext{display:block;position: absolute; right:0px; bottom: -20px;display: flex; align-items: center;}
-.ui-chart.chartCompare .ratetext{bottom:auto; top:0px; flex-direction: row-reverse;}
-.ui-chart.chartNolegend .coreType, .ui-chart.chartCompare .coreType {display:block; font-size:12px; text-align: center;}
-.ui-chart.chartNolegend .coreType .coreall, .ui-chart.chartCompare .coreType .coreall{width:100%;font-size:11px;display:block }
-.ui-chart.chartNolegend .rateValue, .ui-chart.chartCompare .rateValue{margin-left:10px; font-size:14px; font-weight:700;}
-.ui-chart.chartCompare .rateValue{margin-left:0; margin-right:10px;}
-.ui-chart.chartNolegend .ui-bar-chart.hor .ui-bar-y-unit li, .ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li{flex-wrap: wrap; margin:8px 0; padding-right:130px;}
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li{height:auto; padding-right:0;}
-.ui-chart.chartNolegend .ui-bar-chart.hor .ui-bar-y-unit li .lb, .ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .lb{border:none;width: 100%; text-align: left; justify-content: flex-start;}
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .lb{margin-bottom:10px;}
-.ui-chart.chartNolegend .ui-bar-chart.hor .ui-bar-y-unit li .graph, .ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .graph{width:100%;height:10px; background:#eee; border-radius:10px; }
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .graph{height:20px;border-radius:0px;}
-.ui-chart.chartNolegend .ui-bar-chart.hor .ui-bar-y-unit li .graph .bar, .ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .graph .bar{height:100%; left:0; top:0; border-radius:10px;}
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .graph .bar{border-radius: 0;}
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y{height:auto}
-
-.bar-tooltip { opacity: 0; position: fixed;  padding: 10px; border: 1px solid #d2d2d2; background-color: #fff; border-radius: 5px; font-size: 11px; color: #666; transform: translateX(-50%); z-index: 10;transition: opacity .3s, margin-top .3s; margin-top:-10px }
-.bar-tooltip::after { content: ''; position: absolute; bottom: -5px; left: 50%; width: 8px; height: 8px; margin-left: -5px; border-width: 1px 1px 0 0; border-style: solid; border-color: #d2d2d2; background-color: #fff; transform: rotate(135deg); }
-.bar-tooltip .t-sales-num { display: block; margin-top: 3px;  color: var(--point-txt-color); text-align: right; }
-.bar-tooltip .t-countbox {   color: var(--base-txt-color); display:flex; justify-content: space-between;}
-.bar-tooltip .t-count {  font-weight: bold; color: var(--point-txt-color);margin-left:10px;}
-.bar-tooltip .t-title { display:block; font-weight: bold; color: var(--base-txt-color);font-size:13px; margin-bottom:5px;text-align: left; }
-.bar-tooltip .t-date { display:block; text-align: left; margin-top:5px; }
-.bar:hover .bar-tooltip { display: block; }
 
 
 
@@ -327,12 +381,15 @@ const state = reactive({
 .boxlist{height: 90%; display: flex; flex-direction: column; justify-content: space-evenly;}
 .boxlist .boxitem{width:100%; height:70px; border-radius:5px; padding:0 30px; display:flex; justify-content: space-between; align-items: center;}
 .boxlist .boxitem span{font-size:16px;}
-.boxlist .boxitem strong{font-size:28px; text-decoration: underline;}
+.boxlist .boxitem strong{font-size:28px; text-decoration: underline;color:#574794;}
 .boxlist .boxitem.confirm{background: rgba(24, 159, 146, 0.05);}
 .boxlist .boxitem.error{background: rgba(247, 249, 250, 1);}
 
 .boxlist.same{flex-wrap:wrap;flex-direction: row;}
 .boxlist.same .boxitem{width:48%; height:48%;}
+.boxlist.row{flex-direction: row; flex-wrap:wrap;justify-content: flex-start;}
+.boxlist.row .boxitem{width:calc(20% - 10px);height:120px;flex-direction:column;padding:10px 0 26px 0;margin:0 10px 10px 0; flex-grow:0;}
+.boxlist.row .boxitem strong{font-size:36px;text-decoration:none;}
 
 
 .barbox{display:flex; width:100%; height:100%; justify-content: center; align-items:center; position: relative;}

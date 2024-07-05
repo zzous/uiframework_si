@@ -11,8 +11,8 @@
             </div>
             <div class="ui-bar-x">
                 <ul class="ui-bar-x-unit" :id="state.chartId" >
-                    <li v-for="(item, index) in state.chartBar" :key="index"  >
-                        <span class="bar" :style="barStyle(item.rate)" @click="onClickBar($event,index)"></span>
+                    <li v-for="(item, index) in state.chartBar" :key="index" @mouseover.stop.prevent="onClickBar($event,index)" @mouseout.stop.prevent="onCloseTip" >
+                        <span class="bar" :style="barStyle(item.rate)"  ></span>
                         <span class="x-value">{{item.name}}</span>
                         <span class="bar-tooltip">
                             <span class="t-title">{{ item.name }}</span>
@@ -91,6 +91,7 @@ const onClickBar = (target, index) => {
         child.style.top = 0;
         child.style.left = 0;
         child.style.marginTop = -10 + 'px';
+        child.style.zIndex = -1;
     }
     for (const child of toolTip.children) {
         if (child.nodeType === Node.ELEMENT_NODE && child.classList.contains('bar-tooltip')) {
@@ -98,8 +99,24 @@ const onClickBar = (target, index) => {
             child.style.top = (target.clientY - child.getBoundingClientRect().height) + 'px';
             child.style.left = (target.clientX) + 'px';
             child.style.marginTop = 0 + 'px';
+            child.style.zIndex = 99;
         }
     }
 };
+/**
+    * 툴팁
+    * @description 마우스 클릭 위치 계산하여 툴팁 위치 설정
+    * @params target, index
+*/
+const onCloseTip = ()=>{
+    const barTooltip = document.querySelectorAll(`#${state.chartId} > li > .bar-tooltip`);
+    for (const child of barTooltip) {
+        child.style.opacity = 0;
+        child.style.top = 0;
+        child.style.left = 0;
+        child.style.zIndex = -1;
+        child.style.marginTop = -10 + 'px';
+    }
+}
 
 </script>

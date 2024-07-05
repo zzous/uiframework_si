@@ -65,7 +65,6 @@ const computedGradient = () => {
         return state.totalValue ? `#fff ${startAngle - 1}deg ${startAngle}deg, #${state.colors[index]} ${startAngle + 1}deg ${currentAngle - 1}deg, #fff ${currentAngle - 1}deg ${currentAngle}deg` :
             ` #${state.colors[index]} ${startAngle}deg ${currentAngle}deg, #fff ${currentAngle}deg ${currentAngle}deg`;
     });
-
     return {
         background: `conic-gradient(${segments.join(', ')})`
     };

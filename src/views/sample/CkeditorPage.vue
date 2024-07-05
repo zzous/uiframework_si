@@ -1,7 +1,9 @@
 <template>
     <div class="pageView">
-        <div class="guideTitle">에디터</div>
-        <editor :editorCon="state.editorCon" @changeEditorCon = onChangeEditor></editor>
+        <div class="pageBgbox">
+            <div class="guideTitle">에디터</div>
+            <editor :editorCon="state.editorCon" @changeEditorCon = onChangeEditor></editor>
+        </div>
     </div>
 </template>
 

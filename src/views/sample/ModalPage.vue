@@ -1,35 +1,37 @@
 <template>
     <div class="pageView">
-        <div class="guideTitle">alert창</div>
-        <div class="flex">
-            <button type="button" class="btn btn-ss" @click="modal('confirm', 'warning')">alert-warning(경고)</button>
-            <button type="button" class="btn btn-ss" @click="modal('confirm', 'confirm')">alert-confirm(확인)</button>
-            <button type="button" class="btn btn-ss" @click="modal('confirm', 'error')">alert-error(오류)</button>
-            <button type="button" class="btn btn-ss" @click="modal('confirm')">alert-default(정보안내)</button>
-        </div>
-        <div class="guideTitle">팝업</div>
-        <div class="flex">
-            <button type="button" class="btn posi" @click="showModal">팝업오픈</button>
-        </div>
-        <div class="guideTitle">토스트 팝업</div>
-        <div class="flex">
-            <button type="button" class="btn" @click="showToast('default')">토스트-경고</button>
-            <button type="button" class="btn" @click="showToast('error')">토스트-에러</button>
-            <button type="button" class="btn" @click="showToast('success')">토스트-성공</button>
-        </div>
-        <div class="guideTitle">툴팁</div>
-        <div class="flex">
+        <div class="pageBgbox">
+            <div class="guideTitle">alert창</div>
             <div class="flex">
-                내용이 많은 경우 슬롯으로 처리
-                <ToolTip :toolBtn="'툴팁'">
-                    <template #toolTipcon>
-                        <div>가상 서버가  <br />생성되어 있는 <br /> 클라우드 서비스의 <br />기간별 평균사용 추이 입니다.</div>
-                    </template>
-                </ToolTip>
+                <button type="button" class="btn btn-ss" @click="modal('confirm', 'warning')">alert-warning(경고)</button>
+                <button type="button" class="btn btn-ss" @click="modal('confirm', 'confirm')">alert-confirm(확인)</button>
+                <button type="button" class="btn btn-ss" @click="modal('confirm', 'error')">alert-error(오류)</button>
+                <button type="button" class="btn btn-ss" @click="modal('confirm')">alert-default(정보안내)</button>
             </div>
-            <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />
-            <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'bottom'" />
-            <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />
+            <div class="guideTitle">팝업</div>
+            <div class="flex">
+                <button type="button" class="btn posi" @click="showModal">팝업오픈</button>
+            </div>
+            <div class="guideTitle">토스트 팝업</div>
+            <div class="flex">
+                <button type="button" class="btn" @click="showToast('default')">토스트-경고</button>
+                <button type="button" class="btn" @click="showToast('error')">토스트-에러</button>
+                <button type="button" class="btn" @click="showToast('success')">토스트-성공</button>
+            </div>
+            <div class="guideTitle">툴팁</div>
+            <div class="flex">
+                <div class="flex">
+                    내용이 많은 경우 슬롯으로 처리
+                    <ToolTip :toolBtn="'툴팁'">
+                        <template #toolTipcon>
+                            <div>가상 서버가  <br />생성되어 있는 <br /> 클라우드 서비스의 <br />기간별 평균사용 추이 입니다.</div>
+                        </template>
+                    </ToolTip>
+                </div>
+                <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />
+                <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'bottom'" />
+                <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />
+            </div>
         </div>
     </div>
     <DefaultModal :isShow="isShow" :modalTitle="'팝업 제목'" :buttonConfirm="'저장'" :buttonCancel="'취소'"
@@ -47,7 +49,7 @@ import { useRouter } from 'vue-router';
 import { useCommFunc } from '@/core/helper/common.js';
 import DefaultModal from '@/plugins/modal/modal/DefaultModal.vue';
 import ToolTip from '@/components/ToolTip.vue';
-const {  $Modal } = useCommFunc();
+const {  $Modal } = useCommFunc();  
 const state = reactive({
     offsetTop: null,
     offsetLeft: null

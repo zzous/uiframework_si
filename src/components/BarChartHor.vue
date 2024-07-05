@@ -5,10 +5,10 @@
                 <ul class="ui-bar-y-unit" :id="state.chartId">
                     <li v-for="(item, index) in state.chartBar" :key="index">
                         <span class="lb">{{item.name}}</span>
-                        <span class="graph">
-                            <span class="bar" :style="barStyle(item.rate, index)" @click="onClickBar($event,index)"></span>
+                        <span class="graph"  >
+                            <span class="bar" :style="barStyle(item.rate, index)" @mouseover.stop.prevent="onClickBar($event,index)" @mouseout.stop.prevent="onCloseTip"></span>
                         </span>
-                        <span class="ratetext" v-if="state.chartClass">
+                        <span class="ratetext" v-if="state.chartClass && item.coreType">
                             <span class="coreType">
                                 <em class="core">{{ item.coreType.a }}</em>
                                 <em class="core">/</em>
@@ -114,8 +114,23 @@ const onClickBar = (target, index) => {
             child.style.top = ((target.clientY - child.getBoundingClientRect().height) - 5) + 'px';
             child.style.left = (target.clientX) + 'px';
             child.style.marginTop = 0 + 'px';
+            child.style.zIndex = 99;
         }
     }
 };
-
+/**
+    * 툴팁
+    * @description 마우스 클릭 위치 계산하여 툴팁 위치 설정
+    * @params target, index
+*/
+const onCloseTip = ()=>{
+    const barTooltip = document.querySelectorAll(`#${state.chartId} > li > .bar-tooltip`);
+    for (const child of barTooltip) {
+        child.style.opacity = 0;
+        child.style.top = 0;
+        child.style.left = 0;
+        child.style.zIndex = -1;
+        child.style.marginTop = -10 + 'px';
+    }
+}
 </script>

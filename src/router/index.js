@@ -106,6 +106,12 @@ const routes = [
                 name: 'CkeditorPage',
                 component: () => import('@/views/sample/CkeditorPage.vue')
 
+            },
+            {
+                path: '/chart',
+                name: 'chartPage',
+                component: () => import('@/views/sample/ChartPage.vue')
+
             }
         ]
     },

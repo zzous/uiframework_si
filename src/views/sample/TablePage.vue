@@ -1,25 +1,27 @@
 <template>
     <div class="pageView">
-        <div class="guideTitle">테이블</div>
-         <!-- 테이블 -->
-         <div class="tbl-wrap">
-            <div class="table-util flex space-between">
-                <div class="btn-set-m flex align-end">
-                    <span class="table-total">조회결과 총 <strong>2</strong>건</span>
-                    <button type="button" class="btn btn-ss">
-                        <span class="ico-download"></span>파일다운로드
-                    </button>
-                    <select class="custom-select sm">
-                        <option value="10개">10개</option>
-                        <option value="20개">20개</option>
-                        <option value="30개">30개</option>
-                        <option value="40개">40개</option>
-                    </select>
+        <div class="pageBgbox">
+            <div class="guideTitle">테이블</div>
+            <!-- 테이블 -->
+            <div class="tbl-wrap">
+                <div class="table-util flex space-between">
+                    <div class="btn-set-m flex align-end">
+                        <span class="table-total">조회결과 총 <strong>2</strong>건</span>
+                        <button type="button" class="btn btn-ss">
+                            <span class="ico-download"></span>파일다운로드
+                        </button>
+                        <select class="custom-select sm">
+                            <option value="10개">10개</option>
+                            <option value="20개">20개</option>
+                            <option value="30개">30개</option>
+                            <option value="40개">40개</option>
+                        </select>
+                    </div>
                 </div>
+                <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                    class="ag-theme-alpine" :domLayout="'autoHeight'">
+                </AgGridVue>
             </div>
-            <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                class="ag-theme-alpine" :domLayout="'autoHeight'">
-            </AgGridVue>
         </div>
     </div>
 </template>

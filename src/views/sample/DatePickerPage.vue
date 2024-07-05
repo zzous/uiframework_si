@@ -1,11 +1,13 @@
 <template>
     <div class="pageView">
-        <div class="guideTitle">DatePicker - 선택버튼 함께사용</div>
-        <DatePicker ref="datepicker" :dayOpionType=state.dayOpionType  @selectDay ="selectDay"/>
-        <div class="guideTitle">DatePicker - DatePicker만사용</div>
-        <DatePicker ref="datepicker" :dayOpionType=state.dayOpionType :optionsType="false" @selectDay ="selectDay" />
-        <div class="guideTitle">DatePicker - single</div>
-        <DatePicker ref="datepicker" :optionsType="false"  :singleType="true" @selectDay ="selectDay"/>
+        <div class="pageBgbox">
+            <div class="guideTitle">DatePicker - 선택버튼 함께사용</div>
+            <DatePicker ref="datepicker" :dayOpionType=state.dayOpionType  @selectDay ="selectDay"/>
+            <div class="guideTitle">DatePicker - DatePicker만사용</div>
+            <DatePicker ref="datepicker" :dayOpionType=state.dayOpionType :optionsType="false" @selectDay ="selectDay" />
+            <div class="guideTitle">DatePicker - single</div>
+            <DatePicker ref="datepicker" :optionsType="false"  :singleType="true" @selectDay ="selectDay"/>
+        </div>
     </div>
 </template>
 <script setup>

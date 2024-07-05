@@ -29,22 +29,23 @@ const state = reactive({
     offsetLeft: null
 });
 const onClickTip = (e, type) => {
-    console.log(e, type);
+    console.log(document.querySelector('.pageView').getBoundingClientRect().top);
     const ele = e.target.nextSibling;
-    const clientRect =  window.pageYOffset + e.target.getBoundingClientRect().top;
-    const clientRectleft =  window.pageXOffset + e.target.getBoundingClientRect().left;
+   
+    const clientRect =   e.target.getBoundingClientRect().top -document.querySelector('.pageView').getBoundingClientRect().top ;
+    const clientRectleft =   e.target.getBoundingClientRect().left - document.querySelector('.pageView').getBoundingClientRect().left;
     if (type === 'left') {
         state.offsetTop = clientRect - 10;
-        state.offsetLeft = clientRectleft + 30;
+        state.offsetLeft = clientRectleft - 15;
     } else if (type === 'bottom') {
         state.offsetTop = clientRect + 30;
-        state.offsetLeft = clientRectleft - 50;
+        state.offsetLeft = clientRectleft - 78;
     } else if (type === 'right') {
         state.offsetTop = clientRect - 10;
         state.offsetLeft = clientRectleft - 115;
     } else if (type === 'top') {
         state.offsetTop = clientRect - 40;
-        state.offsetLeft = clientRectleft - 50;
+        state.offsetLeft = clientRectleft - 80;
     }
     ele.classList.contains('open') ? ele.classList.remove('open') : ele.classList.add('open');
 };
