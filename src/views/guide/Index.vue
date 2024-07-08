@@ -18,7 +18,7 @@
 
 <script setup>
 import { defineComponent, onMounted, reactive, computed, getCurrentInstance, shallowRef } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import PageLayout from '@/views/guide/PageLayout.vue';
 import Menu from '@/views/guide/Menu.vue';
 import Section from '@/views/guide/Section.vue';
@@ -29,6 +29,12 @@ import Buttons from '@/views/guide/Buttons.vue';
 import Accordion from '@/views/guide/Accordion.vue';
 import FormInput from '@/views/guide/FormInput.vue';
 import FormInputCheck from '@/views/guide/FormInputCheck.vue';
+import Modal from '@/views/guide/Modal.vue';
+import ToolTip from '@/views/guide/ToolTip.vue';
+import { useCommFunc } from '@/core/helper/common.js';
+const { goToPage } = useCommFunc();
+const router = useRouter();
+const route = useRoute();
 const state = reactive({
     guideMenu: [
         {label: '페이지 레이아웃', name: 'PageLayout'},
@@ -40,52 +46,57 @@ const state = reactive({
         {label: '버튼', name: 'Buttons'},
         {label: '폼-input', name: 'FormInput'},
         {label: '폼-radio,checkbox', name: 'FormInputCheck'},
-        {label: '테이블', name: 'Table'},
-        {label: '슬라이드', name: 'Slide'},
+        // {label: '테이블', name: 'Table'},
+        {label: '툴팁', name: 'ToolTip'},
         {label: '모달팝업', name: 'Modal'},
-        {label: '토스트 팝업', name: 'Toast'},
-        {label: '페이징', name: 'Pageing'},
-        {label: '데이터피커', name: 'Datepicker'}
+        // {label: '토스트 팝업', name: 'Toast'},
+        // {label: '페이징', name: 'Pageing'},
+        // {label: '데이터피커', name: 'Datepicker'}
     ],
     componentsTitle: '페이지 레이아웃'
 });
+const componentsMap = {
+    'PageLayout': { component: PageLayout, title: '페이지 레이아웃' },
+    'Menu': { component: Menu, title: '메뉴' },
+    'Card': { component: Card, title: '카드' },
+    'Title': { component: Title, title: '타이틀' },
+    'Tab': { component: Tab, title: '탭' },
+    'Buttons': { component: Buttons, title: '버튼' },
+    'Accordion': { component: Accordion, title: '아코디언' },
+    'FormInput': { component: FormInput, title: '폼-input' },
+    'FormInputCheck': { component: FormInputCheck, title: '폼-radio,checkbox' },
+    'Modal': { component: Modal, title: '모달팝업' },
+    'ToolTip': { component: ToolTip, title: '툴팁' },
+    // 'Toast': { component: ToolTip, title: '토스트' },
+};
 const currentPageComponent = shallowRef(PageLayout);
 const onChangePage = async (pageName, pageTitle) => {
-    // console.log(pageName);
-    state.componentsTitle = pageTitle;
-    switch (pageName) {
-        case 'PageLayout':
-            currentPageComponent.value = PageLayout;
-            break;
-        case 'Menu':
-            currentPageComponent.value = Menu;
-            break;
-        case 'Card':
-            currentPageComponent.value = Card;
-            break;
-        case 'Title':
-            currentPageComponent.value = Title;
-            break;
-        case 'Tab':
-            currentPageComponent.value = Tab;
-            break;
-        case 'Buttons':
-            currentPageComponent.value = Buttons;
-            break;
-        case 'Accordion':
-            currentPageComponent.value = Accordion;
-            break;
-        case 'FormInput':
-            currentPageComponent.value = FormInput;
-            break;
-        case 'FormInputCheck':
-            currentPageComponent.value = FormInputCheck;
-            break;
-        default:
-            currentPageComponent.value = null;
-            break;
+   
+    const compontUrl = `/guide?guideName=${pageName}`
+    goToPage(compontUrl);
+    // state.componentsTitle = pageTitle;
+    const componentData = componentsMap[pageName];
+    if (componentData) {
+        currentPageComponent.value = componentData.component;
+        state.componentsTitle = componentData.title;
+    } else {
+        currentPageComponent.value = null;
     }
 };
+
+
+// 초기 설정
+onMounted(() => {
+    const guideName = route.query.guideName;
+    const componentData = componentsMap[guideName];
+
+    if (componentData) {
+        currentPageComponent.value = componentData.component;
+        state.componentsTitle = componentData.title;
+    } else {
+        currentPageComponent.value = null;
+    }
+});
 </script>
 
 <style>

@@ -1,6 +1,9 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=FormInputCheck')">가이드 페이지 </button>
+            </div>
             <div class="guideTitle">form - checkbox 기본형</div>
             <span class="checkbox" >
                 <input type="checkbox" id="input8" />
@@ -40,3 +43,7 @@
         </div>
     </div>
 </template>
+<script setup>
+import { useCommFunc } from '@/core/helper/common.js';
+const { goToPage } = useCommFunc();
+</script>

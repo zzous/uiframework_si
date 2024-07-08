@@ -94,11 +94,11 @@ const state = reactive({
     menuTop: '',
     menuList: [
         {menu: '가이드 활용 페이지',
-            pagelink:null,
+            pagelink: null,
             depth: [
                 { menu: '카드형태 페이지', pagelink: '/boxlayout', depth: [] },
                 { menu: '테이블 페이지', pagelink: '', depth: [] },
-                { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] },
+                { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] }
             ]
         },
         {menu: '영역별 요소',
@@ -126,7 +126,7 @@ const state = reactive({
                 { menu: 'input 스타일', pagelink: '/forminput', depth: [] },
                 { menu: 'radio 스타일', pagelink: '/formradio', depth: [] },
                 { menu: 'checkbox 스타일', pagelink: '/formcheck', depth: [] },
-                { menu: 'select 스타일', pagelink: '/formselect', depth: [] },
+                // { menu: 'select 스타일', pagelink: '/formselect', depth: [] },
                 { menu: 'Editor 스타일', pagelink: '/ckeditor', depth: [] }
             ]
         },

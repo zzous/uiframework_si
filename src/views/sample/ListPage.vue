@@ -1,6 +1,9 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide')">가이드 페이지 </button>
+            </div>
             <div class="guideTitle">리스트 스타일</div>
             <div class="listbox">
                 <div class="listheader">
@@ -28,3 +31,7 @@
         </div>
     </div>
 </template>
+<script setup>
+import { useCommFunc } from '@/core/helper/common.js';
+const { goToPage } = useCommFunc();
+</script>

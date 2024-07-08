@@ -1,6 +1,9 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide')">가이드 페이지 </button>
+            </div>
             <div class="guideTitle">테이블</div>
             <!-- 테이블 -->
             <div class="tbl-wrap">

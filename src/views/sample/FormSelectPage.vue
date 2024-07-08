@@ -10,5 +10,6 @@
     </div>
 </template>
 <script setup>
-
+import { useCommFunc } from '@/core/helper/common.js';
+const { goToPage } = useCommFunc();
 </script>

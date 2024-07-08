@@ -1,6 +1,10 @@
 <template>
     <div class="pageView">
+       
         <div class="pageBgbox">
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=Card')">가이드 페이지 </button>
+            </div>
             <div class="guideTitle">내부 영역 레이아웃</div>
             <div class="flex btns">
                 <button type="button" class="btn btn-sm " @click="onChangeBox('2')"><span class="ico-search"></span>2단</button>
@@ -17,6 +21,28 @@
                 </div>
                 <div class="sharebox" v-if="state.caseType">
                     <div class="flex-center">영역2</div>
+                </div>
+            </div>
+            <div class="guideTitle">카드 타입</div>
+            
+            <div class="cardwrap">
+                <div class="card" style="flex-basis: 300px; min-height: 100px;">
+                    <h1 class="pagetitle" >
+                        카드 타이틀 입니다.
+                        <span class="subtext"> 카드 서브 타이틀 입니다.</span>
+                    </h1>
+                    <div>
+                        카드 내용
+                    </div>
+                </div>
+                <div class="card" style="flex-basis: 700px; min-height: 100px;">
+                    <h1 class="pagetitle" >
+                        카드 타이틀 입니다.
+                        <span class="subtext"> 카드 서브 타이틀 입니다.</span>
+                    </h1>
+                    <div>
+                        카드 내용
+                    </div>
                 </div>
             </div>
         </div>

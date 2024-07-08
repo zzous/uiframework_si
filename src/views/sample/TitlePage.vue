@@ -1,6 +1,9 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=Title')">가이드 페이지 </button>
+            </div>
             <div class="guideTitle">타이틀 레이아웃</div>
             <div class="titlebox">
                 <h1 class="pagetitle">페이지 타이틀 <em class="subdec">(11)</em></h1>

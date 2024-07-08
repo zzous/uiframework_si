@@ -1,7 +1,7 @@
 <template>
     <div class="pageView">
-        <div style="margin-bottom:20px">
-            <!-- <button class="btn">대시보드 변경</button> -->
+        <div class="flex" style="justify-content:flex-end">
+            <button type="button" class="btn posi" @click="goToPage('/guide?guideName=PageLayout')">가이드 페이지 </button>
         </div>
         <div class="cardwrap">
             <CardBox :cardWidth="300" :cardTitle="'오늘 나의 업무'" :cardSubtext="'사용자가 처리해야할 업무입니다.'" style="min-height:100px;">
@@ -196,7 +196,7 @@ import { defineComponent, onMounted, reactive, computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import DatePicker from '@/components/DatePicker.vue';
 import { useCommFunc } from '@/core/helper/common.js';
-const {  dayJS } = useCommFunc();
+const {  dayJS, goToPage } = useCommFunc();
 const state = reactive({
     chartBar: [
         {name: '스트라우스', rate: 2000, date: '202.06.11', time: '08:00'},

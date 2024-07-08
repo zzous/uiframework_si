@@ -1,6 +1,9 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=Tab')">가이드 페이지 </button>
+            </div>
             <div class="guideTitle">탭 기본 스타일</div>
             <div class="tabswrap">
                     <!-- 탭버튼 -->

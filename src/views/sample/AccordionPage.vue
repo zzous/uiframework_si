@@ -1,6 +1,9 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=Accordion')">가이드 페이지 </button>
+            </div>
             <div class="guideTitle">아코디언 </div>
             
             <Accordion :itemTitle="'아코디언 타이틀'" :itemContent="'아코디언 내용'" />

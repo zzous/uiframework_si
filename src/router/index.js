@@ -115,11 +115,18 @@ const routes = [
             }
         ]
     },
-    {
-        path: '/guide',
-        name: 'guide',
-        component: () => import('@/views/guide/Index.vue')
-    }
+    ...withPrefix('/guide', [
+        {
+            path: '/',
+            name: 'guide',
+            component: () => import('@/views/guide/Index.vue')
+        },
+        {
+            name: 'guide_sub',
+            path: '/:guideName',
+            component: () => import('@/views/guide/Index.vue')
+        }
+    ])
 ];
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),

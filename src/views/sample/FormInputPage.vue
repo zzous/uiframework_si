@@ -1,7 +1,9 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
-       
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=FormInput')">가이드 페이지 </button>
+            </div>
             <!-- <div class="btn-file"><input type="file" id="upload-file" hidden="" ref="fileUpload" @change="uploadFile"><label class="btn-up" for="upload-file">파일첨부</label></div>
             <div class="upload-file-box">
                 <div class="upload-file-head flex space-between">
@@ -80,6 +82,10 @@
 <script setup>
 import FileInput from '@/components/FileInput.vue';
 import { reactive, ref, watch } from 'vue';
+
+import { useCommFunc } from '@/core/helper/common.js';
+const { goToPage } = useCommFunc();
+
 const state = reactive({
     fileNum: null,
     fileList: [],

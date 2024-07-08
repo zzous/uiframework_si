@@ -1,6 +1,9 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=Modal')">가이드 페이지 </button>
+            </div>
             <div class="guideTitle">alert창</div>
             <div class="flex">
                 <button type="button" class="btn btn-ss" @click="modal('confirm', 'warning')">alert-warning(경고)</button>
@@ -46,10 +49,11 @@
 <script setup>
 import {  reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useCommFunc } from '@/core/helper/common.js';
+
 import DefaultModal from '@/plugins/modal/modal/DefaultModal.vue';
 import ToolTip from '@/components/ToolTip.vue';
-const {  $Modal } = useCommFunc();  
+import { useCommFunc } from '@/core/helper/common.js';
+const {  $Modal, goToPage } = useCommFunc();  
 const state = reactive({
     offsetTop: null,
     offsetLeft: null
