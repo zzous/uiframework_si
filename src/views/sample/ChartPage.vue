@@ -45,7 +45,7 @@
                         </div>
                     </template>
                 </CardBox>
-                <CardBox :cardWidth="800" :cardTitle="'CSP Account별 비용'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'">
+                <CardBox :cardWidth="1400" :cardTitle="'CSP Account별 비용'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'" style="flex-shrink: 0;">
                     <template #cardContent>
                         <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
                         rowSelection="multiple"
