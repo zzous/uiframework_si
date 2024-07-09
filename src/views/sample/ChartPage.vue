@@ -10,31 +10,38 @@
                 <CardBox :cardWidth="370" style="flex-grow: 0;" :cardTitle="'비용요약'">
                     <template #cardContent>
                         <div class="costBox">
-                            <div class="flex" style="justify-content: space-between;">
-                                <div class="nowTotal">
-                                    <svg xmlns="http://www.w3.org/2000/svg"  width="22" height="22"  viewBox="0 0 16 16" fill="#202020" >
-                                        <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
-                                    </svg>
-                                    <span class="labeltext">금월 사용 금액</span> 
-                                    <span class="costValue">₩ 3,904</span> 
+                            <div class="nowTotal">
+                                <div class="total_wrap">
+                                    <div class="iconbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg"  width="50" height="50"  viewBox="0 0 16 16" fill="#202020" >
+                                            <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <span class="labeltext">금월 사용 금액</span> 
+                                        <span class="costValue">₩ 3,904</span> 
+                                    </div>
                                 </div>
-                                <div class="nowTotal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  fill="#202020" viewBox="0 0 16 16">
-                                    <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
-                                    <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                                    </svg>
-                                    <span class="labeltext">예상 사용 금액</span> <span class="costValue">₩ 3,904</span> 
-                                </div>
+                                <div class="past"><span class="labeltext">지난달 사용 금액</span><span class="costValue">₩ 3,904</span></div>
                             </div>
-                            <div  class="comparepay">
-                                
-                                <div class="compare"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  viewBox="0 0 16 16" fill="#adacb6">
-  <path  d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0m-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
-</svg><span class="labeltext">지난달 사용 금액</span><span class="costValue">₩ 3,904</span> </div>
-                                <div class="compare"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  viewBox="0 0 16 16"  fill="#adacb6">
-  <path d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M6 9.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
-</svg><span class="labeltext">예상 차액</span><span class="costValue">₩ 3,904</span> </div>
+                            <div class="nowTotal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  fill="#202020" viewBox="0 0 16 16">
+                                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
+                                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                                </svg>
+                                <span class="labeltext">예상 사용 금액</span> <span class="costValue">₩ 3,904</span> 
                             </div>
+                            <!-- <div class="compare">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  viewBox="0 0 16 16" fill="#adacb6">
+                                    <path  d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0m-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
+                                </svg>
+                                <span class="labeltext">지난달 사용 금액</span><span class="costValue">₩ 3,904</span> </div>
+                            <div class="compare">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  viewBox="0 0 16 16"  fill="#adacb6">
+                                    <path d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M6 9.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
+                                </svg>
+                                <span class="labeltext">예상 차액</span><span class="costValue">₩ 3,904</span> 
+                            </div> -->
                         </div>
                     </template>
                 </CardBox>
@@ -195,14 +202,17 @@ const state = reactive({
 <style>
 .costBox{}
 .nowTotal{background:#dcfc34; color:#202020; padding:20px; border-radius: 15px;margin-bottom:20px}
+.total_wrap{display:flex;}
 .nowTotal +.nowTotal{margin-left:10px}
+.iconbox{flex:0 0 50px;  margin-right:10px;}
 .labeltext{display:block;font-size:15px; font-weight: 700;}
 .costValue{font-size:30px; font-weight: 700;}
 .comparepay{display:flex;background:#535561; color:#adacb6; border-radius: 15px; justify-content: space-around;}
 .compare{flex:1; padding:20px;}
 .compare +.compare{border-left:dashed 1.5px #adacb6}
 .compare .labeltext{font-size:13px; margin-top:10px;}
-
-.compare .costValue{font-size:22px; font-weight: 700;}
+.past {}
+.past .labeltext{font-size:12px}
+.past .costValue{font-size:22px; font-weight: 700;}
 .paytable .ui-chart{min-height: 272px;;}
 </style>
