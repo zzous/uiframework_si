@@ -32,7 +32,8 @@
 import { defineComponent, onMounted, reactive, computed, getCurrentInstance } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCommFunc } from '@/core/helper/common.js';
-const { goToPage } = useCommFunc();
+import DatePicker from '@/components/DatePicker.vue';
+const {  dayJS, goToPage } = useCommFunc();
 const state = reactive({
     caseType: false,
     className: '',
@@ -123,9 +124,3 @@ const state = reactive({
 });
 
 </script>
-<style>
-.barbox{display:flex; width:100%; height:100%; justify-content: center; align-items:center; position: relative;}
-.barChart{width:100px;height:8px; border-radius: 4px; background:#F0F0F0; position: relative;}
-.barChart .bar{height:8px; border-radius: 4px; background:#1297F2; position:absolute; left:0; top:0}
-.datarate{margin-left:10px;}
-</style>

@@ -15,15 +15,15 @@
                                     <svg xmlns="http://www.w3.org/2000/svg"  width="22" height="22"  viewBox="0 0 16 16" fill="#202020" >
                                         <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
                                     </svg>
-                                    <span class="labeltext">금월 사용 금액</span>
-                                    <span class="costValue">₩ 3,904</span>
+                                    <span class="labeltext">금월 사용 금액</span> 
+                                    <span class="costValue">₩ 3,904</span> 
                                 </div>
                                 <div class="nowTotal">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  fill="#202020" viewBox="0 0 16 16">
                                     <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
                                     <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
                                     </svg>
-                                    <span class="labeltext">예상 사용 금액</span> <span class="costValue">₩ 3,904</span>
+                                    <span class="labeltext">예상 사용 금액</span> <span class="costValue">₩ 3,904</span> 
                                 </div>
                             </div>
                             <div  class="comparepay">
@@ -86,7 +86,7 @@ const state = reactive({
     colors1: ['F3775B', '5F9ECF'],
     colors2: ['189F92', '72C6BE', 'F3775B', 'F3AD53', 'F5E2C8'],
      //테이블
-    value: [
+     value: [
         { headerCheckboxSelection: true, checkboxSelection: true, maxWidth: 30 },
         { headerName: '존',  field: 'name', valueGetter: 'node.rowIndex + 1', maxWidth: 70 },
         { headerName: '가상서버',  field: 'cloudtype', flex: 1},

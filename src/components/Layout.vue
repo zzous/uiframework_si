@@ -61,8 +61,8 @@
                             </div>
 
                         </div>
-                            <!-- <button type="button" class="btn posi" @click="goToPage('/guide')">가이드 페이지로 이동</button> -->
-                        </div>
+                            
+                    </div>
                     <div class="content">
                         
                         <!-- 컨텐츠 영역 -->
@@ -94,11 +94,11 @@ const state = reactive({
     menuTop: '',
     menuList: [
         {menu: '가이드 활용 페이지',
-            pagelink: null,
+            pagelink:null,
             depth: [
                 { menu: '카드형태 페이지', pagelink: '/boxlayout', depth: [] },
-                { menu: '테이블 페이지', pagelink: '', depth: [] },
-                { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] }
+                { menu: '테이블 페이지', pagelink: '/tablelayout', depth: [] },
+                { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] },
             ]
         },
         {menu: '영역별 요소',

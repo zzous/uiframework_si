@@ -71,7 +71,6 @@ const componentsMap = {
 };
 const currentPageComponent = shallowRef(PageLayout);
 const onChangePage = async (pageName, pageTitle) => {
-   
     const compontUrl = `/guide?guideName=${pageName}`
     goToPage(compontUrl);
     // state.componentsTitle = pageTitle;
@@ -87,14 +86,16 @@ const onChangePage = async (pageName, pageTitle) => {
 
 // 초기 설정
 onMounted(() => {
-    const guideName = route.query.guideName;
-    const componentData = componentsMap[guideName];
+    if(route.query.guideName){
+        const guideName = route.query.guideName;
+        const componentData = componentsMap[guideName];
 
-    if (componentData) {
-        currentPageComponent.value = componentData.component;
-        state.componentsTitle = componentData.title;
-    } else {
-        currentPageComponent.value = null;
+        if (componentData) {
+            currentPageComponent.value = componentData.component;
+            state.componentsTitle = componentData.title;
+        } else {
+            currentPageComponent.value = null;
+        }
     }
 });
 </script>

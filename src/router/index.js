@@ -112,7 +112,12 @@ const routes = [
                 name: 'chartPage',
                 component: () => import('@/views/sample/ChartPage.vue')
 
-            }
+            },
+            {
+                path: '/tablelayout',
+                name: 'tablelayout',
+                component: () => import('@/views/sample/TableLayout.vue')
+            },
         ]
     },
     ...withPrefix('/guide', [
