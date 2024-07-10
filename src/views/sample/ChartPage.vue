@@ -1,22 +1,49 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
-            <div class="titlebox">
+            <!-- <div class="titlebox">
                 <h1 class="pagetitle"></h1>
                 <div class="titleright flex"><button type="button" class="btn posi" @click="goToPage('/guide')">가이드 페이지 </button></div>
+            </div> -->
+            <div class="pageSearch">
+                <div class="search_title">
+                    <div class="thisMonth">
+                        <div class="dateTitle">
+                            <span>기준월</span>
+                            <strong>2023.07</strong>
+                        </div>
+                        <div class="monthBtn">
+                            <button type="button" class="monthbtn month_prev"></button>
+                            <button type="button" class="monthbtn month_next"></button>
+                        </div>
+                    </div>
+                    <div class="thisCom select-wrap">
+                        <div class="dateTitle textbtn-select" @click="onChangeSelect($event)">
+                            <span>회사명</span>
+                            <strong>{{ state.memberLabel }}</strong>
+                        </div>
+                        <div class="btnselectlist">
+                            <ul>
+                                <li v-for="(item, index) in state.memberlist" :key="index" @click="onClickSelsect(item.label)">{{item.label}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchbths">
+                    <button type="button" class="iconbtn ico-detail"></button>
+                    <button type="button" class="iconbtn ico-pdf"></button>
+                    <button type="button" class="iconbtn ico-calendar"></button>
+                </div>
+                
             </div>
             
             <div class="cardwrap" style="margin-top:20px;">
-                <CardBox :cardWidth="370" style="flex-grow: 0;" :cardTitle="'비용요약'">
+                <div class=""></div>
+                <CardBox :cardWidth="400" style="flex-grow: 0;" :cardTitle="'비용요약'">
                     <template #cardContent>
                         <div class="costBox">
-                            <div class="nowTotal">
+                            <div class="nowTotal up">
                                 <div class="total_wrap">
-                                    <div class="iconbox">
-                                        <svg xmlns="http://www.w3.org/2000/svg"  width="50" height="50"  viewBox="0 0 16 16" fill="#202020" >
-                                            <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
-                                        </svg>
-                                    </div>
                                     <div>
                                         <span class="labeltext">금월 사용 금액</span> 
                                         <span class="costValue">₩ 3,904</span> 
@@ -24,24 +51,17 @@
                                 </div>
                                 <div class="past"><span class="labeltext">지난달 사용 금액</span><span class="costValue">₩ 3,904</span></div>
                             </div>
-                            <div class="nowTotal">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  fill="#202020" viewBox="0 0 16 16">
-                                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
-                                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                                </svg>
-                                <span class="labeltext">예상 사용 금액</span> <span class="costValue">₩ 3,904</span> 
+                            <div class="nowTotal down">
+                                <div class="total_wrap">
+                                    <div>
+                                        <span class="labeltext">지난달 사용 금액</span> 
+                                        <span class="costValue">₩ 3,904</span> 
+                                    </div>
+                                </div>
+                                <div class="past"><span class="labeltext">예상 차액</span><span class="costValue">₩ 3,904</span></div>
                             </div>
-                            <!-- <div class="compare">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  viewBox="0 0 16 16" fill="#adacb6">
-                                    <path  d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0m-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
-                                </svg>
-                                <span class="labeltext">지난달 사용 금액</span><span class="costValue">₩ 3,904</span> </div>
-                            <div class="compare">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"  viewBox="0 0 16 16"  fill="#adacb6">
-                                    <path d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M6 9.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
-                                </svg>
-                                <span class="labeltext">예상 차액</span><span class="costValue">₩ 3,904</span> 
-                            </div> -->
+                            
+                            
                         </div>
                     </template>
                 </CardBox>
@@ -191,28 +211,80 @@ const state = reactive({
         headerClass: 'centered',
         cellClass: 'centered',
         flex: 1
-    }
-    
+    },
+    memberlist: [
+        {label:'스트라토'},
+        {label:'회원사'},
+        {label:'회원사1'},
+        {label:'회원사 이름이 길경우'}
+    ],
+    memberLabel:'스트라토'
 
 });
-
+const onChangeSelect  = (event) =>{
+    const openEle = event.currentTarget.parentNode
+    
+    if(openEle.classList.contains('open')){
+        openEle.classList.remove('open')
+    }else{
+        openEle.classList.add('open')
+    }
+}
+const onClickSelsect = (label) =>{
+    const layer =document.querySelector('.select-wrap')
+    console.log(layer)
+    state.memberLabel = label
+    layer.classList.remove('open')
+}
 
 
 </script>
 <style>
 .costBox{}
-.nowTotal{background:#dcfc34; color:#202020; padding:20px; border-radius: 15px;margin-bottom:20px}
+.nowTotal{background:#dcfc34; color:#202020; padding:15px 20px; border-radius: 15px;margin-bottom:20px; position: relative;padding-left:90px}
+.nowTotal:before{content:""; display:block;width:50px;height:50px; background: url('/images/icon_chart.svg') no-repeat 0 0/50px;position: absolute; left:20px; top:calc(50% - 25px)}
+.nowTotal.down:before{content:""; display:block;width:50px;height:50px; background: url('/images/icon_question.svg') no-repeat 0 0/50px;position: absolute; left:20px; top:calc(50% - 25px)}
+.nowTotal.up:after{content:""; display:block;width:30px;height:30px; background: url('/images/icon_up.svg') no-repeat 0 0/30px;position: absolute; right:20px;  bottom:20px;}
+.nowTotal.up{background:#3c3e4a;}
+.nowTotal.down:after{content:""; display:block;width:30px;height:30px; background: url('/images/icon_down.svg') no-repeat 0 0/30px;position: absolute; right:20px;  bottom:20px;}
 .total_wrap{display:flex;}
-.nowTotal +.nowTotal{margin-left:10px}
-.iconbox{flex:0 0 50px;  margin-right:10px;}
+.nowTotal +.nowTotal{margin-top:10px}
+.nowTotal.up .labeltext,.nowTotal.up .costValue {color:#dcfc34}
 .labeltext{display:block;font-size:15px; font-weight: 700;}
 .costValue{font-size:30px; font-weight: 700;}
 .comparepay{display:flex;background:#535561; color:#adacb6; border-radius: 15px; justify-content: space-around;}
 .compare{flex:1; padding:20px;}
-.compare +.compare{border-left:dashed 1.5px #adacb6}
 .compare .labeltext{font-size:13px; margin-top:10px;}
-.past {}
-.past .labeltext{font-size:12px}
-.past .costValue{font-size:22px; font-weight: 700;}
+.past {display: flex; align-items: center; margin-top:10px}
+.past .labeltext{font-size:12px; margin-right:10px}
+.past .costValue{font-size:18px; font-weight: 700;}
 .paytable .ui-chart{min-height: 272px;;}
+.pageSearch{background: #f1f1f1; padding:20px; display: flex;align-items: flex-end; justify-content: space-between;}
+.search_title{display: flex; align-items: flex-end;}
+.thisMonth{display: flex;}
+.monthBtn{display: flex;position: relative;top: -7px; margin-left:10px;align-items: flex-end;}
+.monthbtn {width:18px; height:18px; background:url('/images/btn-arrow.svg') no-repeat 0 0/18px}
+.monthbtn +.monthbtn{margin-left:5px}
+.monthbtn.month_next{transform: rotate(-180deg);}
+.dateTitle span{display:block; font-size:13px;}
+.dateTitle strong{font-size:45px; font-weight:700; letter-spacing: -.5px;}
+.pageSearch .flex{align-items: flex-end;}
+.thisCom{margin-left:90px;}
+.thisCom strong{font-size:26px;}
+
+.searchbths .iconbtn{width:40px; height:40px;}
+.select-wrap{position: relative;}
+.textbtn-select{padding-right:20px;background:url('/images/icon_select.svg') no-repeat right 24px/13px; cursor: pointer;font-size:26px;}
+.btnselectlist{position: absolute; left:0; top:0; border:Solid 1px #ddd; background:#fff; width:max-content; padding:5px 10px; transform: translateY(40px);transition: .2s; z-index: -1; opacity:0; }
+.btnselectlist ul{position: relative; }
+.btnselectlist ul li{ cursor: pointer; padding:5px 20px; text-align: left; transform: translateY(20px);transition: .4s;opacity:0; }
+.btnselectlist ul li:hover{ background:#21e8e4; border-radius: 20px;}
+.open.select-wrap .btnselectlist{transform: translateY(0px);transition: .3s; z-index: 999;opacity:1;}
+.open.select-wrap .btnselectlist ul li{transform: translateY(0px); opacity:1;}
+.open.select-wrap .btnselectlist ul li:nth-of-type(1){transition-delay: .2s;}
+.open.select-wrap .btnselectlist ul li:nth-of-type(2){transition-delay: .25s;}
+.open.select-wrap .btnselectlist ul li:nth-of-type(3){transition-delay: .3s;}
+.open.select-wrap .btnselectlist ul li:nth-of-type(4){transition-delay: .35s;}
+.open.select-wrap .btnselectlist ul li:nth-of-type(5){transition-delay: .4s;}
+
 </style>

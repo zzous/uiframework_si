@@ -39,12 +39,21 @@
                 <button type="button" class="btn btn-sm"><span class="ico-fit"></span>icon 버튼</button>
             </div>
             <div class="flex mt-30">
-                <button type="button" class="btn btn-sm"><span class="ico-fit full"></span>icon 버튼</button>
+                <button type="button" class="btn btn-sm"><span class="ico-fit full"></span>icon + text 버튼</button>
                 <button type="button" class="btn btn-sm"><span class="ico-filter"></span>icon 버튼</button>
                 <button type="button" class="btn btn-sm"><span class="ico-next"></span>icon 버튼</button>
                 <button type="button" class="btn btn-sm"><span class="ico-prev"></span>icon 버튼</button>
                 <button type="button" class="btn btn-sm"><span class="ico-fix"></span>icon 버튼</button>
                 <button type="button" class="btn btn-sm"><span class="ico-menu"></span>icon 버튼</button>
+            </div>
+            <div class="flex mt-30">
+                <button type="button" class="iconbtn ico-alarm">알람</button>
+                <button type="button" class="iconbtn ico-setting">알람</button>
+                <button type="button" class="iconbtn ico-company">알람</button>
+                <button type="button" class="iconbtn ico-logout">알람</button>
+                <button type="button" class="iconbtn ico-detail">알람</button>
+                <button type="button" class="iconbtn ico-pdf">알람</button>
+                <button type="button" class="iconbtn ico-calendar">알람</button>
             </div>
             <div class="guideTitle">로딩바</div>
             <div class="ui-form-loading">

@@ -236,7 +236,7 @@ footer {
 }
 .titlebox.img .pagetitle {
   padding-left: 30px;
-  background: url("/images/title_icon.svg") no-repeat left center/20px;
+  background: url("/images/title_icon.svg") no-repeat left 2px/20px;
 }
 .titlebox .pagetitle {
   font-size: 22px;

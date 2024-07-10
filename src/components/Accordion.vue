@@ -22,7 +22,7 @@ const state = reactive({
    
 });
 const openAcc = (event) => {
-    const parEle = event.target.parentElement;
+    const parEle = event.currentTarget.parentElement;
     if (parEle.classList.contains('open')) {
         parEle.classList.remove('open');
     } else {
