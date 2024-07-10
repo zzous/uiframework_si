@@ -72,12 +72,63 @@
                         </div>
                     </template>
                 </CardBox>
-                <CardBox :cardWidth="1400" :cardTitle="'CSP Account별 비용'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'" style="flex-shrink: 0;">
+            </div>
+            <div class="cardwrap">
+                <CardBox :cardTitle="'CSP Account별 비용/비율'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'" style="flex-shrink: 0;">
                     <template #cardContent>
-                        <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                        <div class="flex">
+                            <div class="accountCard" style="flex:1 0 230px">
+                                <div class="mt-10">
+                                    <span class="label">CSP</span>
+                                    <strong class="cardStrong">AWS</strong>
+                                </div>
+                                <div class="mt-10">
+                                    <span class="label">Account</span>
+                                    <strong class="cardStrong">751498871854</strong>
+                                </div>
+                            
+                                <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
+                                <span class="label">사용량</span>
+                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%"></em></div> <em class="datarate">30%</em></div>
+                            </div>
+                        </div>
+                    </template>
+                </CardBox>
+                <CardBox :cardTitle="'테넌트 별 비용/비율'"  :cardSubtext="'테넌트 별 비용 현황 입니다.'" style="flex-shrink: 0;">
+                    <template #cardContent>
+                        <div class="flex">
+                            <div class="accountCard" style="flex:1 0 230px; background: #c9c9d4;">
+                                <div class="mt-10">
+                                    <span class="label">테넌트 명</span>
+                                    <strong class="cardStrong">imp-test-01</strong>
+                                </div>
+                                <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
+                                <span class="label">사용량</span>
+                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%"></em></div> <em class="datarate">30%</em></div>
+                            </div>
+                        </div>
+                        <!-- <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
                         rowSelection="multiple"
                             class="ag-theme-alpine" :domLayout="'autoHeight'">
-                        </AgGridVue>
+                        </AgGridVue> -->
+                    </template>
+                </CardBox>
+                <CardBox :cardTitle="'CSP'"   :cardSubtext="'CSP 비용 현황 입니다.'"  style="flex-shrink: 0;">
+                    <template #cardContent>
+                        <div class="flex">
+                            <div class="accountCard" style="flex:1 0 230px; background: #dcfc34;">
+                                <div class="mt-10">
+                                    <span class="label">서비스명</span>
+                                    <strong class="cardStrong">imp-test-01</strong>
+                                </div>
+                                <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
+                                
+                            </div>
+                        </div>
+                        <!-- <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                        rowSelection="multiple"
+                            class="ag-theme-alpine" :domLayout="'autoHeight'">
+                        </AgGridVue> -->
                     </template>
                 </CardBox>
             </div>
@@ -286,5 +337,15 @@ const onClickSelsect = (label) =>{
 .open.select-wrap .btnselectlist ul li:nth-of-type(3){transition-delay: .3s;}
 .open.select-wrap .btnselectlist ul li:nth-of-type(4){transition-delay: .35s;}
 .open.select-wrap .btnselectlist ul li:nth-of-type(5){transition-delay: .4s;}
-
+.accountCard{border-radius:10px; padding:20px; background:#21e8e4;position: relative;width:250px; height:296px;}
+.accountCard:before{content:'';display: block; width:30px; height:30px;background:url('/images/icon_chartbg.svg') no-repeat 0 0/100%; margin-bottom:15px;}
+.accountCard .label{font-size:13px; margin-bottom:5px;display: block;}
+.accountCard  .cardStrong{font-weight: 700; font-size: 18px;}
+.totalCount{margin:10px 0;}
+.totalCount > strong{font-size: 30px;}
+.accountCard .barbox{height:auto; justify-content:flex-start;}
+.accountCard .barChart{width: 100%; background:#ffffff}
+.accountCard .barChart .bar{background:#202020}
+.accountCard .datarate{font-weight: 700; font-size: 15px;}
+/* accountCard */
 </style>
