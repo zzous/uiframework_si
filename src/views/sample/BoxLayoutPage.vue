@@ -4,40 +4,64 @@
             <button type="button" class="btn posi" @click="goToPage('/guide?guideName=PageLayout')">가이드 페이지 </button>
         </div>
         <div class="cardwrap">
-            <CardBox :cardWidth="300" :cardTitle="'오늘 나의 업무'" :cardSubtext="'사용자가 처리해야할 업무입니다.'" style="min-height:100px;">
+            <CardBox :cardWidth="590" :cardTitle="'오늘 나의 업무'" :cardSubtext="'사용자가 처리해야할 업무입니다.'" style="min-height:100px;">
                 <template #cardContent>
-                    <div style="display: flex;height: calc(100% - 72px); ">
-                        <div style="border-radius:10px; flex:1; height:100%; background:#3c3e4a; text-align: left; padding:10px;">
+                    <div style=" display: flex; flex-wrap: wrap;">
+                        <div class="layoutpage" style="border-radius:10px;  background:#3c3e4a; text-align: left; padding:10px 20px; margin-right:10px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16" fill="#dcfc34">
                                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
                                 <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
                             </svg>
-                            <div>
-                                <span style="font-size:15px; display: block; color:#dcfc34">
+                            <div style=" text-align: left; display: flex; align-items:flex-end;">
+                                <span style="font-size:15px; display: block; color:#dcfc34; position: relative; top:-7px; margin-right:10px;">
                                     할일
                                 </span>
-                                <strong style="font-size:35px;margin-top:10px; display:block;text-align: center;color:#dcfc34">36건</strong>
+                                
+                                <strong style="font-size:30px;margin-top:10px; display:block;color:#dcfc34">36건</strong>
+                                <span style="font-size:12px; display: block;position: relative; top:-3px; margin:0 5px;color:#dcfc34 ">
+                                / 진행중
+                                </span>
+                                <strong style="font-size:18px; margin-top:10px;display:block; text-align: center;color:#dcfc34">10건</strong>
                             </div>
+                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%; background: #dcfc34;"></em></div> <em class="datarate" style="color:#dcfc34">30%</em></div>
                         </div>
                         
-                        <div style="border-radius:10px; flex:1; height:100%; margin-left:10px; background:#c9c9d4;text-align: left;padding:10px 20px;">
+                        <div  class="layoutpage" style="border-radius:10px; background:#c9c9d4;text-align: left;padding:10px 20px;">
                             <svg xmlns="http://www.w3.org/2000/svg"  width="30" height="30"  viewBox="0 0 16 16" >
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                             </svg>
-                            <div>
-                                <span style="font-size:15px; display: block;">
+                            <div style=" text-align: left; display: flex; align-items:flex-end;">
+                                <span style="font-size:15px; display: block;position: relative; top:-7px; margin-right:10px;">
                                 결재할 업무
                                 </span>
-                                <strong style="font-size:35px; margin-top:10px;display:block; text-align: center">28건</strong>
+                                <strong style="font-size:30px; margin-top:10px;display:block; text-align: center">28건</strong>
+                                <span style="font-size:12px; display: block;position: relative; top:-3px; margin:0 5px; ">
+                                / 진행중
+                                </span>
+                                <strong style="font-size:18px; margin-top:10px;display:block; text-align: center">10건</strong>
                             </div>
+                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:50%"></em></div> <em class="datarate">50%</em></div>
+                        </div>
+                        <div class="layoutpage" style="border-radius:10px; background:#c9c9d4;text-align: left;padding:10px 20px; flex-basis:100%;margin-top:20px">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="30" height="30"  viewBox="0 0 16 16" >
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                            </svg>
+                            <div style=" text-align: left; display: flex; align-items:flex-end;">
+                                <span style="font-size:15px; display: block;position: relative; top:-7px; margin-right:10px;">
+                                나의 작업 현황
+                                </span>
+                                <strong style="font-size:30px; margin-top:10px;display:block; text-align: center">28건</strong>
+                            </div>
+                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%"></em></div> <em class="datarate">30%</em></div>
                         </div>
                     </div>
                 </template>
             </CardBox>
-            <CardBox :cardWidth="300" :cardTitle="'나의 작업 현황'" :cardSubtext="'할당된 업무 중 완료처리된 내용입니다'">
+            <CardBox :cardWidth="500" :cardTitle="'나의 알림목록'"  :cardSubtext="'최근 알림 목록입니다.'">
                 <template #cardContent>
-                    <div class="ui-no-date"><p>완료 처리된 내용이 없습니다.</p></div>
+                    <div class="ui-no-date"><p>알림이 없습니다.</p></div>
                 </template>
             </CardBox>
             <CardBox :cardWidth="300" :cardTitle="'나의 결재 현황'" :cardSubtext="'대기중인 업무와 처리된 업무 내용입니다'">
@@ -55,14 +79,7 @@
                     </AgGridVue>
                 </template>
             </CardBox>
-            <CardBox :cardWidth="800" :cardTitle="'나의 알림목록'"  :cardSubtext="'최근 알림 목록입니다.'">
-                <template #cardContent>
-                    <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                    rowSelection="multiple"
-                        class="ag-theme-alpine" :domLayout="'autoHeight'"  :cardSubtext="'사용자가 결재를 요청한 목록입니다'">
-                    </AgGridVue>
-                </template>
-            </CardBox>
+            
             <CardBox :cardWidth="800" :cardTitle="'내가 요청한 결재목록'"  :cardSubtext="'사용자가 결재를 요청한 목록입니다'">
                 <template #cardContent>
                     <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
@@ -349,7 +366,11 @@ const state = reactive({
 
 
 
-
+.layoutpage .barbox{height:auto; justify-content:flex-start;}
+.layoutpage .barChart{width: 100%; background:#ffffff}
+.layoutpage .barChart .bar{background:#202020}
+.layoutpage .datarate{font-weight: 700; font-size: 15px;}
+.ui-chart{min-height:250px;}
 
 
 
@@ -396,4 +417,5 @@ const state = reactive({
 .barChart{width:100px;height:8px; border-radius: 4px; background:#F0F0F0; position: relative;}
 .barChart .bar{height:8px; border-radius: 4px; background:#1297F2; position:absolute; left:0; top:0}
 .datarate{margin-left:10px;}
+.layoutpage{flex-basis: 300px;flex:1}
 </style>

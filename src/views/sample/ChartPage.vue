@@ -77,7 +77,7 @@
                 <CardBox :cardTitle="'CSP Account별 비용/비율'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'" style="flex-shrink: 0;">
                     <template #cardContent>
                         <div class="flex">
-                            <div class="accountCard" style="flex:1 0 230px">
+                            <div class="accountCard" style="flex:1 0 230px;background: #c9c9d4;">
                                 <div class="mt-10">
                                     <span class="label">CSP</span>
                                     <strong class="cardStrong">AWS</strong>
@@ -388,5 +388,4 @@ const onClickSelsect = (label) =>{
 .carousel .carousel__viewport li:nth-of-type(odd) {background:#dcfc34;}
 .carousel .carousel__viewport li:nth-of-type(even) {background:#c9c9d4;}
 .carousel .carousel__viewport li:nth-of-type(3n+1) {background:#21e8e4;}
-.carousel .carousel__viewport li:nth-of-type(5n+1) {background:#854cf5;}
 </style>
