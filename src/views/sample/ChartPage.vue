@@ -384,8 +384,8 @@ const onClickSelsect = (label) =>{
 .accountCard .datarate{font-weight: 700; font-size: 15px;}
 /* accountCard */
 .carousel .accountCard{height:auto; text-align:left; flex-grow:1; background:none}
-.carousel .carousel__viewport li{border-radius:15px;margin-right:20px;}
-.carousel .carousel__viewport li:nth-of-type(odd) {background:#dcfc34;}
+.carousel .carousel__viewport li{border-radius:15px;margin-right:20px; border:solid 1px #ddd}
+/* .carousel .carousel__viewport li:nth-of-type(odd) {background:#dcfc34;}
 .carousel .carousel__viewport li:nth-of-type(even) {background:#c9c9d4;}
-.carousel .carousel__viewport li:nth-of-type(3n+1) {background:#21e8e4;}
+.carousel .carousel__viewport li:nth-of-type(3n+1) {background:#21e8e4;} */
 </style>
