@@ -276,7 +276,7 @@ watch(route, () => {
 .lnb-menu-list > h1{margin-bottom:20px;font-size:20px; font-weight:700;color:#eee }
 .lnb-menu-list > h1:before{content:"";display:block; width:40px; height:40px; background-repeat: no-repeat;
 background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5' fill='%23eee'/%3E%3C/svg%3E");}
-.contents{display:flex; background:#fff; border-radius:30px 0 0 30px; flex:1}
+.contents{display:flex; background:#fff; border-radius:30px 0 0 30px; width:calc(100% - 80px)}
 .btn-leftmenu{width:30px; height:30px; background-repeat: no-repeat; background-position:0px 0px;
     background-image: url("data:image/svg+xml,%3Csvg width='25' height='25' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1' fill='%23d2d2d2'/%3E%3C/svg%3E");}
 .myinfo{height: 97px;padding: 20px; font-size: 15px; position: relative; z-index: 2;}
@@ -289,7 +289,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox=
 
 
 
-.contentwrap{position: relative;}
+.contentwrap{position: relative; width:calc(100% - 200px)}
 .contentwrap:before{content:""; display: block; height:250px; width:100%; position: absolute; background:#202020;}
 
 .pageBgbox{position: relative;background: #fff; padding: 30px; border-radius: 30px 0 0 30px;}

@@ -113,17 +113,24 @@
                         </AgGridVue> -->
                     </template>
                 </CardBox>
-                <CardBox :cardTitle="'CSP'"   :cardSubtext="'CSP 비용 현황 입니다.'"  style="flex-shrink: 0;">
+                <CardBox :cardTitle="'CSP'"   :cardSubtext="'CSP 비용 현황 입니다.'"  style="flex-shrink: 0;flex-grow: 0; width:100%;">
                     <template #cardContent>
-                        <div class="flex">
-                            <div class="accountCard" style="flex:1 0 230px; background: #dcfc34;">
-                                <div class="mt-10">
-                                    <span class="label">서비스명</span>
-                                    <strong class="cardStrong">imp-test-01</strong>
-                                </div>
-                                <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
-                                
-                            </div>
+                        <div>
+                            <Carousel class="subpageslider" :breakpoints="state.breakpoints"  ref="myCarousel">
+                                <Slide v-for="(item, index) in 15" :key="index">
+                                    <div class="accountCard">
+                                        <div class="mt-10">
+                                            <span class="label">서비스명</span>
+                                            <strong class="cardStrong">imp-test-01</strong>
+                                        </div>
+                                        <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
+                                    </div>
+                                </Slide>
+                                <template #addons>
+                                    <Navigation />
+                                </template>
+                            </Carousel>
+                            
                         </div>
                         <!-- <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
                         rowSelection="multiple"
@@ -269,7 +276,15 @@ const state = reactive({
         {label:'회원사1'},
         {label:'회원사 이름이 길경우'}
     ],
-    memberLabel:'스트라토'
+    memberLabel:'스트라토',
+    breakpoints: {
+        
+        // 1024 이상일 때 8개씩 노출
+        1024: {
+            itemsToShow: 8,
+            snapAlign: 'start'
+        }
+    },
 
 });
 const onChangeSelect  = (event) =>{
@@ -348,4 +363,10 @@ const onClickSelsect = (label) =>{
 .accountCard .barChart .bar{background:#202020}
 .accountCard .datarate{font-weight: 700; font-size: 15px;}
 /* accountCard */
+.carousel .accountCard{height:auto; text-align:left; flex-grow:1; background:none}
+.carousel .carousel__viewport li{border-radius:15px;margin-right:20px;}
+.carousel .carousel__viewport li:nth-of-type(odd) {background:#dcfc34;}
+.carousel .carousel__viewport li:nth-of-type(even) {background:#c9c9d4;}
+.carousel .carousel__viewport li:nth-of-type(3n+1) {background:#21e8e4;}
+.carousel .carousel__viewport li:nth-of-type(5n+1) {background:#854cf5;}
 </style>
