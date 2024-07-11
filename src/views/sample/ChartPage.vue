@@ -1,10 +1,6 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
-            <!-- <div class="titlebox">
-                <h1 class="pagetitle"></h1>
-                <div class="titleright flex"><button type="button" class="btn posi" @click="goToPage('/guide')">가이드 페이지 </button></div>
-            </div> -->
             <div class="pageSearch">
                 <div class="search_title">
                     <div class="thisMonth">
@@ -34,31 +30,29 @@
                     <button type="button" class="iconbtn ico-pdf"></button>
                     <button type="button" class="iconbtn ico-calendar"></button>
                 </div>
-                
             </div>
             
             <div class="cardwrap" style="margin-top:20px;">
-                <div class=""></div>
                 <CardBox :cardWidth="400" style="flex-grow: 0;" :cardTitle="'비용요약'">
                     <template #cardContent>
                         <div class="costBox">
                             <div class="nowTotal up">
                                 <div class="total_wrap">
                                     <div>
-                                        <span class="labeltext">금월 사용 금액</span> 
-                                        <span class="costValue">₩ 3,904</span> 
+                                        <span class="labeltext">금월 사용 금액</span>
+                                        <span class="costValue">₩ 27,295</span>
                                     </div>
                                 </div>
-                                <div class="past"><span class="labeltext">지난달 사용 금액</span><span class="costValue">₩ 3,904</span></div>
+                                <div class="past"><span class="labeltext">예상 사용 금액</span><span class="costValue">₩ 76,922</span></div>
                             </div>
                             <div class="nowTotal down">
                                 <div class="total_wrap">
                                     <div>
-                                        <span class="labeltext">지난달 사용 금액</span> 
-                                        <span class="costValue">₩ 3,904</span> 
+                                        <span class="labeltext">지난달 사용 금액</span>
+                                        <span class="costValue">₩ 1,002,014</span>
                                     </div>
                                 </div>
-                                <div class="past"><span class="labeltext">예상 차액</span><span class="costValue">₩ 3,904</span></div>
+                                <div class="past"><span class="labeltext">예상 차액</span><span class="costValue">₩ -925,092</span></div>
                             </div>
                             
                             
@@ -68,7 +62,7 @@
                 <CardBox class="paytable" :cardTitle="'월별 현황'">
                     <template #cardContent>
                         <div style="height:100px">
-                            <BarChart :unit="state.unit" :chartBar="state.chartBar" :chartId="'ChartBar4'" :chartColorType="'189F92'"></BarChart>
+                            <BarChart :unit="state.unit" :chartBar="state.chartBar" :chartId="'ChartBar4'" :chartColorType="'5142b2'"></BarChart>
                         </div>
                     </template>
                 </CardBox>
@@ -109,7 +103,7 @@
                             
                                 <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
                                 <span class="label">사용량</span>
-                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%"></em></div> <em class="datarate">30%</em></div>
+                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:10%"></em></div> <em class="datarate">10%</em></div>
                             </div>
                         </div>
                     </template>
@@ -124,26 +118,23 @@
                                 </div>
                                 <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
                                 <span class="label">사용량</span>
-                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%"></em></div> <em class="datarate">30%</em></div>
+                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:50%"></em></div> <em class="datarate">50%</em></div>
                             </div>
                         </div>
-                        <!-- <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                        rowSelection="multiple"
-                            class="ag-theme-alpine" :domLayout="'autoHeight'">
-                        </AgGridVue> -->
                     </template>
                 </CardBox>
-                <CardBox :cardTitle="'CSP'"   :cardSubtext="'CSP 비용 현황 입니다.'"  style="flex-shrink: 0;flex-grow: 0; width:100%;">
+                <CardBox :cardTitle="'CSP'" :cardSubtext="'CSP 비용 현황 입니다.'" style="flex-shrink: 0;flex-grow: 0; width:100%;">
                     <template #cardContent>
                         <div>
+                            <div class="totalBar"><span class="label">합계 금액</span><strong><em>₩</em>27,295</strong></div>
                             <Carousel class="subpageslider" :breakpoints="state.breakpoints"  ref="myCarousel">
-                                <Slide v-for="(item, index) in 15" :key="index">
+                                <Slide v-for="(item, index) in state.csp" :key="index">
                                     <div class="accountCard">
                                         <div class="mt-10">
                                             <span class="label">서비스명</span>
-                                            <strong class="cardStrong">imp-test-01</strong>
+                                            <strong class="cardStrong">{{item.label}}</strong>
                                         </div>
-                                        <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
+                                        <div class="totalCount"><span class="label">합계 금액</span><strong><em>₩</em> {{item.cost}}</strong></div>
                                     </div>
                                 </Slide>
                                 <template #addons>
@@ -185,13 +176,11 @@ const state = reactive({
     ],
     
     unit: [0, 1000, 2000, 3000, 4000, 5000, 6000],
-    
     colors: ['574794', '9F96BF', 'D8D4E2', '189F92', '72C6BE', 'C9E5E3'],
-    
     colors1: ['F3775B', '5F9ECF'],
     colors2: ['189F92', '72C6BE', 'F3775B', 'F3AD53', 'F5E2C8'],
      //테이블
-     value: [
+    value: [
         { headerCheckboxSelection: true, checkboxSelection: true, maxWidth: 30 },
         { headerName: '존',  field: 'name', valueGetter: 'node.rowIndex + 1', maxWidth: 70 },
         { headerName: '가상서버',  field: 'cloudtype', flex: 1},
@@ -291,37 +280,62 @@ const state = reactive({
         flex: 1
     },
     memberlist: [
-        {label:'스트라토'},
-        {label:'회원사'},
-        {label:'회원사1'},
-        {label:'회원사 이름이 길경우'}
+        {label: '스트라토'},
+        {label: '회원사'},
+        {label: '회원사1'},
+        {label: '회원사 이름이 길경우'}
     ],
-    memberLabel:'스트라토',
+    memberLabel: '스트라토',
     breakpoints: {
-        
-        // 1024 이상일 때 8개씩 노출
         1024: {
-            itemsToShow: 8,
+            itemsToShow: 4,
+            snapAlign: 'start'
+        },
+        1300: {
+            itemsToShow: 4.5,
+            snapAlign: 'start'
+        },
+        1600: {
+            itemsToShow: 5,
             snapAlign: 'start'
         }
     },
+    csp: [
+        {label: 'Amazon DynamoDB', cost: '142.95'},
+        {label: 'Amazon EC2 Container Registry (ECR)', cost: '5.47'},
+        {label: 'Amazon Elastic Compute Cloud - Compute', cost: '6,390.94'},
+        {label: 'Amazon Elastic Container Service for Kubernetes', cost: '9,100'},
+        {label: 'Amazon Elastic File System', cost: '0'},
+        {label: 'Amazon Elastic Load Balancing', cost: '0'},
+        {label: 'Amazon Location Service', cost: '-'},
+        {label: 'Amazon Simple Notification Service', cost: '-'},
+        {label: 'Amazon Simple Queue Service', cost: '0.01'},
+        {label: 'Amazon Simple Storage Service', cost: '18.51'},
+        {label: 'Amazon Virtual Private Cloud', cost: '4,375.02'},
+        {label: 'AmazonCloudWatch', cost: '87.19'},
+        {label: 'AWS Glue', cost: '0.01'},
+        {label: 'AWS Key Management Service', cost: '87.39'},
+        {label: 'AWS Migration Hub Refactor Spaces', cost: '-'},
+        {label: 'AWS Secrets Manager', cost: '0.03'},
+        {label: 'EC2 - Other', cost: '261.96'}
+    ]
 
 });
-const onChangeSelect  = (event) =>{
-    const openEle = event.currentTarget.parentNode
+const onChangeSelect  = (event) => {
+    const openEle = event.currentTarget.parentNode;
     
-    if(openEle.classList.contains('open')){
-        openEle.classList.remove('open')
-    }else{
-        openEle.classList.add('open')
+    if (openEle.classList.contains('open')) {
+        openEle.classList.remove('open');
+    } else {
+        openEle.classList.add('open');
     }
-}
-const onClickSelsect = (label) =>{
-    const layer =document.querySelector('.select-wrap')
-    console.log(layer)
-    state.memberLabel = label
-    layer.classList.remove('open')
-}
+};
+const onClickSelsect = (label) => {
+    const layer = document.querySelector('.select-wrap');
+    console.log(layer);
+    state.memberLabel = label;
+    layer.classList.remove('open');
+};
 
 
 </script>
@@ -374,14 +388,17 @@ const onClickSelsect = (label) =>{
 .open.select-wrap .btnselectlist ul li:nth-of-type(5){transition-delay: .4s;}
 .accountCard{border-radius:10px; padding:20px; background:#21e8e4;position: relative;width:250px; height:296px;}
 .accountCard:before{content:'';display: block; width:30px; height:30px;background:url('/images/icon_chartbg.svg') no-repeat 0 0/100%; margin-bottom:15px;}
-.accountCard .label{font-size:13px; margin-bottom:5px;display: block;}
+.accountCard .label{font-size:13px; margin-bottom:5px;display: block;  letter-spacing:-1px;}
 .accountCard  .cardStrong{font-weight: 700; font-size: 18px;}
 .totalCount{margin:10px 0;}
-.totalCount > strong{font-size: 30px;}
+.totalCount > strong{font-size: 30px; letter-spacing:-1px;}
+.totalCount > strong em{font-size: 25px; letter-spacing:-1px;}
 .accountCard .barbox{height:auto; justify-content:flex-start;}
 .accountCard .barChart{width: 100%; background:#ffffff}
 .accountCard .barChart .bar{background:#202020}
 .accountCard .datarate{font-weight: 700; font-size: 15px;}
+
+.totalBar{background:#202020; margin:10px 0; border-radius:10px; padding:10px 30px; color:#dcfc34;}
 /* accountCard */
 .carousel .accountCard{height:auto; text-align:left; flex-grow:1; background:none}
 .carousel .carousel__viewport li{border-radius:15px;margin-right:20px; border:solid 1px #ddd}
