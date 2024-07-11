@@ -1,7 +1,7 @@
 <template>
     <div class="guidecontent">
         <div class="guidetitle">{{ title }}
-            <button type="button" class="btn-sample" @click="goToPage('/boxlayout')">샘플페이지 보기</button>
+            <button type="button" class="btn-sample" @click="goToPage('/accordion')">샘플페이지 보기</button>
         </div>
         <div class="guidememo">
             <div class="memotitle">기본사용</div>
