@@ -40,19 +40,19 @@
                                 <div class="total_wrap">
                                     <div>
                                         <span class="labeltext">금월 사용 금액</span>
-                                        <span class="costValue">₩ 27,295</span>
+                                        <span class="costValue"><em>₩</em> 27,295</span>
                                     </div>
                                 </div>
-                                <div class="past"><span class="labeltext">예상 사용 금액</span><span class="costValue">₩ 76,922</span></div>
+                                <div class="past"><span class="labeltext">예상 사용 금액</span><span class="costValue"><em>₩</em> 76,922</span></div>
                             </div>
                             <div class="nowTotal down">
                                 <div class="total_wrap">
                                     <div>
                                         <span class="labeltext">지난달 사용 금액</span>
-                                        <span class="costValue">₩ 1,002,014</span>
+                                        <span class="costValue"><em>₩</em> 1,002,014</span>
                                     </div>
                                 </div>
-                                <div class="past"><span class="labeltext">예상 차액</span><span class="costValue">₩ -925,092</span></div>
+                                <div class="past"><span class="labeltext">예상 차액</span><span class="costValue"><em>₩</em> -925,092</span></div>
                             </div>
                             
                             
@@ -68,7 +68,7 @@
                 </CardBox>
             </div>
             <div class="cardwrap">
-                <CardBox :cardTitle="'CSP Account별 비용/비율'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'" style="flex-shrink: 0;">
+                <!-- <CardBox :cardTitle="'CSP Account별 비용/비율'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'" style="flex-shrink: 0;">
                     <template #cardContent>
                         <div class="flex">
                             <div class="accountCard" style="flex:1 0 230px;background: #c9c9d4;">
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                     </template>
-                </CardBox>
+                </CardBox> -->
                 <CardBox :cardTitle="'CSP Account별 비용/비율'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'" style="flex-shrink: 0;">
                     <template #cardContent>
                         <div class="flex">
@@ -101,7 +101,7 @@
                                     <strong class="cardStrong">751498871854</strong>
                                 </div>
                             
-                                <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
+                                <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 17,400</strong></div>
                                 <span class="label">사용량</span>
                                 <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:10%"></em></div> <em class="datarate">10%</em></div>
                             </div>
@@ -116,7 +116,7 @@
                                     <span class="label">테넌트 명</span>
                                     <strong class="cardStrong">imp-test-01</strong>
                                 </div>
-                                <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
+                                <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 2,017,400</strong></div>
                                 <span class="label">사용량</span>
                                 <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:50%"></em></div> <em class="datarate">50%</em></div>
                             </div>
@@ -126,7 +126,7 @@
                 <CardBox :cardTitle="'CSP'" :cardSubtext="'CSP 비용 현황 입니다.'" style="flex-shrink: 0;flex-grow: 0; width:100%;">
                     <template #cardContent>
                         <div>
-                            <div class="totalBar"><span class="label">합계 금액</span><strong><em>₩</em>27,295</strong></div>
+                            <div class="totalBar"><span class="label">합계 금액</span><strong class="BText"><em>₩</em>27,295</strong></div>
                             <Carousel class="subpageslider" :breakpoints="state.breakpoints"  ref="myCarousel">
                                 <Slide v-for="(item, index) in state.csp" :key="index">
                                     <div class="accountCard">
@@ -350,14 +350,16 @@ const onClickSelsect = (label) => {
 .total_wrap{display:flex;}
 .nowTotal +.nowTotal{margin-top:10px}
 .nowTotal.up .labeltext,.nowTotal.up .costValue {color:#dcfc34}
-.labeltext{display:block;font-size:15px; font-weight: 700;}
+.labeltext{display:block;font-size:15px; font-weight: 400;}
 .costValue{font-size:30px; font-weight: 700;}
+.costValue em{font-size:20px;}
 .comparepay{display:flex;background:#535561; color:#adacb6; border-radius: 15px; justify-content: space-around;}
 .compare{flex:1; padding:20px;}
 .compare .labeltext{font-size:13px; margin-top:10px;}
 .past {display: flex; align-items: center; margin-top:10px}
-.past .labeltext{font-size:12px; margin-right:10px}
+.past .labeltext{font-size:12px; margin-right:10px;}
 .past .costValue{font-size:18px; font-weight: 700;}
+.past .costValue em{font-size:14px; font-weight: 700;}
 .paytable .ui-chart{min-height: 272px;;}
 .pageSearch{background: #f1f1f1; padding:20px; display: flex;align-items: flex-end; justify-content: space-between;}
 .search_title{display: flex; align-items: flex-end;}
@@ -392,13 +394,15 @@ const onClickSelsect = (label) => {
 .accountCard  .cardStrong{font-weight: 700; font-size: 18px;}
 .totalCount{margin:10px 0;}
 .totalCount > strong{font-size: 30px; letter-spacing:-1px;}
-.totalCount > strong em{font-size: 25px; letter-spacing:-1px;}
+.totalCount > strong em{font-size: 20px; letter-spacing:-1px;}
 .accountCard .barbox{height:auto; justify-content:flex-start;}
 .accountCard .barChart{width: 100%; background:#ffffff}
 .accountCard .barChart .bar{background:#202020}
 .accountCard .datarate{font-weight: 700; font-size: 15px;}
 
 .totalBar{background:#202020; margin:10px 0; border-radius:10px; padding:10px 30px; color:#dcfc34;}
+.BText{font-size:30px; display: inline-block; margin-left:20px}
+.BText em{font-size:20px;}
 /* accountCard */
 .carousel .accountCard{height:auto; text-align:left; flex-grow:1; background:none}
 .carousel .carousel__viewport li{border-radius:15px;margin-right:20px; border:solid 1px #ddd}

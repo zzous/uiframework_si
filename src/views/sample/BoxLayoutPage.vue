@@ -228,9 +228,9 @@ const state = reactive({
         {name: 'GHI', rate: 6800, date: '202.06.11', time: '08:00'}
     ],
     chartBar1: [
-        {name: '승인대기', rate: 51,  coreType: {a: '', b: ''},date: '202.06.11', time: '08:00'},
+        {name: '승인대기', rate: 51,  coreType: {a: '', b: ''}, date: '202.06.11', time: '08:00'},
         {name: '승인완료', rate: 26, coreType: {a: '', b: ''}, date: '202.06.11', time: '08:00'},
-        {name: '반려/폐기', rate: 12, coreType: {a: '', b: ''}, date: '202.06.11', time: '08:00'},
+        {name: '반려/폐기', rate: 12, coreType: {a: '', b: ''}, date: '202.06.11', time: '08:00'}
     ],
     chartBar2: [
         {name: '블록스토리지', rate: 45, coreType: {a: '579Gib', b: '1024Gib'}, date: '202.06.11', time: '08:00'},
@@ -413,9 +413,5 @@ const state = reactive({
 .boxlist.row .boxitem strong{font-size:36px;text-decoration:none;}
 
 
-.barbox{display:flex; width:100%; height:100%; justify-content: center; align-items:center; position: relative;}
-.barChart{width:100px;height:8px; border-radius: 4px; background:#F0F0F0; position: relative;}
-.barChart .bar{height:8px; border-radius: 4px; background:#1297F2; position:absolute; left:0; top:0}
-.datarate{margin-left:10px;}
 .layoutpage{flex-basis: 300px;flex:1}
 </style>

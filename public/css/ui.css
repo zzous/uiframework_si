@@ -134,7 +134,7 @@ footer {
 /*tab*/
 .tablist {
   width: 100%;
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px var(--base-bd-color);
   position: relative;
 }
 .tablist .tabdec {
@@ -151,7 +151,7 @@ footer {
   height: 40px;
   line-height: 38px;
   text-align: center;
-  border: solid 1px #ddd;
+  border: solid 1px var(--base-bd-color);
   border-bottom: none;
   background: #f7f9fa;
   font-size: 14px;
@@ -233,7 +233,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 20px;
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px var(--base-bd-color);
 }
 .titlebox.img .pagetitle {
   padding-left: 30px;
@@ -299,7 +299,7 @@ footer {
 .accordionBox.open .accordion_cons {
   height: auto;
   padding: 20px;
-  border-top: solid 1px #ddd;
+  border-top: solid 1px var(--base-bd-color);
   transition: all 0.3s;
 }
 .accordionBox.open .acc_content {
@@ -315,13 +315,14 @@ footer {
 }
 .listline {
   height: 60px;
-  border: solid 1px #ddd;
-  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.16);
+  background: var(--gray-box-color);
   border-radius: 10px;
 }
 .listbox .cellIcon {
   flex: 0 0 40px;
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 .listbox .listCell {
   flex: 1;
@@ -438,7 +439,7 @@ footer {
   margin-bottom: 20px;
   align-items: stretch;
   background: #fff;
-  border: solid 1px #ddd;
+  border: solid 1px var(--base-bd-color);
 }
 .card .pagetitle {
   font-size: 16px;
@@ -450,6 +451,7 @@ footer {
   display: block;
   color: #c9c9d4;
   font-weight: 500;
+  margin-top: -5px;
 }
 .card .titlebox {
   border: none;
@@ -477,7 +479,7 @@ footer {
 .barChart .bar {
   height: 8px;
   border-radius: 4px;
-  background: #1297f2;
+  background: var(--point-bar-color);
   position: absolute;
   left: 0;
   top: 0;

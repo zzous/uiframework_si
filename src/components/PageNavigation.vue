@@ -1,7 +1,7 @@
 <template>
     <ul class="pagination">
-        <li class="page-item first"><button type="button"  class="page-link" @click="onChangedPage(1, true)"><span class="offscreen">맨처음</span></button></li>
-        <li class="page-item prev"><button type="button"  class="page-link" @click="onChangedPage((state.currentPageNo-1), true)" ><span class="offscreen">이전</span></button></li>
+        <li class="page-item first"><button type="button" class="page-link" @click="onChangedPage(1, true)"><span class="offscreen">맨처음</span></button></li>
+        <li class="page-item prev"><button type="button" class="page-link" @click="onChangedPage((state.currentPageNo-1), true)" ><span class="offscreen">이전</span></button></li>
         <li class="page-item"
             :class="{active:num === state.currentPageNo}"
             v-for="(num, index) in state.countArrary" :key="index"
@@ -63,11 +63,4 @@ const onChangedPage = (pageNo, eventFlag) => {
         emit('changedPage', pageNo);
     }
 };
-// export default {
-//     props: ['itemCount', 'cntPerPage', 'isActive', 'pageSize', 'currentPage'],
-//     emits: ['changedPage'],
-//     setup(props) {
-        
-//     }
-// };
 </script>

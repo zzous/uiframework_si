@@ -31,6 +31,10 @@ import FormInput from '@/views/guide/FormInput.vue';
 import FormInputCheck from '@/views/guide/FormInputCheck.vue';
 import Modal from '@/views/guide/Modal.vue';
 import ToolTip from '@/views/guide/ToolTip.vue';
+import List from '@/views/guide/List.vue';
+import Table from '@/views/guide/Table.vue';
+import DatePicker from '@/views/guide/DatePicker.vue';
+import Pageing from '@/views/guide/Pageing.vue';
 import { useCommFunc } from '@/core/helper/common.js';
 const { goToPage } = useCommFunc();
 const router = useRouter();
@@ -41,14 +45,17 @@ const state = reactive({
         {label: '카드', name: 'Card'},
         {label: '메뉴', name: 'Menu'},
         {label: '타이틀', name: 'Title'},
+        {label: '리스트', name: 'List'},
+        {label: '테이블', name: 'Table'},
+        {label: '테이블 페이징', name: 'Pageing'},
         {label: '탭', name: 'Tab'},
         {label: '아코디언', name: 'Accordion'},
         {label: '버튼', name: 'Buttons'},
         {label: '폼-input', name: 'FormInput'},
         {label: '폼-radio,checkbox', name: 'FormInputCheck'},
-        // {label: '테이블', name: 'Table'},
+        {label: '데이터피커', name: 'DatePicker'},
         {label: '툴팁', name: 'ToolTip'},
-        {label: '모달팝업', name: 'Modal'},
+        {label: '모달팝업', name: 'Modal'}
         // {label: '토스트 팝업', name: 'Toast'},
         // {label: '페이징', name: 'Pageing'},
         // {label: '데이터피커', name: 'Datepicker'}
@@ -60,18 +67,22 @@ const componentsMap = {
     'Menu': { component: Menu, title: '메뉴' },
     'Card': { component: Card, title: '카드' },
     'Title': { component: Title, title: '타이틀' },
+    'List': { component: List, title: '리스트' },
+    'Table': { component: Table, title: '테이블' },
+    'Pageing': { component: Pageing, title: '테이블 페이징' },
     'Tab': { component: Tab, title: '탭' },
     'Buttons': { component: Buttons, title: '버튼' },
     'Accordion': { component: Accordion, title: '아코디언' },
     'FormInput': { component: FormInput, title: '폼-input' },
     'FormInputCheck': { component: FormInputCheck, title: '폼-radio,checkbox' },
+    'DatePicker': { component: DatePicker, title: '데이터피커' },
     'Modal': { component: Modal, title: '모달팝업' },
-    'ToolTip': { component: ToolTip, title: '툴팁' },
+    'ToolTip': { component: ToolTip, title: '툴팁' }
     // 'Toast': { component: ToolTip, title: '토스트' },
 };
 const currentPageComponent = shallowRef(PageLayout);
 const onChangePage = async (pageName, pageTitle) => {
-    const compontUrl = `/guide?guideName=${pageName}`
+    const compontUrl = `/guide?guideName=${pageName}`;
     goToPage(compontUrl);
     // state.componentsTitle = pageTitle;
     const componentData = componentsMap[pageName];
@@ -86,7 +97,7 @@ const onChangePage = async (pageName, pageTitle) => {
 
 // 초기 설정
 onMounted(() => {
-    if(route.query.guideName){
+    if (route.query.guideName) {
         const guideName = route.query.guideName;
         const componentData = componentsMap[guideName];
 
@@ -137,5 +148,5 @@ code{color: #FFCB6B;;font-family: Consolas, monospace !important;}
 .code.CSS code{color:#C3E88D}
 .code.HTML code{color:#F07178;}
 .code.JS code{color:#89DDFF;}
-
+.link{color:#006e6c; font-weight: 700;}
 </style>

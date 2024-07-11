@@ -2,7 +2,7 @@
     <div class="pageView">
         <div class="pageBgbox">
             <div class="flex" style="justify-content:flex-end">
-                <button type="button" class="btn posi" @click="goToPage('/guide')">가이드 페이지 </button>
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=Table')">가이드 페이지 </button>
             </div>
             <div class="guideTitle">테이블</div>
             <!-- 테이블 -->
@@ -22,9 +22,16 @@
                     </div>
                 </div>
                 <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                    class="ag-theme-alpine" :domLayout="'autoHeight'">
+                    class="ag-theme-alpine" :domLayout="'autoHeight'" rowSelection="multiple">
                 </AgGridVue>
             </div>
+            <div class="guideTitle">테이블-페이징</div>
+            <div class="flex" style="justify-content:flex-end">
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=Pageing')">가이드 페이지 </button>
+            </div>
+            <!-- 페이징 컴포넌트 -->
+            <PageNavigation :cntPerPage='pager.size' :itemCount='pager.totalCnt' :currentPage="pager.current"
+              @changedPage="onChangedPage" />
         </div>
     </div>
 </template>
@@ -122,5 +129,17 @@ const state = reactive({
     usetypeValue: 'N'
     
 });
+// 페이징 처리
+const pager = reactive({
+    current: 1,
+    size: computed(() => state.pagesize),
+    offset: computed(() => (pager.current - 1) * pager.size),
+    totalCnt: 10000
+});
+const onChangedPage = (num) => {
+    console.log(num);
+    pager.current = num;
+    //api호출
+};
 
 </script>

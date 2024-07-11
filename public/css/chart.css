@@ -44,7 +44,7 @@
   bottom: 0;
   left: 25%;
   width: 50%;
-  background-color: #5142b2;
+  background-color: var(--point-txt-color);
   border-radius: 5px 5px 0 0;
   cursor: pointer;
 }

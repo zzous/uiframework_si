@@ -2,7 +2,7 @@
     <div class="pageView">
         <div class="pageBgbox">
             <div class="flex" style="justify-content:flex-end">
-                <button type="button" class="btn posi" @click="goToPage('/guide')">가이드 페이지 </button>
+                <button type="button" class="btn posi" @click="goToPage('/guide?guideName=DatePicker')">가이드 페이지 </button>
             </div>
             <div class="guideTitle">DatePicker - 선택버튼 함께사용</div>
             <DatePicker ref="datepicker" :dayOpionType=state.dayOpionType  @selectDay ="selectDay"/>

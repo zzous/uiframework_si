@@ -181,7 +181,7 @@ const onClickTab = (index) => {
     
 };
 
- // 페이징 처리
+// 페이징 처리
 const pager = reactive({
     current: 1,
     size: computed(() => state.pagesize),

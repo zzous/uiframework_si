@@ -75,8 +75,8 @@ const openAcc = (event) => {
     } else {
         parEle.classList.add('open');
     }
-};`  
-  },
+};`
+        }
     ]
 });
 const toggleAcc = (idx) => {

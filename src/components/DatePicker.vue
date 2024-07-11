@@ -22,6 +22,7 @@
             <span class="ui-coupler">~</span>
         </template>
             <div class="ui-datepicker">
+                
                 <DatePicker :disabled="state.pickerStatus" :enable-time-picker="false" :format="state.dateFormat"
                     :model-value="pickerData.date.to" locale="ko" @update:model-value="setToDate" />
             </div>
@@ -30,9 +31,6 @@
 </template>
 <script setup>
 import { onMounted, reactive, computed, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useCommFunc } from '@/core/helper/common.js';
-const {  dayJS } = useCommFunc();
 const props = defineProps(
     {
         setDay: Object,
@@ -40,7 +38,7 @@ const props = defineProps(
         optionsType: {
             type: Boolean,
             default: true,
-            description: '선택버튼 여부'
+            description: ' 버튼 여부'
         },
         singleType: {
             type: Boolean,
