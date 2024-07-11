@@ -37,20 +37,14 @@ const state = reactive({
         {
             title: 'HTML',
             sampleCodeJS: `<ul class="pagination">
-    <li class="page-item first"><button type="button" class="page-link"><span class="offscreen">맨처음</span></button></li>
-    <li class="page-item prev"><button type="button" class="page-link"><span class="offscreen">이전</span></button></li>
-    <li class="page-item active"><button type="button" class="page-link">1</button></li>
-    <li class="page-item"><button type="button" class="page-link">2</button></li>
-    <li class="page-item"><button type="button" class="page-link">3</button></li>
-    <li class="page-item"><button type="button" class="page-link">4</button></li>
-    <li class="page-item"><button type="button" class="page-link">5</button></li>
-    <li class="page-item"><button type="button" class="page-link">6</button></li>
-    <li class="page-item"><button type="button" class="page-link">7</button></li>
-    <li class="page-item"><button type="button" class="page-link">8</button></li>
-    <li class="page-item"><button type="button" class="page-link">9</button></li>
-    <li class="page-item"><button type="button" class="page-link">10</button></li>
-    <li class="page-item next"><button type="button" class="page-link"><span class="offscreen">다음</span></button></li>
-    <li class="page-item last"><button type="button" class="page-link"><span class="offscreen">맨마직막</span></button></li>
+    <li class="page-item first" @click="onChangedPage(1, true)"><button type="button" class="page-link"><span class="offscreen">맨처음</span></button></li>
+    <li class="page-item prev"><button type="button" class="page-link" @click="onChangedPage((state.currentPageNo-1), true)"><span class="offscreen">이전</span></button></li>
+    <li class="page-item active"><button type="button" class="page-link" @click="onChangedPage(클릭한 페이지 번호, true)">1</button></li>
+    .
+    .
+    .
+    <li class="page-item next"><button type="button" class="page-link" @click="onChangedPage((state.currentPageNo+1), true)"><span class="offscreen">다음</span></button></li>
+    <li class="page-item last"><button type="button" class="page-link" @click="onChangedPage((state.pageCount), true)"><span class="offscreen">맨마직막</span></button></li>
 </ul>`
         },
         {
