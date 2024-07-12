@@ -5,8 +5,8 @@
             <div class="mainCardBox">
                 <Carousel class="subpageslider" :breakpoints="state.breakpoints" ref="myCarousel">
                     <template v-for="(item, index) in state.mainCardlist" :key="index">
-                        <Slide v-for="(cloudKey, idx) in Object.keys(item).filter(key => key !== 'resourceType' && item[key])" :key="idx">
-                            <div v-if="item[cloudKey] || item[cloudKey] !== null" class="mainCard"
+                        <Slide v-for="(cloudKey, idx) in Object.keys(item).filter(key => key !== 'resourceType' && item[key])" :key="idx" :class="{active:idx === state.childNum && index === state.parentNum}" @click="onChangeCard(idx, index, cloudKey, item)">
+                            <div v-if="item[cloudKey]" class="mainCard"
                                 :class="[
                                     { vs: item.resourceType === 'virtualServer' },
                                     { bl: item.resourceType === 'blockStorage' },
@@ -17,7 +17,7 @@
                                 <span class="typeLabel">{{ item.resourceType }}</span>
                                 <div class="resourcesummary">
                                     <div class="cloudName">
-                                        <span>{{ cloudKey }}</span>
+                                        <span>cloudType</span>
                                         <strong>{{ cloudKey }}</strong>
                                     </div>
                                     <div class="flex">
@@ -41,8 +41,8 @@
             </div>
             <div class="mainListBox">
                 <h1>
-                    <span class="title"><em>GCP</em>VirtualServer</span>
-                    <span class="subtext">총 9 개의 자원이 있습니다.</span>
+                    <span class="title"><em>{{state.cloudKey}}</em>{{ state.resourceType }}</span>
+                    <span class="subtext">총 {{state.listnum}} 개의 자원이 있습니다.</span>
                 </h1>
                 <div class="listbox">
                     <div class="listheader">
@@ -57,7 +57,7 @@
                         <div class="listCell">IP</div>
                         <div class="listCell">생성일시</div>
                     </div>
-                    <div class="listline" v-for="(item, index) in state.mainlist" :key="index">
+                    <div class="listline" v-for="(item, index) in state.mainlist.slice(0, state.listnum)" :key="index">
                         <div class="cellIcon"><img src="/images/icon-box.svg" style="width:20px"/></div>
                         <div class="listCell">{{ item.accountId }}</div>
                         <div class="listCell">{{ item.regionCode }}</div>
@@ -391,16 +391,32 @@ const state = reactive({
             itemsToShow: 5.5,
             snapAlign: 'start'
         }
-    }
+    },
+    parentNum: 0,
+    childNum: 0,
+    cloudKey: 'GCP',
+    resourceType: 'VirtualServer',
+    listnum: 9
+
 });
+const onChangeCard = (index, idx, cloudKey,  con) => {
+    console.log(con[cloudKey], con);
+    state.parentNum = idx;
+    state.childNum = index;
+    state.cloudKey = cloudKey;
+    state.resourceType = con.resourceType;
+    state.listnum = con[cloudKey].totalCount;
+};
 
 </script>
 
 <style>
 .mainCardBox{padding:0 60px 0 40px;margin-top:40px}
 .mainCardBox .carousel__viewport{border-radius:10px;}
-.mainCardBox .carousel__prev{ left:-50px; color:#fff}
+.mainCardBox .carousel__prev{ left:-50px;}
 .mainCardBox .carousel__next{ right:-50px}
+.mainCardBox .carousel__prev svg, .mainCardBox .carousel__next svg{ background:#fff}
+
 .carousel__slide{background:#fff;padding:0 100px 20px 20px;border-radius:10px; position: relative; overflow: hidden;margin-right:20px}
 .mainCard::before{content:""; display:block; height:10px; width:100%; background:#dcfc34; position: absolute; left:0; top:0;}
 .typeLabel{display: inline-block; background:#dcfc34; height:22px; padding:0 13px; border-radius:0 0 5px 5px;font-size:12px;font-weight:700; line-height:22px; text-align: center;position: absolute; left:20px; top:10px}
@@ -413,14 +429,14 @@ const state = reactive({
 .resourcesummary strong{font-size: 35px;}
 .resourcesummary span{font-size: 15px;;}
 .resourcesummary strong, .resourcesummary span{display:block}
-.cloudName strong{line-height:22px}
+.cloudName strong{line-height:27px}
 .cloudNum{margin-top:10px;;}
 .cloudNum strong, .cloudNum span{display:inline-block}
 .cloudNum strong{font-size:20px; margin-left:10px;}
 .cloudNum strong em{font-size:13px}
 .cloudNum +.cloudNum{margin-left:10px}
 .carousel .mainCard{height: auto; text-align: left; flex-grow: 1; width:180px}
-.mainListBox{margin-top:30px;}
+.mainListBox{margin-top:30px;padding-right:30px;}
 .mainListBox > h1{background:#202020; color:#fff; display: flex; padding:20px 30px; justify-content: space-between; align-items: center; margin-bottom:30px}
 .mainListBox > h1 .title{font-size:30px;}
 .mainListBox > h1 .title em{display: inline-block; font-size:14px; margin-right:10px;}
@@ -429,4 +445,10 @@ const state = reactive({
 .mainListBox .listCell .btn-sm{min-width: 75px;display: inline-flex;cursor: none; }
 .mainListBox .listCell .btn-sm:hover{background:#fff}
 .mainListBox .listline{background: #ddd;}
+.carousel__slide.active{background:#3c3e4a}
+.carousel__slide.active .resourcesummary span{color:#eee}
+.carousel__slide.active .mainCard.vs .resourcesummary strong{color:#dcfc34}
+.carousel__slide.active .mainCard.bl .resourcesummary strong{color:#21e8e4}
+.carousel__slide.active .mainCard.vp .resourcesummary strong{color:#9c7eff}
+.carousel__slide.active .mainCard.sb .resourcesummary strong{color:#189f92}
 </style>
