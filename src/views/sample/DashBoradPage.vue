@@ -411,7 +411,7 @@ const onChangeCard = (index, idx, cloudKey,  con) => {
 </script>
 
 <style>
-.mainCardBox{padding:0 60px 0 40px;margin-top:40px}
+.mainCardBox{padding: 60px 60px 160px 60px; margin-top: 40px; margin-right: 30px; background: #202020;}
 .mainCardBox .carousel__viewport{border-radius:10px;}
 .mainCardBox .carousel__prev{ left:-50px;}
 .mainCardBox .carousel__next{ right:-50px}
