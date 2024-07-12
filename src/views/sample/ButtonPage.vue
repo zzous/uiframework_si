@@ -37,6 +37,9 @@
                 <button type="button" class="btn btn-sm"><span class="ico-all-open"></span>icon 버튼</button>
                 <button type="button" class="btn btn-sm"><span class="ico-download"></span>icon 버튼</button>
                 <button type="button" class="btn btn-sm"><span class="ico-fit"></span>icon 버튼</button>
+                <button type="button" class="btn btn-sm"><span class="ico-used"></span>icon 버튼</button>
+                <button type="button" class="btn btn-sm"><span class="ico-pause"></span>icon 버튼</button>
+                <button type="button" class="btn btn-sm"><span class="ico-stop"></span>icon 버튼</button>
             </div>
             <div class="flex mt-30">
                 <button type="button" class="btn btn-sm"><span class="ico-fit full"></span>icon + text 버튼</button>
@@ -45,6 +48,7 @@
                 <button type="button" class="btn btn-sm"><span class="ico-prev"></span>icon 버튼</button>
                 <button type="button" class="btn btn-sm"><span class="ico-fix"></span>icon 버튼</button>
                 <button type="button" class="btn btn-sm"><span class="ico-menu"></span>icon 버튼</button>
+               
             </div>
             <div class="flex mt-30">
                 <button type="button" class="iconbtn ico-alarm">알람</button>
