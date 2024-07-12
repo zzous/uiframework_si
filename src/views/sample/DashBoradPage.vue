@@ -451,4 +451,6 @@ const onChangeCard = (index, idx, cloudKey,  con) => {
 .carousel__slide.active .mainCard.bl .resourcesummary strong{color:#21e8e4}
 .carousel__slide.active .mainCard.vp .resourcesummary strong{color:#9c7eff}
 .carousel__slide.active .mainCard.sb .resourcesummary strong{color:#189f92}
+.mainListBox .carousel__viewport li:hover{background:none;}
+.mainListBox .carousel .carousel__viewport li{border:none}
 </style>
