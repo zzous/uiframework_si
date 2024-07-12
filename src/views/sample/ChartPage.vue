@@ -68,26 +68,6 @@
                 </CardBox>
             </div>
             <div class="cardwrap">
-                <!-- <CardBox :cardTitle="'CSP Account별 비용/비율'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'" style="flex-shrink: 0;">
-                    <template #cardContent>
-                        <div class="flex">
-                            <div class="accountCard" style="flex:1 0 230px;background: #c9c9d4;">
-                                <div class="mt-10">
-                                    <span class="label">CSP</span>
-                                    <strong class="cardStrong">AWS</strong>
-                                </div>
-                                <div class="mt-10">
-                                    <span class="label">Account</span>
-                                    <strong class="cardStrong">751498871854</strong>
-                                </div>
-                            
-                                <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 917,400</strong></div>
-                                <span class="label">사용량</span>
-                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%"></em></div> <em class="datarate">30%</em></div>
-                            </div>
-                        </div>
-                    </template>
-                </CardBox> -->
                 <CardBox :cardTitle="'CSP Account별 비용/비율'"  :cardSubtext="'CSP Account별 비용 현황 입니다.'" style="flex-shrink: 0;">
                     <template #cardContent>
                         <div class="flex">

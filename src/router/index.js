@@ -118,6 +118,11 @@ const routes = [
                 name: 'tablelayout',
                 component: () => import('@/views/sample/TableLayout.vue')
             },
+            {
+                path: '/dashboard',
+                name: 'dashboard',
+                component: () => import('@/views/sample/DashBoradPage.vue')
+            }
         ]
     },
     ...withPrefix('/guide', [

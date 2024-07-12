@@ -1,8 +1,8 @@
 <template>
     <div class="pageView">
-        <div class="flex" style="justify-content:flex-end">
+        <!-- <div class="flex" style="justify-content:flex-end">
             <button type="button" class="btn posi" @click="goToPage('/guide?guideName=PageLayout')">가이드 페이지 </button>
-        </div>
+        </div> -->
         <div class="cardwrap">
             <CardBox :cardWidth="590" :cardTitle="'오늘 나의 업무'" :cardSubtext="'사용자가 처리해야할 업무입니다.'" style="min-height:100px;">
                 <template #cardContent>

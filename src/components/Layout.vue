@@ -94,11 +94,12 @@ const state = reactive({
     menuTop: '',
     menuList: [
         {menu: '가이드 활용 페이지',
-            pagelink:null,
+            pagelink: null,
             depth: [
+                { menu: '대시보드', pagelink: '/dashboard', depth: [] },
                 { menu: '카드형태 페이지', pagelink: '/boxlayout', depth: [] },
                 { menu: '테이블 페이지', pagelink: '/tablelayout', depth: [] },
-                { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] },
+                { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] }
             ]
         },
         {menu: '영역별 요소',
@@ -219,45 +220,7 @@ watch(route, () => {
 </script>
 <style>
 
-/*.lnb-menu-list li > .menutext:after,.lnb-menu-list li > .menutext:before{display: block; content:''}
-.lnb-menu-list li > .menutext:before{width:0%; height:100%; background:#ccc;position:absolute; right:0px; top:0px; transition: width .3s; z-index: 1; }
 
-.lnb-menu-list li > .menutext:hover:before{width:100%;}
-.lnb-menu-list li.depth2{margin-top:5px;}
-.lnb-menu-list li.depth1.depth > .menutext:after, .lnb-menu-list li.depth2.depth > .menutext:after{width:15px; height:15px;position:absolute; right:30px; top:20px; background: url('/images/icon-arrow-down.svg') no-repeat 0 0/100%;z-index:2;} */
-
-
-/* depth2 */
-/* */
-
-/* depth3 */
-/* .lnb-menu-list li.depth3{margin-top:2px}
-.lnb-menu-list li.depth3 > .menutext{font-size:13px; padding:0 5px;}
-.lnb-menu-list li.depth3 .menutext{padding-top:0px}
-.lnb-menu-list li.depth3 .menutext:hover:before,.lnb-menu-list li.depth3.active .menutext:before, .lnb-menu-list li.depth3.thispage .menutext:before{display: none;}
-.lnb-menu-list li.depth3 .menutext em{color:#000}
-.lnb-menu-list li.depth3 .menutext em:after{content:''; display: block; width:3px; height:1px; border-radius:0; background:#666; position: absolute; left:5px; top:8px;}
-.lnb-menu-list li.depth3.active .menutext em,.lnb-menu-list li.depth3.thispage .menutext em{color:var(--point-txt-color)}
-.lnb-menu-list li.depth3.active .menutext em:after, .lnb-menu-list li.depth3.thispage .menutext em:after{background:var(--point-txt-color)} */
-
-/* active */
-/* .lnb-menu-list  li.active > ul, .lnb-menu-list  li.thispage > ul{height: auto;}
-.lnb-menu-list  li.depth1.active > ul, .lnb-menu-list  li.depth1.thispage > ul{margin: 0px 15px;padding: 10px;}
-.lnb-menu-list  li.depth2.active > ul, .lnb-menu-list  li.depth2.thispage > ul{margin: 0px;padding:5px;}
-.lnb-menu-list  li.depth3.active > ul, .lnb-menu-list  li.depth3.thispage > ul{margin: 0px;padding:5px;}
-.lnb-menu-list  li.depth.active > ul > li, .lnb-menu-list  li.depth.thispage> ul > li{display: block;} */
-
-
-
-/* .menuTop .lnb-menu-list > ul{margin-top:0; display:flex;}
-.menuTop .lnb-menu-list > ul > li > ul{display: none;}
-.menuTop .lnb-menu-list > ul > li{flex:1 1 auto; position: relative; }
-.menuTop .lnb-menu-list > ul > li > .menutext {padding:20px 0 13px 0 }
-.menuTop .lnb-menu-list > ul > li .menutext:before{display: none;}
-.menuTop .lnb-menu-list li.depth1 > ul {position: absolute;margin: 0; height:auto; width:100%; padding-left:0}
-.menuTop .lnb-menu-list{position: relative;}
-.menuTop .lnb-menu-list:hover::after{content:""; display:block; width:100%; height:200px; position: absolute; left:0;top:50px; background: rgba(0,0,0,.5);}
-.menuTop .lnb-menu-list:hover > ul > li > ul{display:block;} */
 .gnb{margin-top:50px;}
 .gnb ul li{width:50px; height:50px;  margin:0 auto; position: relative;border-radius:10px;}
 .gnb ul li:after{content:""; display: block;width:100%; height:100%;background-repeat: no-repeat; background-position: 11px 10px; }
