@@ -105,7 +105,7 @@
                 </CardBox>
                 <CardBox :cardTitle="'CSP'" :cardSubtext="'CSP 비용 현황 입니다.'" style="flex-shrink: 0;flex-grow: 0; width:100%;">
                     <template #cardContent>
-                        <div>
+                        <div class="cspCarousel">
                             <div class="totalBar"><span class="label">합계 금액</span><strong class="BText"><em>₩</em>27,295</strong></div>
                             <Carousel class="subpageslider" :breakpoints="state.breakpoints"  ref="myCarousel">
                                 <Slide v-for="(item, index) in state.csp" :key="index">
@@ -121,12 +121,7 @@
                                     <Navigation />
                                 </template>
                             </Carousel>
-                            
                         </div>
-                        <!-- <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                        rowSelection="multiple"
-                            class="ag-theme-alpine" :domLayout="'autoHeight'">
-                        </AgGridVue> -->
                     </template>
                 </CardBox>
             </div>
@@ -159,106 +154,7 @@ const state = reactive({
     colors: ['574794', '9F96BF', 'D8D4E2', '189F92', '72C6BE', 'C9E5E3'],
     colors1: ['F3775B', '5F9ECF'],
     colors2: ['189F92', '72C6BE', 'F3775B', 'F3AD53', 'F5E2C8'],
-     //테이블
-    value: [
-        { headerCheckboxSelection: true, checkboxSelection: true, maxWidth: 30 },
-        { headerName: '존',  field: 'name', valueGetter: 'node.rowIndex + 1', maxWidth: 70 },
-        { headerName: '가상서버',  field: 'cloudtype', flex: 1},
-        { headerName: '삭제예정일',  field: 'synch', maxWidth: 100},
-        { headerName: '가용스토리지',
-            field: 'ablestorage',
-            maxWidth: 220,
-            cellRenderer: (params) => {
-                const tagString = `<div class="barChart" id="ablestorage-${params.node.rowIndex}"><em class="bar" style="width:${30}%"></em></div> <em class="datarate">${30}%</em>`;
-                const tagTarget = document.createElement('div');
-                tagTarget.classList.add('barbox');
-                tagTarget.innerHTML = tagString;
-                return tagTarget;
-            }
-        },
-        { headerName: '사용여부',
-            field: 'usetype',
-            flex: 1,
-            maxWidth: 220,
-            cellRenderer: (params) => {
-                const tagString = `<div class="switch"><input type="checkbox" id="usetype-${params.node.rowIndex}" /><label for="usetype-${params.node.rowIndex}">미사용</label></div>`;
-                const tagTarget = document.createElement('div');
-                tagTarget.classList.add('checkbox');
-                tagTarget.innerHTML = tagString;
-                const buttonEventTarget = tagTarget.querySelector(`#usetype-${params.node.rowIndex}`);
-                buttonEventTarget.addEventListener('change', (event) => {
-                    const label = tagTarget.querySelector(`#usetype-${params.node.rowIndex}`).parentNode.children[1];
-                    if (event.target.checked) {
-                        console.log('텍스트 변경 처리');
-                        label.innerHTML = '사용';
-                    } else {
-                        label.innerHTML = '미사용';
-                    }
-                });
-                return tagTarget;
-            }
-        }
-    ],
-    rowData: [
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        },
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        },
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        },
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        },
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        },
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        },
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        },
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        },
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        },
-        {
-            name: 'DATASTORE1',
-            cloudtype: '가상서버이름',
-            synch: '2023.04.12 13:22:14'
-        }
-    ],
-    defaultColDef: {
-        sortable: false,
-        filter: false,
-        resizable: false,
-        headerClass: 'centered',
-        cellClass: 'centered',
-        flex: 1
-    },
+    
     memberlist: [
         {label: '스트라토'},
         {label: '회원사'},
@@ -379,15 +275,12 @@ const onClickSelsect = (label) => {
 .accountCard .barChart{width: 100%; background:#ffffff}
 .accountCard .barChart .bar{background:#202020}
 .accountCard .datarate{font-weight: 700; font-size: 15px;}
-
 .totalBar{background:#202020; margin:10px 0; border-radius:10px; padding:10px 30px; color:#dcfc34;}
 .BText{font-size:30px; display: inline-block; margin-left:20px}
 .BText em{font-size:20px;}
 /* accountCard */
-.carousel .accountCard{height:auto; text-align:left; flex-grow:1; background:none}
-.carousel .carousel__viewport li{border-radius:15px;margin-right:20px; border:solid 1px #ddd}
-.carousel .carousel__viewport li:hover{background:#dcfc34;}
-/* .carousel .carousel__viewport li:nth-of-type(odd) {background:#dcfc34;}
-.carousel .carousel__viewport li:nth-of-type(even) {background:#c9c9d4;}
-.carousel .carousel__viewport li:nth-of-type(3n+1) {background:#21e8e4;} */
+.cspCarousel .carousel .accountCard{height:auto; text-align:left; flex-grow:1; background:none}
+.cspCarousel .carousel .carousel__viewport li{border-radius:15px;margin-right:20px; border:solid 1px #ddd}
+.cspCarousel .carousel .carousel__viewport li:hover{background:#dcfc34;}
+
 </style>
