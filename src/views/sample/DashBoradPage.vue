@@ -423,14 +423,9 @@ const onChangeCard = (index, idx, cloudKey,  con) => {
 };
 const aniMotion = () => {
     setTimeout(() => {
-      
-        document.querySelector('.mainListBox').classList.add('ani');
-        document.querySelector('.mainCardBox').classList.add('ani');
-        setTimeout(() => {
-            const eleClass = list.value.classList;
-            list.value.classList.add('ani');
-        }, 300); // 0.3초 딜레이
-    }, 500); // 0.3초 딜레이
+        const eleClass = list.value.classList;
+        list.value.classList.add('ani');
+    }, 300); // 0.3초 딜레이
 };
 onMounted(() => {
     nextTick(() => {
@@ -489,7 +484,7 @@ onMounted(() => {
 .mainCardBox .carousel__track{perspective: 1000px;}
 .carousel__slide--sliding { transition: 0.5s; }
 
-.mainCardBox .carousel__slide{  transition: all .4s ease-in-out;  right:-400px; opacity: 0;transform:  scale(0.5);}
+/* .mainCardBox .carousel__slide{  transition: all .4s ease-in-out;  right:-400px; opacity: 0;transform:  scale(0.5);}
 .mainCardBox.ani .carousel__slide{ right:0px;opacity: 1; transform: rotateY(0deg) scale(1);}
 .mainCardBox.ani .carousel__slide:nth-of-type(1){transition-delay: .2s;}
 .mainCardBox.ani .carousel__slide:nth-of-type(2){transition-delay: .24s;}
@@ -499,7 +494,7 @@ onMounted(() => {
 .mainCardBox.ani .carousel__slide:nth-of-type(6){transition-delay: .38s;}
 .mainCardBox.ani .carousel__slide:nth-of-type(7){transition-delay: .4s;}
 .mainCardBox.ani .carousel__slide:nth-of-type(8){transition-delay: .44s;}
-.mainCardBox.ani .carousel__slide:nth-of-type(0){transition-delay: .48s;}
+.mainCardBox.ani .carousel__slide:nth-of-type(0){transition-delay: .48s;} */
 
 
 
@@ -507,7 +502,7 @@ onMounted(() => {
 
 
 
-.carousel__slide--active { opacity: 1;  }
+/* .carousel__slide--active { opacity: 1;  }*/
 /* motion */
 .mainListBox .listline, .mainListBox .listheader{transform: translateY(-20px); transition: .3s cubic-bezier(0.250, 0.460, 0.450, 0.940);  opacity:0;}
 .mainListBox .listbox.ani .listline, .mainListBox .listbox.ani .listheader{transform: translateY(0px);  opacity:1;}
