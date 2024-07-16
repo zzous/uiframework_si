@@ -3,7 +3,7 @@
         <div style="position: relative;">
             
             <div class="mainCardBox">
-                <Carousel class="subpageslider" :breakpoints="state.breakpoints" ref="myCarousel">
+                <Carousel class="subpageslider" :breakpoints="state.breakpoints" ref="myCarousel" :wrapAround="true" :transition="500">
                     <template v-for="(item, index) in state.mainCardlist" :key="index">
                         <Slide v-for="(cloudKey, idx) in Object.keys(item).filter(key => key !== 'resourceType' && item[key])" :key="idx" :class="{active:idx === state.childNum && index === state.parentNum}" @click="onChangeCard(idx, index, cloudKey, item)">
                             <div v-if="item[cloudKey]" class="mainCard"
@@ -44,7 +44,7 @@
                     <span class="title"><em>{{state.cloudKey}}</em>{{ state.resourceType }}</span>
                     <span class="subtext">총 {{state.listnum}} 개의 자원이 있습니다.</span>
                 </h1>
-                <div class="listbox">
+                <div class="listbox" ref="list">
                     <div class="listheader">
                         <div class="cellIcon"></div>
                         <div class="listCell">계정</div>
@@ -79,7 +79,7 @@
     </div>
 </template>
 <script setup>
-import { defineComponent, onMounted, reactive, computed, getCurrentInstance, shallowRef } from 'vue';
+import { defineComponent, onMounted, reactive, computed, getCurrentInstance, shallowRef, ref, nextTick } from 'vue';
 const state = reactive({
     mainCardlist: [
         {
@@ -399,14 +399,47 @@ const state = reactive({
     listnum: 9
 
 });
+const list = ref(null);
 const onChangeCard = (index, idx, cloudKey,  con) => {
-    console.log(con[cloudKey], con);
+    document.querySelector('.mainListBox').classList.remove('ani');
+    document.querySelector('.listbox').classList.remove('ani');
+    setTimeout(() => {
+        
+        // if (eleClass) {
+        //     eleClass.remove('ani');
+        // } else {
+        //     eleClass.add('ani');
+        // }
+        document.querySelector('.mainListBox').classList.add('ani');
+        document.querySelector('.listbox').classList.add('ani');
+       
+    }, 800); // 0.3초 딜레이
+
     state.parentNum = idx;
     state.childNum = index;
     state.cloudKey = cloudKey;
     state.resourceType = con.resourceType;
     state.listnum = con[cloudKey].totalCount;
 };
+const aniMotion = () => {
+    setTimeout(() => {
+      
+        document.querySelector('.mainListBox').classList.add('ani');
+        document.querySelector('.mainCardBox').classList.add('ani');
+        setTimeout(() => {
+            const eleClass = list.value.classList;
+            list.value.classList.add('ani');
+        }, 300); // 0.3초 딜레이
+    }, 500); // 0.3초 딜레이
+};
+onMounted(() => {
+    nextTick(() => {
+        
+        aniMotion();
+    });
+    
+    
+});
 
 </script>
 
@@ -453,4 +486,44 @@ const onChangeCard = (index, idx, cloudKey,  con) => {
 .carousel__slide.active .mainCard.sb .resourcesummary strong{color:#189f92}
 .mainListBox .carousel__viewport li:hover{background:none;}
 .mainListBox .carousel .carousel__viewport li{border:none}
+.mainCardBox .carousel__track{perspective: 1000px;}
+.carousel__slide--sliding { transition: 0.5s; }
+
+.mainCardBox .carousel__slide{  transition: all .4s ease-in-out;  right:-400px; opacity: 0;transform:  scale(0.5);}
+.mainCardBox.ani .carousel__slide{ right:0px;opacity: 1; transform: rotateY(0deg) scale(1);}
+.mainCardBox.ani .carousel__slide:nth-of-type(1){transition-delay: .2s;}
+.mainCardBox.ani .carousel__slide:nth-of-type(2){transition-delay: .24s;}
+.mainCardBox.ani .carousel__slide:nth-of-type(3){transition-delay: .28s;}
+.mainCardBox.ani .carousel__slide:nth-of-type(4){transition-delay: .3s;}
+.mainCardBox.ani .carousel__slide:nth-of-type(5){transition-delay: .34s;}
+.mainCardBox.ani .carousel__slide:nth-of-type(6){transition-delay: .38s;}
+.mainCardBox.ani .carousel__slide:nth-of-type(7){transition-delay: .4s;}
+.mainCardBox.ani .carousel__slide:nth-of-type(8){transition-delay: .44s;}
+.mainCardBox.ani .carousel__slide:nth-of-type(0){transition-delay: .48s;}
+
+
+
+
+
+
+
+.carousel__slide--active { opacity: 1;  }
+/* motion */
+.mainListBox .listline, .mainListBox .listheader{transform: translateY(-20px); transition: .3s cubic-bezier(0.250, 0.460, 0.450, 0.940);  opacity:0;}
+.mainListBox .listbox.ani .listline, .mainListBox .listbox.ani .listheader{transform: translateY(0px);  opacity:1;}
+.mainListBox .listheader{transition-delay: .2s;}
+.mainListBox .listline:nth-of-type(1){transition-delay: .2s;}
+.mainListBox .listline:nth-of-type(2){transition-delay: .22s;}
+.mainListBox .listline:nth-of-type(3){transition-delay: .24s;}
+.mainListBox .listline:nth-of-type(4){transition-delay: .26s;}
+.mainListBox .listline:nth-of-type(5){transition-delay: .28s;}
+.mainListBox .listline:nth-of-type(6){transition-delay: .3s;}
+.mainListBox .listline:nth-of-type(7){transition-delay: .32s;}
+.mainListBox .listline:nth-of-type(8){transition-delay: .34s;}
+.mainListBox .listline:nth-of-type(9){transition-delay: .36s;}
+.mainListBox .listline:nth-of-type(10){transition-delay: .38s;}
+
+/* .mainListBox > h1{    width: 100%; z-index: 1; ;transition: .5s;min-height:1000px }
+.mainListBox.ani > h1{ width: 100%; z-index: 1;min-height: 1px;} */
+
 </style>
