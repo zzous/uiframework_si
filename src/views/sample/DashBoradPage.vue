@@ -3,7 +3,7 @@
         <div style="position: relative;">
             
             <div class="mainCardBox">
-                <Carousel class="subpageslider" :breakpoints="state.breakpoints" ref="myCarousel" :wrapAround="true" :transition="500">
+                <Carousel class="subpageslider" :breakpoints="state.breakpoints" ref="myCarousel" >
                     <template v-for="(item, index) in state.mainCardlist" :key="index">
                         <Slide v-for="(cloudKey, idx) in Object.keys(item).filter(key => key !== 'resourceType' && item[key])" :key="idx" :class="{active:idx === state.childNum && index === state.parentNum}" @click="onChangeCard(idx, index, cloudKey, item)">
                             <div v-if="item[cloudKey]" class="mainCard"
@@ -422,10 +422,10 @@ const onChangeCard = (index, idx, cloudKey,  con) => {
     state.listnum = con[cloudKey].totalCount;
 };
 const aniMotion = () => {
-    setTimeout(() => {
-        const eleClass = list.value.classList;
-        list.value.classList.add('ani');
-    }, 300); // 0.3초 딜레이
+    // setTimeout(() => {
+    //     const eleClass = list.value.classList;
+    //     list.value.classList.add('ani');
+    // }, 300); // 0.3초 딜레이
 };
 onMounted(() => {
     nextTick(() => {
@@ -484,7 +484,7 @@ onMounted(() => {
 .mainCardBox .carousel__track{perspective: 1000px;}
 .carousel__slide--sliding { transition: 0.5s; }
 
-/* .mainCardBox .carousel__slide{  transition: all .4s ease-in-out;  right:-400px; opacity: 0;transform:  scale(0.5);}
+/*
 .mainCardBox.ani .carousel__slide{ right:0px;opacity: 1; transform: rotateY(0deg) scale(1);}
 .mainCardBox.ani .carousel__slide:nth-of-type(1){transition-delay: .2s;}
 .mainCardBox.ani .carousel__slide:nth-of-type(2){transition-delay: .24s;}
@@ -504,21 +504,91 @@ onMounted(() => {
 
 /* .carousel__slide--active { opacity: 1;  }*/
 /* motion */
-.mainListBox .listline, .mainListBox .listheader{transform: translateY(-20px); transition: .3s cubic-bezier(0.250, 0.460, 0.450, 0.940);  opacity:0;}
-.mainListBox .listbox.ani .listline, .mainListBox .listbox.ani .listheader{transform: translateY(0px);  opacity:1;}
-.mainListBox .listheader{transition-delay: .2s;}
-.mainListBox .listline:nth-of-type(1){transition-delay: .2s;}
-.mainListBox .listline:nth-of-type(2){transition-delay: .22s;}
-.mainListBox .listline:nth-of-type(3){transition-delay: .24s;}
-.mainListBox .listline:nth-of-type(4){transition-delay: .26s;}
-.mainListBox .listline:nth-of-type(5){transition-delay: .28s;}
-.mainListBox .listline:nth-of-type(6){transition-delay: .3s;}
-.mainListBox .listline:nth-of-type(7){transition-delay: .32s;}
-.mainListBox .listline:nth-of-type(8){transition-delay: .34s;}
-.mainListBox .listline:nth-of-type(9){transition-delay: .36s;}
-.mainListBox .listline:nth-of-type(10){transition-delay: .38s;}
 
-/* .mainListBox > h1{    width: 100%; z-index: 1; ;transition: .5s;min-height:1000px }
+
+.mainCardBox .carousel__slide{animation: fadeIn1 0.4s linear; position: relative; animation: fadeIn1 0.4s linear; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
+.mainListBox .listbox .listline, .mainListBox .listbox .listheader{-webkit-animation: fadeIn 0.4s linear; position: relative; animation: fadeIn 0.4s linear; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
+
+/*
 .mainListBox.ani > h1{ width: 100%; z-index: 1;min-height: 1px;} */
+.mainListBox > h1{   -webkit-animation: fadeIn 0.3s linear; position: relative; animation: fadeIn 0.3s linear;-webkit-animation-fill-mode: both; animation-fill-mode: both;}
+.mainListBox > h1 { -webkit-animation-delay: 0.25s; animation-delay: 0.25s; }
 
+.mainListBox .listheader { -webkit-animation-delay: 0.7s; animation-delay: 0.7s; }
+.mainListBox .listline:nth-of-type(1) { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
+.mainListBox .listline:nth-of-type(2) { -webkit-animation-delay: 0.75s; animation-delay: 0.75s; }
+.mainListBox .listline:nth-of-type(3) { -webkit-animation-delay: 1s; animation-delay: 1s; }
+.mainListBox .listline:nth-of-type(4) { -webkit-animation-delay: 1.25s; animation-delay: 1.25s; }
+.mainListBox .listline:nth-of-type(5) { -webkit-animation-delay: 1.5s; animation-delay: 1.5s; }
+.mainListBox .listline:nth-of-type(6) { -webkit-animation-delay: 1.75s; animation-delay: 1.75s; }
+.mainListBox .listline:nth-of-type(7) { -webkit-animation-delay: 2s; animation-delay: 2s; }
+.mainListBox .listline:nth-of-type(8) { -webkit-animation-delay: 2.25s; animation-delay: 2.25s; }
+.mainListBox .listline:nth-of-type(9) { -webkit-animation-delay: 2.75s; animation-delay: 2.75s; }
+.mainListBox .listline:nth-of-type(10) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+
+
+
+.mainCardBox .carousel__slide:nth-of-type(1) { -webkit-animation-delay: 0.25s; animation-delay: 0.25s; }
+.mainCardBox .carousel__slide:nth-of-type(2) { -webkit-animation-delay: 0.7s; animation-delay: 0.7s; }
+.mainCardBox .carousel__slide:nth-of-type(3) { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
+.mainCardBox .carousel__slide:nth-of-type(4) { -webkit-animation-delay: 0.75s; animation-delay: 0.75s; }
+.mainCardBox .carousel__slide:nth-of-type(5) { -webkit-animation-delay: 1s; animation-delay: 1s; }
+.mainCardBox .carousel__slide:nth-of-type(6) { -webkit-animation-delay: 1.25s; animation-delay: 1.25s; }
+.mainCardBox .carousel__slide:nth-of-type(7) { -webkit-animation-delay: 1.5s; animation-delay: 1.5s; }
+.mainCardBox .carousel__slide:nth-of-type(8) { -webkit-animation-delay: 1.75s; animation-delay: 1.75s; }
+.mainCardBox .carousel__slide:nth-of-type(9) { -webkit-animation-delay: 2s; animation-delay: 2s; }
+.mainCardBox .carousel__slide:nth-of-type(10) { -webkit-animation-delay: 2.25s; animation-delay: 2.25s; }
+.mainCardBox .carousel__slide:nth-of-type(11) { -webkit-animation-delay: 2.75s; animation-delay: 2.75s; }
+.mainCardBox .carousel__slide:nth-of-type(12) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+.mainCardBox .carousel__slide:nth-of-type(13) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+.mainCardBox .carousel__slide:nth-of-type(14) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+.mainCardBox .carousel__slide:nth-of-type(15) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+.mainCardBox .carousel__slide:nth-of-type(16) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+.mainCardBox .carousel__slide:nth-of-type(17) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+.mainCardBox .carousel__slide:nth-of-type(18) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+.mainCardBox .carousel__slide:nth-of-type(19) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+.mainCardBox .carousel__slide:nth-of-type(20) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+.mainCardBox .carousel__slide:nth-of-type(21) { -webkit-animation-delay: 0.25s; animation-delay: 0.25s; }
+.mainCardBox .carousel__slide:nth-of-type(22) { -webkit-animation-delay: 0.7s; animation-delay: 0.7s; }
+.mainCardBox .carousel__slide:nth-of-type(23) { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
+.mainCardBox .carousel__slide:nth-of-type(24) { -webkit-animation-delay: 0.75s; animation-delay: 0.75s; }
+.mainCardBox .carousel__slide:nth-of-type(25) { -webkit-animation-delay: 1s; animation-delay: 1s; }
+.mainCardBox .carousel__slide:nth-of-type(26) { -webkit-animation-delay: 1.25s; animation-delay: 1.25s; }
+.mainCardBox .carousel__slide:nth-of-type(27) { -webkit-animation-delay: 1.5s; animation-delay: 1.5s; }
+.mainCardBox .carousel__slide:nth-of-type(28) { -webkit-animation-delay: 1.75s; animation-delay: 1.75s; }
+.mainCardBox .carousel__slide:nth-of-type(29) { -webkit-animation-delay: 2s; animation-delay: 2s; }
+.mainCardBox .carousel__slide:nth-of-type(30) { -webkit-animation-delay: 2.25s; animation-delay: 2.25s; }
+.mainCardBox .carousel__slide:nth-of-type(31) { -webkit-animation-delay: 2.75s; animation-delay: 2.75s; }
+.mainCardBox .carousel__slide:nth-of-type(32) { -webkit-animation-delay: 3s; animation-delay: 3s; }
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    top: -100px;
+  }
+  75% {
+    opacity: 0.5;
+    top: 0px;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn1 {
+  0% {
+    opacity: 0;
+    top:-100px;
+  }
+  50% {
+    opacity: 0.5;
+    top: -50px;
+  }
+  75% {
+    opacity: 0.5;
+    top: 0px;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 </style>
