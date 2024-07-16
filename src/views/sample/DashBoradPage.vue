@@ -511,7 +511,7 @@ onMounted(() => {
 
 /*
 .mainListBox.ani > h1{ width: 100%; z-index: 1;min-height: 1px;} */
-.mainListBox > h1{   -webkit-animation: fadeIn 0.3s linear; position: relative; animation: fadeIn 0.3s linear;-webkit-animation-fill-mode: both; animation-fill-mode: both;}
+/* .mainListBox > h1{   -webkit-animation: fadeIn 0.3s linear; position: relative; animation: fadeIn 0.3s linear;-webkit-animation-fill-mode: both; animation-fill-mode: both;}
 .mainListBox > h1 { -webkit-animation-delay: 0.25s; animation-delay: 0.25s; }
 
 .mainListBox .listheader { -webkit-animation-delay: 0.7s; animation-delay: 0.7s; }
@@ -590,5 +590,5 @@ onMounted(() => {
   100% {
     opacity: 1;
   }
-}
+} */
 </style>
