@@ -44,7 +44,7 @@
                     <span class="title"><em>{{state.cloudKey}}</em>{{ state.resourceType }}</span>
                     <span class="subtext">총 {{state.listnum}} 개의 자원이 있습니다.</span>
                 </h1>
-                <div class="listbox" ref="list">
+                <div class="listbox">
                     <div class="listheader">
                         <div class="cellIcon"></div>
                         <div class="listCell">계정</div>
@@ -399,21 +399,7 @@ const state = reactive({
     listnum: 9
 
 });
-const list = ref(null);
 const onChangeCard = (index, idx, cloudKey,  con) => {
-    document.querySelector('.mainListBox').classList.remove('ani');
-    document.querySelector('.listbox').classList.remove('ani');
-    setTimeout(() => {
-        
-        // if (eleClass) {
-        //     eleClass.remove('ani');
-        // } else {
-        //     eleClass.add('ani');
-        // }
-        document.querySelector('.mainListBox').classList.add('ani');
-        document.querySelector('.listbox').classList.add('ani');
-       
-    }, 800); // 0.3초 딜레이
 
     state.parentNum = idx;
     state.childNum = index;
@@ -421,20 +407,7 @@ const onChangeCard = (index, idx, cloudKey,  con) => {
     state.resourceType = con.resourceType;
     state.listnum = con[cloudKey].totalCount;
 };
-const aniMotion = () => {
-    // setTimeout(() => {
-    //     const eleClass = list.value.classList;
-    //     list.value.classList.add('ani');
-    // }, 300); // 0.3초 딜레이
-};
-onMounted(() => {
-    nextTick(() => {
-        
-        aniMotion();
-    });
-    
-    
-});
+
 
 </script>
 
@@ -484,111 +457,4 @@ onMounted(() => {
 .mainCardBox .carousel__track{perspective: 1000px;}
 .carousel__slide--sliding { transition: 0.5s; }
 
-/*
-.mainCardBox.ani .carousel__slide{ right:0px;opacity: 1; transform: rotateY(0deg) scale(1);}
-.mainCardBox.ani .carousel__slide:nth-of-type(1){transition-delay: .2s;}
-.mainCardBox.ani .carousel__slide:nth-of-type(2){transition-delay: .24s;}
-.mainCardBox.ani .carousel__slide:nth-of-type(3){transition-delay: .28s;}
-.mainCardBox.ani .carousel__slide:nth-of-type(4){transition-delay: .3s;}
-.mainCardBox.ani .carousel__slide:nth-of-type(5){transition-delay: .34s;}
-.mainCardBox.ani .carousel__slide:nth-of-type(6){transition-delay: .38s;}
-.mainCardBox.ani .carousel__slide:nth-of-type(7){transition-delay: .4s;}
-.mainCardBox.ani .carousel__slide:nth-of-type(8){transition-delay: .44s;}
-.mainCardBox.ani .carousel__slide:nth-of-type(0){transition-delay: .48s;} */
-
-
-
-
-
-
-
-/* .carousel__slide--active { opacity: 1;  }*/
-/* motion */
-
-
-.mainCardBox .carousel__slide{animation: fadeIn1 0.4s linear; position: relative; animation: fadeIn1 0.4s linear; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
-.mainListBox .listbox .listline, .mainListBox .listbox .listheader{-webkit-animation: fadeIn 0.4s linear; position: relative; animation: fadeIn 0.4s linear; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
-
-/*
-.mainListBox.ani > h1{ width: 100%; z-index: 1;min-height: 1px;} */
-/* .mainListBox > h1{   -webkit-animation: fadeIn 0.3s linear; position: relative; animation: fadeIn 0.3s linear;-webkit-animation-fill-mode: both; animation-fill-mode: both;}
-.mainListBox > h1 { -webkit-animation-delay: 0.25s; animation-delay: 0.25s; }
-
-.mainListBox .listheader { -webkit-animation-delay: 0.7s; animation-delay: 0.7s; }
-.mainListBox .listline:nth-of-type(1) { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
-.mainListBox .listline:nth-of-type(2) { -webkit-animation-delay: 0.75s; animation-delay: 0.75s; }
-.mainListBox .listline:nth-of-type(3) { -webkit-animation-delay: 1s; animation-delay: 1s; }
-.mainListBox .listline:nth-of-type(4) { -webkit-animation-delay: 1.25s; animation-delay: 1.25s; }
-.mainListBox .listline:nth-of-type(5) { -webkit-animation-delay: 1.5s; animation-delay: 1.5s; }
-.mainListBox .listline:nth-of-type(6) { -webkit-animation-delay: 1.75s; animation-delay: 1.75s; }
-.mainListBox .listline:nth-of-type(7) { -webkit-animation-delay: 2s; animation-delay: 2s; }
-.mainListBox .listline:nth-of-type(8) { -webkit-animation-delay: 2.25s; animation-delay: 2.25s; }
-.mainListBox .listline:nth-of-type(9) { -webkit-animation-delay: 2.75s; animation-delay: 2.75s; }
-.mainListBox .listline:nth-of-type(10) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-
-
-
-.mainCardBox .carousel__slide:nth-of-type(1) { -webkit-animation-delay: 0.25s; animation-delay: 0.25s; }
-.mainCardBox .carousel__slide:nth-of-type(2) { -webkit-animation-delay: 0.7s; animation-delay: 0.7s; }
-.mainCardBox .carousel__slide:nth-of-type(3) { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
-.mainCardBox .carousel__slide:nth-of-type(4) { -webkit-animation-delay: 0.75s; animation-delay: 0.75s; }
-.mainCardBox .carousel__slide:nth-of-type(5) { -webkit-animation-delay: 1s; animation-delay: 1s; }
-.mainCardBox .carousel__slide:nth-of-type(6) { -webkit-animation-delay: 1.25s; animation-delay: 1.25s; }
-.mainCardBox .carousel__slide:nth-of-type(7) { -webkit-animation-delay: 1.5s; animation-delay: 1.5s; }
-.mainCardBox .carousel__slide:nth-of-type(8) { -webkit-animation-delay: 1.75s; animation-delay: 1.75s; }
-.mainCardBox .carousel__slide:nth-of-type(9) { -webkit-animation-delay: 2s; animation-delay: 2s; }
-.mainCardBox .carousel__slide:nth-of-type(10) { -webkit-animation-delay: 2.25s; animation-delay: 2.25s; }
-.mainCardBox .carousel__slide:nth-of-type(11) { -webkit-animation-delay: 2.75s; animation-delay: 2.75s; }
-.mainCardBox .carousel__slide:nth-of-type(12) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-.mainCardBox .carousel__slide:nth-of-type(13) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-.mainCardBox .carousel__slide:nth-of-type(14) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-.mainCardBox .carousel__slide:nth-of-type(15) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-.mainCardBox .carousel__slide:nth-of-type(16) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-.mainCardBox .carousel__slide:nth-of-type(17) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-.mainCardBox .carousel__slide:nth-of-type(18) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-.mainCardBox .carousel__slide:nth-of-type(19) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-.mainCardBox .carousel__slide:nth-of-type(20) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-.mainCardBox .carousel__slide:nth-of-type(21) { -webkit-animation-delay: 0.25s; animation-delay: 0.25s; }
-.mainCardBox .carousel__slide:nth-of-type(22) { -webkit-animation-delay: 0.7s; animation-delay: 0.7s; }
-.mainCardBox .carousel__slide:nth-of-type(23) { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
-.mainCardBox .carousel__slide:nth-of-type(24) { -webkit-animation-delay: 0.75s; animation-delay: 0.75s; }
-.mainCardBox .carousel__slide:nth-of-type(25) { -webkit-animation-delay: 1s; animation-delay: 1s; }
-.mainCardBox .carousel__slide:nth-of-type(26) { -webkit-animation-delay: 1.25s; animation-delay: 1.25s; }
-.mainCardBox .carousel__slide:nth-of-type(27) { -webkit-animation-delay: 1.5s; animation-delay: 1.5s; }
-.mainCardBox .carousel__slide:nth-of-type(28) { -webkit-animation-delay: 1.75s; animation-delay: 1.75s; }
-.mainCardBox .carousel__slide:nth-of-type(29) { -webkit-animation-delay: 2s; animation-delay: 2s; }
-.mainCardBox .carousel__slide:nth-of-type(30) { -webkit-animation-delay: 2.25s; animation-delay: 2.25s; }
-.mainCardBox .carousel__slide:nth-of-type(31) { -webkit-animation-delay: 2.75s; animation-delay: 2.75s; }
-.mainCardBox .carousel__slide:nth-of-type(32) { -webkit-animation-delay: 3s; animation-delay: 3s; }
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-    top: -100px;
-  }
-  75% {
-    opacity: 0.5;
-    top: 0px;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn1 {
-  0% {
-    opacity: 0;
-    top:-100px;
-  }
-  50% {
-    opacity: 0.5;
-    top: -50px;
-  }
-  75% {
-    opacity: 0.5;
-    top: 0px;
-  }
-  100% {
-    opacity: 1;
-  }
-} */
 </style>
