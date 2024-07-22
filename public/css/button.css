@@ -5,7 +5,7 @@
   border-width: 1px;
   border-style: solid;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: var(--base-wh-color);
   min-width: 130px;
   height: 36px;
   line-height: 34px;
@@ -62,10 +62,10 @@
 .btn.posi {
   border-color: var(--point-txt-color);
   background-color: var(--point-txt-color);
-  color: #fff;
+  color: var(--base-wh-color);
 }
 .btn.posi:hover:not(:disabled) {
-  color: #fff;
+  color: var(--base-wh-color);
   background-color: #4c2c8a;
   border-color: #4c2c8a;
 }
@@ -99,13 +99,12 @@
 .btn-sm.active {
   border-color: var(--point-txt-color);
   background-color: var(--point-txt-color);
-  color: #fff;
+  color: var(--base-wh-color);
 }
 .btn-sm.active:hover:not(:disabled) {
   background-color: #4c2c8a;
-  color: #fff;
+  color: var(--base-wh-color);
   border-color: #4c2c8a;
-  color: #fff;
 }
 .btn-sm + .btn-sm {
   margin-left: 6px !important;
@@ -138,13 +137,12 @@
 .btn-ss.active {
   border-color: var(--point-txt-color);
   background-color: var(--point-txt-color);
-  color: #fff;
+  color: var(--base-wh-color);
 }
 .btn-ss.active:hover:not(:disabled) {
   background-color: #4c2c8a;
-  color: #fff;
+  color: var(--base-wh-color);
   border-color: #4c2c8a;
-  color: #fff;
 }
 .btn-ss + .btn-ss {
   margin-left: 6px !important;
@@ -260,7 +258,7 @@
   width: 35px;
   height: 35px;
   border-radius: 5px;
-  background-color: #dcfc34;
+  background-color: var(--point-green-color);
   background-repeat: no-repeat;
   position: relative;
   background-position: 8px 7px;
@@ -281,7 +279,7 @@
   background: #ea7c77;
   width: 15px;
   height: 15px;
-  color: #fff;
+  color: var(--base-wh-color);
   border-radius: 50%;
   font-size: 10px;
   position: absolute;
@@ -333,18 +331,18 @@
 }
 .ui-tag.bc2 {
   border: 1px solid #464646;
-  background-color: #fff;
+  background-color: var(--base-wh-color);
 }
 .ui-tag.bc3 {
   border: 1px solid #d2d2d2;
-  background-color: #fff;
+  background-color: var(--base-wh-color);
 }
 .ui-mark {
   display: inline-block;
   height: 32px;
   line-height: 32px;
   padding: 0 10px;
-  background-color: #fff;
+  background-color: var(--base-wh-color);
   border: 1px solid #d2d2d2;
   border-radius: 3px;
 }

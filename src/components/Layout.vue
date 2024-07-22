@@ -224,8 +224,8 @@ watch(route, () => {
 .gnb{margin-top:50px;}
 .gnb ul li{width:50px; height:50px;  margin:0 auto; position: relative;border-radius:10px;}
 .gnb ul li:after{content:""; display: block;width:100%; height:100%;background-repeat: no-repeat; background-position: 11px 10px; }
-.gnb ul li.active{background-color:#21e8e4; }
-.gnb ul li:hover{background-color:#21e8e4; }
+.gnb ul li.active{background-color:var(--primary-txt-color); }
+.gnb ul li:hover{background-color:var(--primary-txt-color);; }
 .gnb ul li + li{margin-top:30px}
 .gnb ul li:nth-of-type(1):after{background-image: url("data:image/svg+xml,%3Csvg width='35' height='35' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5' fill='%23898999'/%3E%3C/svg%3E");}
 .gnb ul li.active:nth-of-type(1):after{background-image: url("data:image/svg+xml,%3Csvg width='35' height='35' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5' fill='%23202020'/%3E%3C/svg%3E");}
@@ -239,23 +239,23 @@ watch(route, () => {
 .lnb-menu-list > h1{margin-bottom:20px;font-size:20px; font-weight:700;color:#eee }
 .lnb-menu-list > h1:before{content:"";display:block; width:40px; height:40px; background-repeat: no-repeat;
 background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5' fill='%23eee'/%3E%3C/svg%3E");}
-.contents{display:flex; background:#fff; border-radius:30px 0 0 30px; width:calc(100% - 80px)}
+.contents{display:flex; background:var(--base-wh-color); border-radius:30px 0 0 30px; width:calc(100% - 80px)}
 .btn-leftmenu{width:30px; height:30px; background-repeat: no-repeat; background-position:0px 0px;
     background-image: url("data:image/svg+xml,%3Csvg width='25' height='25' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1' fill='%23d2d2d2'/%3E%3C/svg%3E");}
 .myinfo{height: 97px;padding: 20px; font-size: 15px; position: relative; z-index: 2;}
 .fulllogo{position: absolute; left:30px; top:33px;}
 .myinfo-btns{display: flex; justify-content:flex-end;}
-.myname{display: flex; align-items: center; background: #dcfc34; border-radius: 5px; padding: 0 10px; height: 35px; }
-.myname > span{display:inline-block; padding-right:20px;background: url("/images/icon-arrow-down-dark.svg") no-repeat right 2px; color:#202020; cursor: pointer;}
+.myname{display: flex; align-items: center; background: var(--point-green-color);; border-radius: 5px; padding: 0 10px; height: 35px; }
+.myname > span{display:inline-block; padding-right:20px;background: url("/images/icon-arrow-down-dark.svg") no-repeat right 2px; color:; cursor: pointer;}
 .myname > img{width:28px;margin-right:10px;}
 .myname + .myname{margin-left:10px;}
 
 
 
 .contentwrap{position: relative; width:calc(100% - 200px)}
-.contentwrap:before{content:""; display: block; height:250px; width:100%; position: absolute; background:#202020;}
+.contentwrap:before{content:""; display: block; height:250px; width:100%; position: absolute; background:var(--base-txt-color);}
 
-.pageBgbox{position: relative;background: #fff; padding: 30px; border-radius: 30px 0 0 30px;}
+.pageBgbox{position: relative;background: var(--base-wh-color); padding: 30px; border-radius: 30px 0 0 30px;}
 
 .lnb-menu-list .menutext > .text{position: relative; z-index:2;display:block;}
 .lnb-menu-list .menutext{display:block; position: relative; cursor: pointer; width:100%; text-align: left; color:#636573}
@@ -268,13 +268,13 @@ background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox=
 .lnb-menu-list li.active > .menutext:before, .lnb-menu-list li.thispage > .menutext:before{width:100%;}
 .lnb-menu-list li.active > ul, .lnb-menu-list  li.thispage > ul{height: auto; position: relative;}
 .lnb-menu-list  li.depth.active > ul > li, .lnb-menu-list  li.depth.thispage> ul > li{display: block;}
-.lnb-menu-list  li.depth.active > ul:after, .lnb-menu-list li.thispage > ul:after{content:""; display:block;width:1px; height:100%; border-left:dashed 1px #21e8e4; position: absolute; left:10px; top:0}
-.lnb-menu-list > ul > li.active > .menutext, .lnb-menu-list > ul > li.thispage > .menutext{color:#21e8e4}
+.lnb-menu-list  li.depth.active > ul:after, .lnb-menu-list li.thispage > ul:after{content:""; display:block;width:1px; height:100%; border-left:dashed 1px var(--primary-txt-color);; position: absolute; left:10px; top:0}
+.lnb-menu-list > ul > li.active > .menutext, .lnb-menu-list > ul > li.thispage > .menutext{color:var(--primary-txt-color);}
 .lnb-menu-list > ul > li.active > .menutext:after, .lnb-menu-list > ul > li.thispage > .menutext:after{background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath  d='M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z' fill='%2321e8e4'/%3E%3C/svg%3E");}
 
 
 .lnb-menu-list li.depth2 .menutext{font-size:13px; padding:5px 5px 5px  20px;margin: 0 0 0 25px;width: calc(100% - 50px);}
-.lnb-menu-list li.depth2.thispage .menutext{background:#21e8e4; color:#202020; border-radius:10px;}
+.lnb-menu-list li.depth2.thispage .menutext{background:var(--primary-txt-color);; color:var(--base-txt-color); border-radius:10px;}
 .lnb-menu-list li.depth2.depth > .menutext:after{width:10px; height:10px; top:8px; right:13px}
 .lnb-menu-list li.depth3 .menutext .text:after{content:''; display: block; width:3px; height:3px; border-radius:50%; background:#666; position: absolute; left:5px; top:8px;}
 </style>

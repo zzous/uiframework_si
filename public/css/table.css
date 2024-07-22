@@ -257,7 +257,7 @@
   width: 16px;
   height: 16px;
   border: 1px solid #999;
-  background-color: #fff;
+  background-color: var(--base-wh-color);
   border-radius: 3px;
 }
 .tbl-wrap .ag-checkbox-input-wrapper.ag-checked::after {

@@ -217,7 +217,7 @@ const onClickSelsect = (label) => {
 </script>
 <style>
 .costBox{}
-.nowTotal{background:#dcfc34; color:#202020; padding:15px 20px; border-radius: 15px;margin-bottom:20px; position: relative;padding-left:90px}
+.nowTotal{background:var(--point-green-color); padding:15px 20px; border-radius: 15px;margin-bottom:20px; position: relative;padding-left:90px}
 .nowTotal:before{content:""; display:block;width:50px;height:50px; background: url('/images/icon_chart.svg') no-repeat 0 0/50px;position: absolute; left:20px; top:calc(50% - 25px)}
 .nowTotal.down:before{content:""; display:block;width:50px;height:50px; background: url('/images/icon_question.svg') no-repeat 0 0/50px;position: absolute; left:20px; top:calc(50% - 25px)}
 .nowTotal.up:after{content:""; display:block;width:30px;height:30px; background: url('/images/icon_up.svg') no-repeat 0 0/30px;position: absolute; right:20px;  bottom:20px;}
@@ -225,7 +225,7 @@ const onClickSelsect = (label) => {
 .nowTotal.down:after{content:""; display:block;width:30px;height:30px; background: url('/images/icon_down.svg') no-repeat 0 0/30px;position: absolute; right:20px;  bottom:20px;}
 .total_wrap{display:flex;}
 .nowTotal +.nowTotal{margin-top:10px}
-.nowTotal.up .labeltext,.nowTotal.up .costValue {color:#dcfc34}
+.nowTotal.up .labeltext,.nowTotal.up .costValue {color:var(--point-green-color)}
 .labeltext{display:block;font-size:15px; font-weight: 400;}
 .costValue{font-size:30px; font-weight: 700;}
 .costValue em{font-size:20px;}
@@ -256,7 +256,7 @@ const onClickSelsect = (label) => {
 .btnselectlist{position: absolute; left:0; top:0; border:Solid 1px #ddd; background:#fff; width:max-content; padding:5px 10px; transform: translateY(40px);transition: .2s; z-index: -1; opacity:0; }
 .btnselectlist ul{position: relative; }
 .btnselectlist ul li{ cursor: pointer; padding:5px 20px; text-align: left; transform: translateY(20px);transition: .4s;opacity:0; }
-.btnselectlist ul li:hover{ background:#21e8e4; border-radius: 20px;}
+.btnselectlist ul li:hover{ background:var(--primary-txt-color);; border-radius: 20px;}
 .open.select-wrap .btnselectlist{transform: translateY(0px);transition: .3s; z-index: 999;opacity:1;}
 .open.select-wrap .btnselectlist ul li{transform: translateY(0px); opacity:1;}
 .open.select-wrap .btnselectlist ul li:nth-of-type(1){transition-delay: .2s;}
@@ -264,7 +264,7 @@ const onClickSelsect = (label) => {
 .open.select-wrap .btnselectlist ul li:nth-of-type(3){transition-delay: .3s;}
 .open.select-wrap .btnselectlist ul li:nth-of-type(4){transition-delay: .35s;}
 .open.select-wrap .btnselectlist ul li:nth-of-type(5){transition-delay: .4s;}
-.accountCard{border-radius:10px; padding:20px; background:#21e8e4;position: relative;width:250px; height:296px;}
+.accountCard{border-radius:10px; padding:20px; background:var(--primary-txt-color);position: relative;width:250px; height:296px;}
 .accountCard:before{content:'';display: block; width:30px; height:30px;background:url('/images/icon_chartbg.svg') no-repeat 0 0/100%; margin-bottom:15px;}
 .accountCard .label{font-size:13px; margin-bottom:5px;display: block;  letter-spacing:-1px;}
 .accountCard  .cardStrong{font-weight: 700; font-size: 18px;}
@@ -272,15 +272,15 @@ const onClickSelsect = (label) => {
 .totalCount > strong{font-size: 30px; letter-spacing:-1px;}
 .totalCount > strong em{font-size: 20px; letter-spacing:-1px;}
 .accountCard .barbox{height:auto; justify-content:flex-start;}
-.accountCard .barChart{width: 100%; background:#ffffff}
-.accountCard .barChart .bar{background:#202020}
+.accountCard .barChart{width: 100%; background:var(--base-wh-color)}
+.accountCard .barChart .bar{background:var(--base-txt-color);}
 .accountCard .datarate{font-weight: 700; font-size: 15px;}
-.totalBar{background:#202020; margin:10px 0; border-radius:10px; padding:10px 30px; color:#dcfc34;}
+.totalBar{background:var(--base-txt-color);; margin:10px 0; border-radius:10px; padding:10px 30px; color:var(--point-green-color);}
 .BText{font-size:30px; display: inline-block; margin-left:20px}
 .BText em{font-size:20px;}
 /* accountCard */
 .cspCarousel .carousel .accountCard{height:auto; text-align:left; flex-grow:1; background:none}
 .cspCarousel .carousel .carousel__viewport li{border-radius:15px;margin-right:20px; border:solid 1px #ddd}
-.cspCarousel .carousel .carousel__viewport li:hover{background:#dcfc34;}
+.cspCarousel .carousel .carousel__viewport li:hover{background:var(--point-green-color);}
 
 </style>

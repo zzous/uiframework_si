@@ -3,9 +3,11 @@
   --strong-txt-color: #202020;
   --primary-txt-color: #21e8e4;
   --point-txt-color: #5142b2;
+  --point-purple-color: #9c7eff;
   --point-green-color: #dcfc34;
   --point-bar-color: #189f92;
   --base-box-color: #c9c9d4;
+  --base-wh-color: #ffffff;
   --gray-box-color: #f1f1f1;
   --placeholder-txt-color: #ccc;
   --base-bg-color: #f7f9fa;
@@ -595,7 +597,7 @@ flex
 .Toastify__progress-bar--info,
 .Toastify__progress-bar--error,
 .Toastify__progress-bar--success {
-  background-color: #fff !important;
+  background-color: var(--base-wh-color) !important;
   bottom: 10px !important;
   left: 10px !important;
   width: calc(100% - 20px) !important;
@@ -603,7 +605,7 @@ flex
 }
 .Toastify__toast-icon > svg,
 .Toastify__close-button > svg {
-  fill: #fff !important;
+  fill: var(--base-wh-color) !important;
   opacity: 1;
 }
 .Toastify__close-button--light {
@@ -611,7 +613,7 @@ flex
   margin-right: 5px;
 }
 .Toastify__toast-body {
-  color: #fff !important;
+  color: var(--base-wh-color) !important;
   font-family: "Pretendard Variable";
   padding: 0 6px !important;
   margin-top: 6px !important;

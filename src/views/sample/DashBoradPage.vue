@@ -412,18 +412,18 @@ const onChangeCard = (index, idx, cloudKey,  con) => {
 </script>
 
 <style>
-.mainCardBox{padding: 60px 60px 160px 60px; margin-top: 40px; margin-right: 30px; background: #202020;}
+.mainCardBox{padding: 60px 60px 160px 60px; margin-top: 40px; margin-right: 30px; background: var(--base-txt-color);;}
 .mainCardBox .carousel__viewport{border-radius:10px;}
 .mainCardBox .carousel__prev{ left:-50px;}
 .mainCardBox .carousel__next{ right:-50px}
 .mainCardBox .carousel__prev svg, .mainCardBox .carousel__next svg{ background:#fff}
 
 .carousel__slide{background:#fff;padding:0 100px 20px 20px;border-radius:10px; position: relative; overflow: hidden;margin-right:20px}
-.mainCard::before{content:""; display:block; height:10px; width:100%; background:#dcfc34; position: absolute; left:0; top:0;}
-.typeLabel{display: inline-block; background:#dcfc34; height:22px; padding:0 13px; border-radius:0 0 5px 5px;font-size:12px;font-weight:700; line-height:22px; text-align: center;position: absolute; left:20px; top:10px}
-.mainCard.bl::before, .mainCard.bl .typeLabel {background:#21e8e4;}
-.mainCard.vp::before, .mainCard.vp .typeLabel {background:#5142b2;}
-.mainCard.sb::before, .mainCard.sb .typeLabel {background:#189f92;}
+.mainCard::before{content:""; display:block; height:10px; width:100%; background:var(--point-green-color); position: absolute; left:0; top:0;}
+.typeLabel{display: inline-block; background:var(--point-green-color); height:22px; padding:0 13px; border-radius:0 0 5px 5px;font-size:12px;font-weight:700; line-height:22px; text-align: center;position: absolute; left:20px; top:10px}
+.mainCard.bl::before, .mainCard.bl .typeLabel {background:var(--primary-txt-color);}
+.mainCard.vp::before, .mainCard.vp .typeLabel {background:var(--point-txt-color);}
+.mainCard.sb::before, .mainCard.sb .typeLabel {background:var(--point-bar-color);}
 .mainCard.vp .typeLabel,.mainCard.sb .typeLabel{color:#fff}
 .resourcesummary{margin-top:40px; }
 .resourcesummary:after{content:""; display:block; width:60px; height:60px; background: url('/images/icon-serve.svg') no-repeat 0 0/ 60px; position: absolute; right:20px; bottom:20px; }
@@ -438,7 +438,7 @@ const onChangeCard = (index, idx, cloudKey,  con) => {
 .cloudNum +.cloudNum{margin-left:10px}
 .carousel .mainCard{height: auto; text-align: left; flex-grow: 1; width:180px}
 .mainListBox{margin-top:30px;padding-right:30px;}
-.mainListBox > h1{background:#202020; color:#fff; display: flex; padding:20px 30px; justify-content: space-between; align-items: center; margin-bottom:30px}
+.mainListBox > h1{background:var(--base-txt-color); color:#fff; display: flex; padding:20px 30px; justify-content: space-between; align-items: center; margin-bottom:30px}
 .mainListBox > h1 .title{font-size:30px;}
 .mainListBox > h1 .title em{display: inline-block; font-size:14px; margin-right:10px;}
 .mainListBox > h1 .subtext{font-weight:400; font-size:14px;;}
@@ -448,10 +448,10 @@ const onChangeCard = (index, idx, cloudKey,  con) => {
 .mainListBox .listline{background: #ddd;}
 .carousel__slide.active{background:#3c3e4a}
 .carousel__slide.active .resourcesummary span{color:#eee}
-.carousel__slide.active .mainCard.vs .resourcesummary strong{color:#dcfc34}
-.carousel__slide.active .mainCard.bl .resourcesummary strong{color:#21e8e4}
+.carousel__slide.active .mainCard.vs .resourcesummary strong{color:var(--point-green-color)}
+.carousel__slide.active .mainCard.bl .resourcesummary strong{color:var(--primary-txt-color);}
 .carousel__slide.active .mainCard.vp .resourcesummary strong{color:#9c7eff}
-.carousel__slide.active .mainCard.sb .resourcesummary strong{color:#189f92}
+.carousel__slide.active .mainCard.sb .resourcesummary strong{color:var(--point-bar-color)}
 .mainListBox .carousel__viewport li:hover{background:none;}
 .mainListBox .carousel .carousel__viewport li{border:none}
 .mainCardBox .carousel__track{perspective: 1000px;}

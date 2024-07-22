@@ -113,7 +113,7 @@ onMounted(() => {
 
 <style>
 .guidewrap{width:100%; height:100%;position: relative; }
-.guidetop{width:100%; height:50px;background:#1C2536;padding:0 20px; color:#fff; font-size:20px; font-weight:700;display: flex; align-items: center; position: absolute; left:0; top:0;}
+.guidetop{width:100%; height:50px;background:#1C2536;padding:0 20px; color:var(--base-wh-color); font-size:20px; font-weight:700;display: flex; align-items: center; position: absolute; left:0; top:0;}
 .guidecontentwrap{width:100%; height:100%; display:flex; padding-top:50px}
 .guidelnb{flex:0 0 200px;position: relative;}
 .guidelnb .menulist {position: relative; z-index: 3;}
@@ -126,7 +126,7 @@ onMounted(() => {
 .guidelnb:after{content:''; width:13px; height:100%; background:url('/images/footer-bg.png') repeat-y -65px; position: absolute; right:0; top:0;}
 .guidetitle{color:#000; font-size:25px;font-weight:700; border-bottom:solid 1px #000; padding-bottom:10px; position: relative;}
 
-.btn-sample{height:30px; background:#1297F2; color:#fff; font-size:12px; font-weight:700; border-radius:5px; line-height:28px; padding:0 15px;}
+.btn-sample{height:30px; background:#1297F2; color:var(--base-wh-color); font-size:12px; font-weight:700; border-radius:5px; line-height:28px; padding:0 15px;}
 .guidetitle .btn-sample{position: absolute; right:0; top:0}
 .guidememo{padding:20px;}
 .guidememo .memotitle{font-size:16px; font-weight:700;  background:url('/images/icon-ribbon.svg') no-repeat left center; padding-left:20px; margin-bottom:20px}

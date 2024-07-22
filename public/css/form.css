@@ -129,7 +129,7 @@ input[type="checkbox"] + label::before {
   left: 0;
   width: 16px;
   height: 16px;
-  background-color: #fff;
+  background-color: var(--base-wh-color);
   border: 1px solid #999;
   box-sizing: border-box;
   background-position: 50% 50%;
@@ -144,12 +144,12 @@ input[type="radio"] + label::before {
 input[type="radio"]:checked + label::before {
   border-width: 4px;
   border-color: var(--point-txt-color);
-  background-color: #fff;
+  background-color: var(--base-wh-color);
 }
 input[type="radio"].readonly:checked + label::before {
   border-width: 1px;
   border-color: #d2d2d2;
-  background-color: #fff;
+  background-color: var(--base-wh-color);
 }
 input[type="radio"].readonly:disabled + label::after {
   content: "";
@@ -195,7 +195,7 @@ input[type="checkbox"].readonly:disabled + label::before {
   line-height: 28px;
   padding: 0 8px;
   border: 1px solid #d2d2d2;
-  background-color: #fff;
+  background-color: var(--base-wh-color);
   font-size: 12px;
   font-weight: 400;
   color: #767676;
@@ -206,7 +206,7 @@ input[type="checkbox"].readonly:disabled + label::before {
   border-color: var(--point-txt-color);
   background-color: var(--point-txt-color);
   font-weight: bold;
-  color: #fff;
+  color: var(--base-wh-color);
 }
 .radio-group.btn-group .radio input[type="radio"]:hover + label,
 .checkbox-group.btn-group .checkbox input[type="checkbox"]:hover + label {
@@ -225,7 +225,7 @@ input[type="checkbox"].readonly:disabled + label::before {
   border-color: var(--point-txt-color);
   background-color: var(--point-txt-color);
   font-weight: bold;
-  color: #fff;
+  color: var(--base-wh-color);
 }
 .radio-group.btn-group .radio input[type="radio"]:disabled + label,
 .checkbox-group.btn-group .checkbox input[type="checkbox"]:disabled + label {
@@ -336,7 +336,7 @@ input[type="checkbox"].readonly:disabled + label::before {
   left: 18px;
   width: 11px;
   height: 11px;
-  background: #fff;
+  background: var(--base-wh-color);
   border-radius: 50%;
   transition: 0.3s;
 }
@@ -366,7 +366,7 @@ input[type="checkbox"].readonly:disabled + label::before {
   border-radius: 3px;
   font-size: 12px;
   color: #222;
-  background: #fff
+  background: var(--base-wh-color)
     url("data:image/svg+xml,%3Csvg width='13' height='12' viewBox='0 0 13 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.95099 4.20001L6.95099 7.20001L3.95099 4.20001' stroke='%23767676'/%3E%3C/svg%3E")
     right 9px center no-repeat;
   -webkit-appearance: none;
@@ -400,7 +400,7 @@ input[type="checkbox"].readonly:disabled + label::before {
   line-height: 28px;
   padding: 0 8px;
   border: 1px solid var(--base-bd-color);
-  background-color: #fff;
+  background-color: var(--base-wh-color);
   font-size: 12px;
   color: #464646;
   border-radius: 3px;

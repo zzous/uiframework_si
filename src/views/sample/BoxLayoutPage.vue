@@ -11,7 +11,7 @@
                                 <span  class="infolabel"> / 진행중 </span>
                                 <strong class="infovalue">10건</strong>
                             </div>
-                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%; background: #dcfc34;"></em></div> <em class="datarate" style="color:#dcfc34">30%</em></div>
+                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%; background: var(--point-green-color);"></em></div> <em class="datarate" style="color:#">30%</em></div>
                         </div>
                         
                         <div  class="myjobinfo orderlist">
@@ -232,19 +232,19 @@ const state = reactive({
 .myjobinfo {border-radius:10px;  background:#3c3e4a; text-align: left; padding:40px 20px 20px 20px; margin-right:10px;flex:1}
 .myjobinfo.totolist,.myjobinfo.orderlist, .myjobinfo.mystatus{background-position:20px 10px; background-repeat: no-repeat;}
 .myjobinfo.totolist{background-image: url("data:image/svg+xml,%3Csvg width='35' height='35' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0'  fill='%23dcfc34'/%3E%3C/svg%3E");}
-.myjobinfo.orderlist{background-color:#c9c9d4;background-image: url("data:image/svg+xml,%3Csvg width='35' height='35' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z'  fill='%23222222'/%3E%3C/svg%3E");}
-.myjobinfo.mystatus{flex-basis:100%;margin-top:20px; padding-top:50px;background-color:#c9c9d4;background-image: url("data:image/svg+xml,%3Csvg width='35' height='35' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z'  fill='%23222222'/%3E%3C/svg%3E");}
+.myjobinfo.orderlist{background-color:var(--base-box-color);background-image: url("data:image/svg+xml,%3Csvg width='35' height='35' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z'  fill='%23222222'/%3E%3C/svg%3E");}
+.myjobinfo.mystatus{flex-basis:100%;margin-top:20px; padding-top:50px;background-color:var(--base-box-color);background-image: url("data:image/svg+xml,%3Csvg width='35' height='35' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z'  fill='%23222222'/%3E%3C/svg%3E");}
 .infopar{text-align: left; display: flex; align-items:flex-end;margin-bottom:10px}
 .infopar .infolabel{font-size:15px; display: block; position: relative; top:-7px; margin-right:10px;}
 .infopar .infovalue{font-size:30px; display: block; }
 .myjobinfo.totolist .infolabel,
-.myjobinfo.totolist .infovalue{color:#dcfc34;}
+.myjobinfo.totolist .infovalue{color:var(--point-green-color);}
 .infopar .infovalue + .infolabel{font-size:12px; margin:0 5px; position: relative; top:-3px}
 .infopar .infovalue:nth-last-of-type(1){font-size:18px}
 .myjobinfo.mystatus .infovalue{font-size:30px; }
 .myjobinfo .barbox{height:auto; justify-content:flex-start;}
-.myjobinfo .barChart{width: 100%; background:#ffffff}
-.myjobinfo .barChart .bar{background:#202020}
+.myjobinfo .barChart{width: 100%; background:var(--base-wh-color)}
+.myjobinfo .barChart .bar{background:var(--base-txt-color);}
 .myjobinfo .datarate{font-weight: 700; font-size: 15px;}
 .ui-chart{min-height:250px;}
 .donut-box{display: flex; height:90%; align-items: center;justify-content: space-around;}
