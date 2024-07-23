@@ -7,7 +7,9 @@
             <div class="memotitle">기본사용</div>
             <ul class="memolist">
                 <li>html5 기본 태그로 사용</li>
-                <li>영역을 좌우로 나누어 텍스트 영역과 버튼 또는 form 영역으로 나누어 구분</li>
+                <li>영역을 좌우로 나누어 텍스트 영역과 버튼 또는 form 영역으로 나누어 사용</li>
+                <li><strong>VUE에서 컴포넌트로 사용시 필요 요소를 Props</strong>로 지정하여 사용</li>
+                <li>현재 페이지 내의 예시는 아이콘 여부, 버튼 추가, 툴팁 추가를 설정 할 수 있도록 되어 있음</li>
             </ul>
         </div>
         <div class="codewrap" v-for="(item, index) in state.codeSample" :key="index">
@@ -26,7 +28,7 @@
     </div>
 </template>
 <script setup>
-import { defineComponent, onMounted, reactive, computed, getCurrentInstance } from 'vue';
+import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCommFunc } from '@/core/helper/common.js';
 const props = defineProps({ title: String });
@@ -36,15 +38,65 @@ const state = reactive({
     codeSample: [
         {
             title: 'HTML',
-            sampleCodeJS: `
-<div class="titlebox">
-    <h1 class="pagetitle">페이지 타이틀 <em class="subdec">(11)</em></h1>
+            sampleCodeJS: `<div class="titlebox">
+    <h1 class="pagetitle">페이지 타이틀 <em class="subdec">(11)</em>
+        <div class="toolTip">
+            <button type="button" class="btn-tooltip">툴팁</button>
+            <div class="tooltipbox left open"> <div>툴팁 내용</div></div>
+        </div>
+    </h1>
     <div class="titleright">
         <button type="button" class="btn btn-line">버튼명</button>
         <button type="button" class="btn btn-line">버튼명</button>
     </div>
-</div>
-`
+</div>`
+        },
+        {
+            title: '템플릿에서 컴포넌트로 사용 시',
+            sampleCodeJS: `<!-- 
+    :pageTitle: 제목(String)
+    :subdec: 제목 서브 설명이나 리스트 개수 표시(String or Number)
+    :imgIcon: 아이콘이 필요한 경우(Boolean 기본값 false)
+    #btnArea 타이틀 우측에 버튼 추가시 슬롯으로 처리 
+    #ToolTip 툴팁 추가
+-->
+<TitleBox :pageTitle="'타이틀 레이아웃'" :subdec="'(22)'" :imgIcon="true">
+    <template #btnArea>
+        <button type="button" class="btn sm">버튼명</button>
+        <button type="button" class="btn sm">버튼명</button>
+    </template>
+    <template #ToolTip>
+        <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />
+    </template>
+</TitleBox>`
+        },
+        {
+            title: 'VUE COMPONENT',
+            sampleCodeJS: `<template>
+    <div :class="['titlebox', {img:state.imgIcon}]">
+        <h1 class="pagetitle">
+            {{ state.pageTitle }}
+            <em class="subdec">{{ state.subdec }}</em>
+            <slot name="ToolTip"></slot>
+        </h1>
+        <div class="titleright flex">
+            <slot name="btnArea"></slot>
+        </div>
+    </div>
+</template>
+\<script setup>
+import { computed, reactive } from 'vue';
+const props = defineProps({
+    imgIcon: Boolean,
+    pageTitle: String,
+    subdec: [Number, String]
+});
+const state = reactive({
+    pageTitle: computed(() => props.pageTitle),
+    imgIcon: computed(() => props.imgIcon),
+    subdec: computed(() => props.subdec)
+});
+<\/script>`
         },
         {
             title: 'CSS',

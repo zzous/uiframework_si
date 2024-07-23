@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="guideTitle">타이틀 레이아웃 - 아이콘, 툴팁추가</div>
-            <div class="titlebox img">
+            <div class="titlebox img" style="margin-bottom:50px">
                 <h1 class="pagetitle">
                     페이지 타이틀
                     <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />
@@ -32,6 +32,15 @@
                     <button type="button" class="btn sm">버튼명</button>
                 </div>
             </div>
+            <TitleBox :pageTitle="'타이틀 레이아웃'" :subdec="'(22)'" :imgIcon="true">
+                <template #btnArea>
+                    <button type="button" class="btn sm">버튼명</button>
+                    <button type="button" class="btn sm">버튼명</button>
+                </template>
+                <template #ToolTip>
+                    <ToolTip :toolBtn="'툴팁'" :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />
+                </template>
+            </TitleBox>
         </div>
     </div>
 </template>
@@ -40,6 +49,7 @@ import { defineComponent, onMounted, reactive, computed, getCurrentInstance } fr
 import { useRouter } from 'vue-router';
 import { useCommFunc } from '@/core/helper/common.js';
 import ToolTip from '@/components/ToolTip.vue';
+import TitleBox from '@/components/TitleBox.vue';
 const { goToPage } = useCommFunc();
 const state = reactive({
     caseType: false,
