@@ -26,24 +26,22 @@
             <div class="guideTitle">카드 타입</div>
             
             <div class="cardwrap">
-                <div class="card" style="flex-basis: 300px; min-height: 100px;">
-                    <h1 class="pagetitle" >
-                        카드 타이틀 입니다.
-                        <span class="subtext"> 카드 서브 타이틀 입니다.</span>
-                    </h1>
-                    <div>
-                        카드 내용
-                    </div>
-                </div>
-                <div class="card" style="flex-basis: 700px; min-height: 100px;">
-                    <h1 class="pagetitle" >
-                        카드 타이틀 입니다.
-                        <span class="subtext"> 카드 서브 타이틀 입니다.</span>
-                    </h1>
-                    <div>
-                        카드 내용
-                    </div>
-                </div>
+                <CardBox :cardWidth="590" :cardTitle="' 카드 타이틀 입니다.'" :cardSubtext="'카드 서브 타이틀 입니다'" style="min-height:100px;">
+                    <template #btnArea>
+                        <div><button type="button" class="btn submit sm">submit 버튼</button></div>
+                    </template>
+                    <template #cardContent>
+                        <div>카드 내용 작성</div>
+                    </template>
+                </CardBox>
+                <CardBox :cardWidth="590" :cardTitle="' 카드 타이틀 입니다.'" :cardSubtext="'카드 서브 타이틀 입니다'" style="min-height:100px;">
+                    
+                    <template #cardContent>
+                        <div>카드 내용 작성</div>
+                    </template>
+                </CardBox>
+                
+               
             </div>
         </div>
     </div>

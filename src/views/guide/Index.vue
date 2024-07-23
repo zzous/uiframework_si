@@ -142,8 +142,8 @@ onMounted(() => {
 .codetitle{font-size:16px; font-weight:700; width:100%; padding:20px 20px 20px 50px; background: url('/images/icon-arrow-up.svg') no-repeat 26px center;position: relative;}
 .codetitle > span{font-size:16px; font-weight:700; width:calc(100% - 70px); display:block; cursor: pointer;}
 .codetitle .btn{position: absolute; right:0; top:17px}
-.code{background: #282c34;border-radius: 6px;padding: 10px 20px; height: auto; transition: all .3s;}
-code{color: #FFCB6B;;font-family: Consolas, monospace !important;}
+.code{background: #292d3e;border-radius: 6px;padding: 10px 20px; height: auto; transition: all .3s;}
+code{color: #C792EA;;font-family: Consolas, monospace !important;}
 .up.codewrap .codetitle{ background: url('/images/icon-arrow-down.svg') no-repeat 26px center; border:solid 1px; border-radius:5px;}
 .up.codewrap .codetitle + .code{height:0; transition: all .3s; padding:0 20px}
 .up.codewrap .codetitle + .code pre{display: none;}
@@ -152,6 +152,6 @@ code{color: #FFCB6B;;font-family: Consolas, monospace !important;}
 .code.CSS code{color:#C3E88D}
 .code.HTML code{color:#F07178;}
 .code.JS code{color:#89DDFF;}
-.code.VUE code{color:#C792EA;}
+.code.VUE code{color:#FFCB6B;}
 .link{color:#006e6c; font-weight: 700;}
 </style>
