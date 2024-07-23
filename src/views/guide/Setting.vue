@@ -37,7 +37,9 @@
             <ul class="memolist">
                 <li>CSS는 public 폴더에 따로 두어 빌드에 포함 시키지 않음(브라우저 성능 이슈)</li>
                 <li>font, images도 public 폴더에 저장</li>
+                <li>플러그인 사용 시 관련 CSS는 vue 템플릿에 import 하여 사용하지 않고 css다운로드 받아 public 폴더에 저장하여 index.html에 추가 하여 사용함</li>
                 <li>프로젝트의 특별한 이유가 없는 한 SASS사용 지양</li>
+                <li>컴포넌트 유형에 맞춰 CSS작성(예시: form.css, button.css, table.css...)</li>
                 <li>선택자의 상속 구조 지양</li>
                 <li>사이트 내에 쓰이는 색상은 :root에 변수로 지정하여 사용</li>
             </ul>
