@@ -9,8 +9,9 @@
                 <li>html5 기본 태그로 사용</li>
                 <li><strong class="tagstyle">&lt;div class="cardwrap" &gt;&lt;/div&gt;</strong>태그 필수 사용 </li>
                 <li><strong class="tagstyle">&lt;div class="card" &gt;&lt;/div&gt;</strong> 추가시 전체 width에 맞춰 유동적으로 배치</li>
-                <li> 태그에 inline 으로 스타일 지정하여(flex-basis)크기 조절 가능</li>
-                
+                <li>카드 높이의 경우 가장 긴 콘텐츠에 맞춰 자동 정렬</li>
+                <li>컴포넌트 혹은 태그에 <strong class="tagstyle">inline</strong>으로 스타일 지정 가능</li>
+                <li> <strong>VUE에서 컴포넌트로 사용시 필요 요소를 Props</strong>로 지정하여 사용</li>
             </ul>
         </div>
         <div class="codewrap" v-for="(item, index) in state.codeSample" :key="index">
@@ -29,7 +30,7 @@
     </div>
 </template>
 <script setup>
-import { defineComponent, onMounted, reactive, computed, getCurrentInstance } from 'vue';
+import {  reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCommFunc } from '@/core/helper/common.js';
 const props = defineProps({ title: String });
@@ -39,16 +40,56 @@ const state = reactive({
     codeSample: [
         {
             title: 'HTML',
-            sampleCodeJS: `
-<div class="cardwrap">
+            sampleCodeJS: `<div class="cardwrap">
     <div class="card" style="flex-basis: 300px; min-height: 100px;">
         내용 추가
     </div>
     <div class="card" style="flex-basis: 700px; min-height: 100px;">
         내용 추가
     </div>
-</div>
-`
+</div>`
+        },
+        {
+            title: 'COMPONENT',
+            sampleCodeJS: `<!-- 
+    :cardWidth: 카드 가로 크기(Number)
+    :cardTitle: 카드 제목(String)
+    :cardSubtext: 카드 제목 설명(String)
+-->
+<CardBox :cardWidth="590" :cardTitle="'오늘 나의 업무'" :cardSubtext="'사용자가 처리해야할 업무입니다.'">
+    <template #cardContent>
+        <div>카드 내용 작성</div>
+    </template>
+</CardBox>`
+        },
+        {
+            title: 'VUE',
+            sampleCodeJS: `<template>
+    <div class="card" :style="flex-basis:\${state.cardWidth}px">
+        <div class="titlebox img" v-if="state.cardTitle">
+            <h1 class="pagetitle" >
+                {{state.cardTitle}}
+                <span class="subtext">{{state.cardSubtext}}</span>
+            </h1>
+            <slot name="btnArea"></slot>
+        </div>
+        <slot name="cardContent"  />
+    </div>
+</template>`
+        },
+        {
+            title: 'JS',
+            sampleCodeJS: `import { computed, reactive } from 'vue';
+const props = defineProps({
+    cardWidth: Number, 
+    cardTitle: String,
+    cardSubtext: String 
+});
+const state = reactive({
+    cardTitle: computed(() => props.cardTitle),
+    cardWidth: computed(() => props.cardWidth),
+    cardSubtext: computed(() => props.cardSubtext)
+})`
         },
         {
             title: 'CSS',
@@ -65,12 +106,8 @@ const copyCode = (code) => {
     navigator.clipboard.writeText(code)
         .then(() => {
             alert('코드가 클립보드에 복사되었습니다.');
-        })
-        .catch((err) => {
-            console.error('클립보드 복사 실패:', err);
+        })  .catch((err) => { console.error('클립보드 복사 실패:', err);
             alert('클립보드 복사에 실패했습니다.');
         });
 };
-
 </script>
-

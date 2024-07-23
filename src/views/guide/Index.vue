@@ -152,5 +152,6 @@ code{color: #FFCB6B;;font-family: Consolas, monospace !important;}
 .code.CSS code{color:#C3E88D}
 .code.HTML code{color:#F07178;}
 .code.JS code{color:#89DDFF;}
+.code.VUE code{color:#C792EA;}
 .link{color:#006e6c; font-weight: 700;}
 </style>
