@@ -15,7 +15,7 @@
     </ul>
 </template>
 <script setup>
-import { getCurrentInstance, computed, reactive } from 'vue';
+import { computed, reactive } from 'vue';
 const props = defineProps(
     {
         itemCount: Number,
