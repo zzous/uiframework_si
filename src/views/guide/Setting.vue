@@ -5,7 +5,12 @@
         <div class="guidememo">
             <div class="memotitle">기본 버전</div>
             <ul class="memolist">
-                <li>Node : <strong>20.14.1</strong></li>
+                <li>Node : <strong>20.14.1</strong>
+                    <ul class="memolist">
+                        <li>현재 가이드에 사용된 플러그인은  18.16~ 버전과 호환가능</li>
+                        <li>플러그인 사용 하지 않은 UI(아코디언,탭, 메뉴 툴팁, barChart, Pageing)는 Node버전 이슈 없음</li>
+                    </ul>
+                </li>
                 <li>Vue : <strong>3.4.21</strong></li>
                 <li>vite(기본 모듈러) : <strong> 5.2.8</strong></li>
             </ul>

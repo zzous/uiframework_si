@@ -62,7 +62,7 @@ const state = reactive({
         // {label: '페이징', name: 'Pageing'},
         // {label: '데이터피커', name: 'Datepicker'}
     ],
-    componentsTitle: '페이지 레이아웃'
+    componentsTitle: '버전정보'
 });
 const componentsMap = {
     'Setting': { component: Setting, title: '버전정보' },
