@@ -1,9 +1,9 @@
 <template>
-    <div class="card" :style="`flex-basis:${cardWidth}px`">
-        <div class="titlebox img" v-if="cardTitle">
+    <div class="card" :style="`flex-basis:${state.cardWidth}px`">
+        <div class="titlebox img" v-if="state.cardTitle">
             <h1 class="pagetitle" >
-                {{cardTitle}}
-                <span class="subtext">{{cardSubtext}}</span>
+                {{state.cardTitle}}
+                <span class="subtext">{{state.cardSubtext}}</span>
             </h1>
             <slot name="btnArea"></slot>
         </div>
@@ -11,19 +11,15 @@
     </div>
 </template>
 <script setup>
-import { getCurrentInstance, computed, reactive } from 'vue';
-const props = defineProps(
-    {
-        cardWidth: Number,
-        cardTitle: String,
-        cardSubtext: String
-    });
+import { computed, reactive } from 'vue';
+const props = defineProps({
+    cardWidth: Number,
+    cardTitle: String,
+    cardSubtext: String
+});
 const state = reactive({
     cardTitle: computed(() => props.cardTitle),
     cardWidth: computed(() => props.cardWidth),
     cardSubtext: computed(() => props.cardSubtext)
-   
 });
-
-
 </script>

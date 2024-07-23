@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { defineComponent, onMounted, reactive, computed, getCurrentInstance, shallowRef } from 'vue';
+import {  onMounted, reactive,  shallowRef } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import PageLayout from '@/views/guide/PageLayout.vue';
 import Menu from '@/views/guide/Menu.vue';
@@ -35,12 +35,14 @@ import List from '@/views/guide/List.vue';
 import Table from '@/views/guide/Table.vue';
 import DatePicker from '@/views/guide/DatePicker.vue';
 import Pageing from '@/views/guide/Pageing.vue';
+import Setting from '@/views/guide/Setting.vue';
 import { useCommFunc } from '@/core/helper/common.js';
 const { goToPage } = useCommFunc();
 const router = useRouter();
 const route = useRoute();
 const state = reactive({
     guideMenu: [
+        {label: '버전정보', name: 'Setting'},
         {label: '페이지 레이아웃', name: 'PageLayout'},
         {label: '카드', name: 'Card'},
         {label: '메뉴', name: 'Menu'},
@@ -63,6 +65,7 @@ const state = reactive({
     componentsTitle: '페이지 레이아웃'
 });
 const componentsMap = {
+    'Setting': { component: Setting, title: '버전정보' },
     'PageLayout': { component: PageLayout, title: '페이지 레이아웃' },
     'Menu': { component: Menu, title: '메뉴' },
     'Card': { component: Card, title: '카드' },
@@ -134,6 +137,7 @@ onMounted(() => {
 .memolist li{position: relative; padding-left:10px; margin-top:10px;}
 .memolist li:nth-of-type(1){margin-top:0px}
 .memolist li:after{content:''; display: block; width:3px; height:3px; border-radius:50%; background:#666; position: absolute; left:0; top:7px;}
+.memolist li .memolist{margin-top:10px;}
 .codewrap{padding:20px;}
 .codetitle{font-size:16px; font-weight:700; width:100%; padding:20px 20px 20px 50px; background: url('/images/icon-arrow-up.svg') no-repeat 26px center;position: relative;}
 .codetitle > span{font-size:16px; font-weight:700; width:calc(100% - 70px); display:block; cursor: pointer;}
