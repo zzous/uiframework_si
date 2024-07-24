@@ -7,10 +7,9 @@
             <div class="memotitle">기본사용</div>
             <ul class="memolist">
                 <li>html5 기본 태그로 사용</li>
-                <li><strong class="tagstyle">&lt;div class="accordionBox" &gt;&lt;/div&gt;</strong>태그에 클래스 (.open) 추가 하여 동작 처리 함 </li>
+                <li><strong class="tagstyle">&lt;div class="accordionBox" &gt;&lt;/div&gt;</strong>태그에 클래스 <strong class="tagstyle">(.open)</strong> 추가 하여 동작 처리 함 </li>
                 <li><strong class="tagstyle">&lt;div class="accordion_top" &gt;&lt;/div&gt;</strong> 타이틀 영역</li>
                 <li>아코디언 콘텐츠 영역은 두가지 태그 필수 사용<strong class="tagstyle">&lt;div class="accordion_cons" &gt;&lt;/div&gt;, &lt;div class="acc_content" &gt;&lt;/div&gt;</strong></li>
-                
             </ul>
         </div>
         <div class="codewrap" v-for="(item, index) in state.codeSample" :key="index">
@@ -29,7 +28,7 @@
     </div>
 </template>
 <script setup>
-import { defineComponent, onMounted, reactive, computed, getCurrentInstance } from 'vue';
+import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCommFunc } from '@/core/helper/common.js';
 const props = defineProps({ title: String });
@@ -39,8 +38,7 @@ const state = reactive({
     codeSample: [
         {
             title: 'HTML',
-            sampleCodeJS: `
-<div class="accordionBox open">
+            sampleCodeJS: `<div class="accordionBox open">
     <div class="accordion_top">
         아코디언 타이틀
     </div>
@@ -49,8 +47,7 @@ const state = reactive({
             아코디언 콘텐츠
         </div>
     </div>
-</div>
-`
+</div>`
         },
         {
             title: 'CSS',
@@ -66,16 +63,81 @@ const state = reactive({
 .accordionBox.open .acc_content { display: block; }`
         },
         {
-            title: 'JS',
-            sampleCodeJS: `// 오픈 이벤트
+            title: '템플릿에서 컴포넌트로 사용 시',
+            sampleCodeJS: `<!-- 
+    :itemContent: 아코디언 콘텐츠(String)
+    :itemTitle: 상단영역 타이틀(String)
+    #acc_title 아코디언 상단 영역 
+    #acc_con 아코디언 콘텐츠 영역 
+-->
+기본사용
+<Accordion :itemTitle="'아코디언 타이틀'" :itemContent="'아코디언 내용'"></Accordion>
+
+다양한 UI변경을 위해 슬롯으로 사용
+<Accordion>
+    <template #acc_title>
+        <div>상단 영역을 슬롯으로 사용시</div>
+    </template>
+    <template #acc_con>
+        <div>
+            <div class="tbl-wrap">
+                <div class="table-util flex space-between">
+                    <div class="btn-set-m flex">
+                        <button type="button" class="btn btn-ss">버튼 1</button>
+                        <button type="button" class="btn btn-ss">버튼 2</button>
+                    </div>
+                </div>
+            </div>
+            <div class="switch">
+                <input type="checkbox" id="switch" />
+                <label for="switch">선택</label>
+            </div>
+        </div>
+    </template>
+</Accordion>`
+        },
+        {
+            title: 'VUE COMPONENT',
+            sampleCodeJS: `<template>
+    <div class="accordionBox">
+        <div class="accordion_top" @click="openAcc">
+            <template v-if="!hasAccTitleSlot">{{state.title}} 1</template>
+            <slot name="acc_title" v-else></slot>
+        </div>
+        <div class="accordion_cons">
+            <div class="acc_content">
+                <template v-if="!hasAccContentSlot">{{ state.content }}</template>
+                <slot name="acc_con" v-else></slot>
+            </div>
+        </div>
+    </div>
+</template>
+\<script setup>
+import { computed, reactive, useSlots } from 'vue';
+const slots = useSlots();
+const props = defineProps(
+    {
+        itemTitle: String,
+        itemContent: String
+    });
+// 슬롯이 유무 판단
+const hasAccTitleSlot = computed(() => !!slots.acc_title);
+const hasAccContentSlot = computed(() => !!slots.acc_con);
+const state = reactive({
+    title: computed(() => props.itemTitle),
+    content: computed(() => props.itemContent)
+   
+});
+// 아코디언 오픈
 const openAcc = (event) => {
-    const parEle = event.target.parentElement;
+    const parEle = event.currentTarget.parentElement;
     if (parEle.classList.contains('open')) {
         parEle.classList.remove('open');
     } else {
         parEle.classList.add('open');
     }
-};`
+};
+<\/script>`
         }
     ]
 });

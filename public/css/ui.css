@@ -176,6 +176,8 @@ footer {
   top: 0px;
   transition: left 0.3s;
 }
+.tabconts{position: relative;}
+.tabcontent{position: absolute; left:0; top:0}
 .tabcontent .tabpanel {
   padding: 0;
   opacity: 0;

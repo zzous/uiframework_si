@@ -10,6 +10,8 @@
                 <li>tabindex가 필요한 경우 <strong class="tagstyle">&lt;div class="tabcontent"&gt;</strong>태그에 추가하여 사용</li>
                 <li>현재 탭 활성화 처리 <strong class="tagstyle">active</strong> 클래스 추가 하여 처리</li>
                 <li>탭 콘텐츠 영역을 주소 처리 할 경우 라우터 path에 query로 처리함 (하단 참고)</li>
+                <li>가이드에서 제공하는 탭 컴포넌트는 <strong class="tagstyle">data-title </strong>속성값이 탭 버튼이 됨 </li>
+                <li>웹 표준을 위해 <strong class="tagstyle">role</strong>속성 작성 권고</li>
             </ul>
         </div>
         <div class="codewrap" v-for="(item, index) in state.codeSample" :key="index">
@@ -38,92 +40,142 @@ const state = reactive({
     codeSample: [
         {
             title: 'HTML',
-            sampleCodeJS: `
-<div class="tabswrap">
+            sampleCodeJS: `<div class="tabswrap">
     <!-- 탭버튼 -->
-    <div class="tablist" role="tablist" >
+    <div class="tablist" role="tablist">
         <ul>
-            <li v-for="(item, index) in state.tabLists" :key="index" :class="{active:index === state.tabNum}">
-                <button type="button" class="btn-tab" @click="onClickTab(index)" >{{ item.tablabel }}</button>
-                <span class="ani" :style="left:"155*(state.tabNum)px"></span>
+            <li>
+                <button type="button" class="btn-tab active">탭버튼1</button>
+                <span class="ani"></span>
+            </li>
+            <li>
+                <button type="button" class="btn-tab">탭버튼2</button>
+                <span class="ani"></span>
             </li>
         </ul>
         <div class="tabdec">텍스트 추가 영역</div>
     </div>
     <!-- 탭컨텐츠 -->
     <div class="tabconts">
-        <template  v-for="(item, index) in state.tabLists.length" :key="index">
-            <div class="tabcontent" v-show="state.tabNum === index"  role="tabpanel">
-                <div :class="['tabpanel',{view:0 === index}]">
-                    {{탭 (index+1) 영역}}
-                </div>
+        <div class="tabcontent">
+            <div class="tabpanel view" role="tabpanel">
+                탭 영역1
             </div>
-        </template>
+            <div class="tabpanel" role="tabpanel">
+                탭 영역2
+            </div>
+        </div>
     </div>
-</div>
-`
+</div>`
         },
         {
-            title: 'CSS',
-            sampleCodeJS: `.tablist{width:100%;border-bottom:solid 1px #ddd; position: relative; }
-.tablist .tabdec{position:absolute; right:0; top:0;}
-.tablist ul{display: flex;; position: relative;}
-.tablist .btn-tab{min-width:155px; height:40px; line-height:38px; text-align:center; border:solid 1px #ddd; border-bottom:none; background:#F7F9FA; font-size:14px; color:#999;}
-.tablist .btn-tab + .btn-tab{border-left:none}
-.tablist .active .btn-tab{background:#fff; color:#1D94E5; font-weight:700}
-.tablist .ani{display:block; width:155px;height:2px; background:#1D94E5;position: absolute; left:0; top:0px;transition: left .3s;}
-.tabcontent .tabpanel{padding:0; opacity:0; transition: all .2s;}
-.tabcontent .tabpanel.view{padding:10px 0 0 0; opacity:1;}`
+            title: '템플릿에서 컴포넌트로 사용 시',
+            sampleCodeJS: `<!-- 
+    role: 롤 작성 권고
+    data-title: 속성 입력 후 입력값 필수 처리(탭 버튼 텍스트)
+    #tabcons 탭  콘텐츠 작성 슬롯
+    #tabsubdec 탭 버튼 우측에 텍스트 추가시
+-->
+<Tabs>
+    <template #tabsubdec>
+        <div>우측에 텍스트 추가시 사용 슬롯</div>
+    </template>
+    <template #tabcons>
+        <div class="tabcontent" data-title="탭1">
+            <div class="tabpanel" role="tabpanel">tabcontent1</div>
+        </div>
+        <div class="tabcontent" data-title="탭2">
+            <div class="tabpanel" role="tabpanel">tabcontent2<br>tabcontent2</div>
+        </div>
+        <div class="tabcontent" data-title="탭3">
+            <div class="tabpanel" role="tabpanel">
+                
+            </div>
+        </div>
+    </template>
+</Tabs>`
         },
         {
-            title: 'DATA',
-            sampleCodeJS: `
-const state = reactive({
-    tabNum: 0,  // 현재 탭 
-    // 탭 리스트
-    tabLists: [
-        {tablabel: 'tab1'},
-        {tablabel: 'tab2'},
-        {tablabel: 'tab3'},
-        {tablabel: 'tab4'},
-        {tablabel: 'tab5'}
-    ]
+            title: 'VUE COMPONENT',
+            sampleCodeJS: `<template>
+    <div class="tabswrap">
+        <!-- 탭버튼 -->
+        <div class="tablist" role="tablist" >
+            <ul>
+                <li v-for="(item, index) in state.tabLists" :key="index" :class="{active:index === state.tabNum}">
+                    <button type="button" class="btn-tab" @click="onClickTab(index)" >{{ item.tablabel }}</button>
+                    <span class="ani" :style="left:\${155*(state.tabNum)}px"></span>
+                </li>
+            </ul>
+            <div class="tabdec">
+                <slot name="tabsubdec"></slot>
+            </div>
+        </div>
+        <!-- 탭컨텐츠 -->
+        <div class="tabconts" :style="height:\${state.elHeight}px">
+            <slot name="tabcons"></slot>
+        </div>
+    </div>
+</template>
+\<script setup>
+import { computed, reactive, onMounted,  nextTick } from 'vue';
+import { useCommFunc } from '@/core/helper/common.js';
+const { goToPage } = useCommFunc();
+const props = defineProps({
+    subdec: [Number, String]
 });
-`
-        },
-        {
-            title: 'JS',
-            sampleCodeJS: `
-// 탭 클릭 이벤트
+const state = reactive({
+    tabNum: 0,
+    tabLists: [],
+    imgIcon: computed(() => props.imgIcon),
+    subdec: computed(() => props.subdec),
+    elHeight: 0,
+    tabbtwidth: 0
+});
 const onClickTab = (index) => {
-    const tablists = document.querySelectorAll('.tabcontent');
-    // 탭 Active 처리
+    const tabElements = document.querySelectorAll('.tabcontent');
+    // 탭버튼 Active 처리
     state.tabNum = index;
-    // 탭콘텐츠 모션 처리
-    tablists.forEach((item, index) => {
+    tabElements.forEach((item, idx) => {
         item.children[0].classList.remove('view');
     });
+    // 탭콘텐츠 모션 처리 클래스 추가 
     setTimeout(() => {
-        tablists[index].children[0].classList.add('view');
+        tabElements[index].children[0].classList.add('view');
     }, 400);
-    // 탭콘텐츠 url 처리
-    const tabUrl = '/tab?tabid='+index;
+
+    const eleH = tabElements[index].children[0].clientHeight;
+    state.elHeight = eleH;
+    // 탭 url 처리
+    const tabUrl = '/tab?tabid=\${index}';
     goToPage(tabUrl);
+    
 };
-// 탬 초기 설정
+// 탭 초기설정
 onMounted(() => {
-    Object.keys(route.query).length === 0 ? state.tabNum = 0 : state.tabNum = Number(route.query.tabid);
+    nextTick(() => {
+        const tabElements = document.querySelectorAll('.tabcontent');
+        tabElements.forEach((tabElement, index) => {
+            tabElements[index].children[0].classList.remove('view');
+            state.tabLists.splice(index, 0, {tablabel: tabElement.dataset.title});
+        });
+        tabElements[0].children[0].classList.add('view');
+        const eleH = tabElements[0].children[0].clientHeight;
+        state.elHeight = eleH;
+        const tabbtn = document.querySelectorAll('.tablist');
+        console.log(tabbtn);
+    });
+    
 });
-`
+<\/script>`
         },
+        
         {
             title: 'ROUTER',
-            sampleCodeJS: `
-const withPrefix = (prefix, routes) => routes.map(route => {
+            sampleCodeJS: `const withPrefix = (prefix, routes) => routes.map(route => {
     route.path = prefix + route.path;
     return route;
 });
-
 //라우터 path
 ...withPrefix('/tab', [
     {
@@ -136,8 +188,19 @@ const withPrefix = (prefix, routes) => routes.map(route => {
         path: '/:tabid',
         component: () => import('@/views/sample/TabPage.vue')
     }
-]),
-`
+])`
+        },
+        {
+            title: 'CSS',
+            sampleCodeJS: `.tablist{width:100%;border-bottom:solid 1px #ddd; position: relative; }
+.tablist .tabdec{position:absolute; right:0; top:0;}
+.tablist ul{display: flex;; position: relative;}
+.tablist .btn-tab{min-width:155px; height:40px; line-height:38px; text-align:center; border:solid 1px #ddd; border-bottom:none; background:#F7F9FA; font-size:14px; color:#999;}
+.tablist .btn-tab + .btn-tab{border-left:none}
+.tablist .active .btn-tab{background:#fff; color:#1D94E5; font-weight:700}
+.tablist .ani{display:block; width:155px;height:2px; background:#1D94E5;position: absolute; left:0; top:0px;transition: left .3s;}
+.tabcontent .tabpanel{padding:0; opacity:0; transition: all .2s;}
+.tabcontent .tabpanel.view{padding:10px 0 0 0; opacity:1;}`
         }
     ]
 });

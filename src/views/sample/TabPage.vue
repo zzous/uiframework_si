@@ -5,67 +5,52 @@
                 <button type="button" class="btn posi" @click="goToPage('/guide?guideName=Tab')">가이드 페이지 </button>
             </div>
             <div class="guideTitle">탭 기본 스타일</div>
-            <div class="tabswrap">
-                    <!-- 탭버튼 -->
-                    <div class="tablist" role="tablist" >
-                        <ul>
-                            <li v-for="(item, index) in state.tabLists" :key="index" :class="{active:index === state.tabNum}">
-                                <button type="button" class="btn-tab" @click="onClickTab(index)" >{{ item.tablabel }}</button>
-                                <span class="ani" :style="`left:${155*(state.tabNum)}px`"></span>
-                            </li>
-                        </ul>
-                        <div class="tabdec">텍스트 추가 영역</div>
+            
+            <Tabs>
+                <template #tabsubdec>
+                    <div>우측에 텍스트 추가시 사용 슬롯</div>
+                </template>
+                <template #tabcons>
+                    <div class="tabcontent" data-title="탭1">
+                        <div class="tabpanel" role="tabpanel">tabcontent1</div>
                     </div>
-                    <!-- 탭컨텐츠 -->
-                    <div class="tabconts" >
-                        <div class="tabcontent" v-show="state.tabNum === 0" role="tabpanel">
-                            <div class="tabpanel view"> tabcontent1</div>
-                        </div>
-                        <div class="tabcontent" v-show="state.tabNum === 1" role="tabpanel">
-                            <div class="tabpanel view">tabcontent2</div>
-                        </div>
-                    
-                        <div class="tabcontent" v-show="state.tabNum === 2"  role="tabpanel">
-                            <div class="tabpanel">tabcontent3 </div>
-
-                        </div>
-                        <div class="tabcontent" v-show="state.tabNum === 3"  role="tabpanel">
-                            <div class="tabpanel">tabcontent4</div>
-                        </div>
-                        <div class="tabcontent" v-show="state.tabNum === 4"  role="tabpanel">
-                            <div class="tabpanel">
-                                <!-- 테이블 -->
-                                <div class="tbl-wrap">
-                                    <div class="table-util flex space-between">
-                                        <div class="btn-set-m flex">
-                                            <button type="button" class="btn btn-ss">버튼 1</button>
-                                            <button type="button" class="btn btn-ss">버튼 2</button>
-                                        </div>
-                                        <div class="btn-set-m flex align-end">
-                                            <span class="table-total">조회결과 총 <strong>2</strong>건</span>
-                                            <button type="button" class="btn btn-opt">
-                                                <span class="ico-download"></span>파일다운로드
-                                            </button>
-                                            <select class="custom-select sm">
-                                                <option value="10개">10개</option>
-                                                <option value="20개">20개</option>
-                                                <option value="30개">30개</option>
-                                                <option value="40개">40개</option>
-                                            </select>
-                                        </div>
+                    <div class="tabcontent" data-title="탭2">
+                        <div class="tabpanel" role="tabpanel">tabcontent2<br>tabcontent2</div>
+                    </div>
+                    <div class="tabcontent" data-title="탭3">
+                        <div class="tabpanel" role="tabpanel">
+                            <!-- 테이블 -->
+                            <div class="tbl-wrap">
+                                <div class="table-util flex space-between">
+                                    <div class="btn-set-m flex">
+                                        <button type="button" class="btn btn-ss">버튼 1</button>
+                                        <button type="button" class="btn btn-ss">버튼 2</button>
                                     </div>
-                                    <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                                        class="ag-theme-alpine" :domLayout="'autoHeight'">
-                                    </AgGridVue>
+                                    <div class="btn-set-m flex align-end">
+                                        <span class="table-total">조회결과 총 <strong>2</strong>건</span>
+                                        <button type="button" class="btn btn-opt">
+                                            <span class="ico-download"></span>파일다운로드
+                                        </button>
+                                        <select class="custom-select sm">
+                                            <option value="10개">10개</option>
+                                            <option value="20개">20개</option>
+                                            <option value="30개">30개</option>
+                                            <option value="40개">40개</option>
+                                        </select>
+                                    </div>
                                 </div>
-
-                                <!-- 페이징 컴포넌트 -->
-                                <PageNavigation :cntPerPage='pager.size' :itemCount='pager.totalCnt' :currentPage="pager.current"
-                                    @changedPage="onChangedPage" />
+                                <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                                    class="ag-theme-alpine" :domLayout="'autoHeight'">
+                                </AgGridVue>
                             </div>
+
+                            <!-- 페이징 컴포넌트 -->
+                            <PageNavigation :cntPerPage='pager.size' :itemCount='pager.totalCnt' :currentPage="pager.current"
+                                @changedPage="onChangedPage" />
                         </div>
                     </div>
-            </div>
+                </template>
+            </Tabs>
         </div>
     </div>
 </template>
@@ -73,6 +58,7 @@
 import { defineComponent, onMounted, reactive, computed, getCurrentInstance, nextTick, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useCommFunc } from '@/core/helper/common.js';
+import Tabs from '@/components/Tabs.vue';
 const { goToPage } = useCommFunc();
 const router = useRouter();
 const route = useRoute();
@@ -146,22 +132,22 @@ const state = reactive({
        
     }
 });
-const onClickTab = (index) => {
-    const tablists = document.querySelectorAll('.tabcontent');
-    // 탭 Active 처리
-    state.tabNum = index;
-    // 탭콘텐츠 모션 처리
-    tablists.forEach((item, index) => {
-        item.children[0].classList.remove('view');
-    });
-    setTimeout(() => {
-        tablists[index].children[0].classList.add('view');
-    }, 400);
-    // 탭콘텐츠 url 처리
-    const tabUrl = `/tab?tabid=${index}`;
-    goToPage(tabUrl);
+// const onClickTab = (index) => {
+//     const tablists = document.querySelectorAll('.tabcontent');
+//     // 탭 Active 처리
+//     state.tabNum = index;
+//     // 탭콘텐츠 모션 처리
+//     tablists.forEach((item, index) => {
+//         item.children[0].classList.remove('view');
+//     });
+//     setTimeout(() => {
+//         tablists[index].children[0].classList.add('view');
+//     }, 400);
+//     // 탭콘텐츠 url 처리
+//     const tabUrl = `/tab?tabid=${index}`;
+//     goToPage(tabUrl);
     
-};
+// };
 
 // 페이징 처리
 const pager = reactive({
