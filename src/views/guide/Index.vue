@@ -28,6 +28,7 @@ import Tab from '@/views/guide/Tab.vue';
 import Buttons from '@/views/guide/Buttons.vue';
 import Accordion from '@/views/guide/Accordion.vue';
 import FormInput from '@/views/guide/FormInput.vue';
+import FormFile from '@/views/guide/FormFile.vue';
 import FormInputCheck from '@/views/guide/FormInputCheck.vue';
 import Modal from '@/views/guide/Modal.vue';
 import ToolTip from '@/views/guide/ToolTip.vue';
@@ -54,6 +55,7 @@ const state = reactive({
         {label: '아코디언', name: 'Accordion'},
         {label: '버튼', name: 'Buttons'},
         {label: '폼-input', name: 'FormInput'},
+        {label: '폼-input-file', name: 'FormFile'},
         {label: '폼-radio,checkbox', name: 'FormInputCheck'},
         {label: '데이터피커', name: 'DatePicker'},
         {label: '툴팁', name: 'ToolTip'},
@@ -77,6 +79,7 @@ const componentsMap = {
     'Buttons': { component: Buttons, title: '버튼' },
     'Accordion': { component: Accordion, title: '아코디언' },
     'FormInput': { component: FormInput, title: '폼-input' },
+    'FormFile': { component: FormFile, title: '폼-input-file' },
     'FormInputCheck': { component: FormInputCheck, title: '폼-radio,checkbox' },
     'DatePicker': { component: DatePicker, title: '데이터피커' },
     'Modal': { component: Modal, title: '모달팝업' },

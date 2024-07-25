@@ -23,48 +23,76 @@
         
             <!-- default -->
             <div class="guideTitle">form input - text</div>
-            <div :class="['formInputbox', {error:state.inputType1.error}]">
-                <div class="labelbox"><label for="input1">텍스트 입력</label></div>
-                <div class="inputbox text">
-                    <input type="text" placeholder="텍스트를 입력하세요" id="input1" v-model="state.inputType1.value" />
-                    <div class="errormessage">error message</div>
-                </div>
-            </div>
+            <TextInput
+                :label="'텍스트 입력'"
+                :placeholder="'텍스트를 입력하세요'"
+                :id="'input1'"
+                :icon="false"
+                :single="false"
+                :error="'다시 입력해 주세요'"
+                :value = "state.inputType1.value"
+                :className="[ {error:state.inputType1.error}]"
+                @setValue = setValue
+            />
+            <div class="guideTitle">form input - input 단일</div>
+            <TextInput
+                :single="true"
+                :placeholder="'텍스트를 입력하세요'"
+                :id="'input2'"
+                :error="'다시 입력해 주세요'"
+                :value = "state.inputType2.value"
+                :className="[ {error:state.inputType2.error}]"
+                @setValue = setValue
+            />
+            
+            
             <div class="guideTitle">form - input 아이콘</div>
-            <div :class="['formInputbox', {error:state.inputType2.error}]">
-                <div class="labelbox"><label for="input2">텍스트 입력</label></div>
-                <div class="inputbox text icon">
-                    <input type="text" placeholder="텍스트를 입력하세요" id="input2"  v-model="state.inputType2.value" />
-                    <div class="errormessage">error message</div>
-                </div>
-            </div>
+            <TextInput
+                :icon="true"
+                :placeholder="'텍스트를 입력하세요'"
+                :id="'input3'"
+                :error="'다시 입력해 주세요'"
+                :value = "state.inputType2.value"
+                :className="[ {error:state.inputType2.error}]"
+                @setValue = setValue
+            />
+            
             <div class="guideTitle">form - input Type1 (텍스트가 왼쪽)</div>
-            <div class="formInputbox labelleft">
-                <div class="labelbox"><label for="input3">텍스트 입력</label></div>
-                <div class="inputbox text">
-                    <input type="text" placeholder="텍스트를 입력하세요" id="input3" />
-                    <div class="errormessage">error message</div>
-                </div>
-            </div>
+            <TextInput
+                :label="'텍스트 입력'"
+                :icon="true"
+                :placeholder="'텍스트를 입력하세요'"
+                :id="'input4'"
+                :error="'다시 입력해 주세요'"
+                :value = "''"
+                :className="['labelleft', {error:state.inputType3.error}]"
+                @setValue = setValue
+            />
+            
             <div class="guideTitle">form - input Type2 (테이블 형태)</div>
             <div class="formtable half">
                 <div class="formtable-col">
-                    <div class="formInputbox labelleft bg">
-                        <div class="labelbox"><label for="input1">텍스트 입력</label></div>
-                        <div class="inputbox text">
-                            <input type="text" placeholder="텍스트를 입력하세요" id="input1" />
-                            <div class="errormessage">error message</div>
-                        </div>
-                    </div>
+                    <TextInput
+                        :label="'텍스트 입력'"
+                        :icon="true"
+                        :placeholder="'텍스트를 입력하세요'"
+                        :id="'input4'"
+                        :error="'다시 입력해 주세요'"
+                        :value = "''"
+                        :className="['labelleft','bg', {error:state.inputType3.error}]"
+                        @setValue = setValue
+                    />
                 </div>
                 <div class="formtable-col">
-                    <div class="formInputbox labelleft bg">
-                        <div class="labelbox"><label for="input1">텍스트 입력</label></div>
-                        <div class="inputbox text">
-                            <input type="text" placeholder="텍스트를 입력하세요" id="input1" />
-                            <div class="errormessage">error message</div>
-                        </div>
-                    </div>
+                    <TextInput
+                        :label="'텍스트 입력'"
+                        :placeholder="'텍스트를 입력하세요'"
+                        :id="'input4'"
+                        :error="'다시 입력해 주세요'"
+                        :value = "''"
+                        :className="['labelleft','bg', {error:state.inputType3.error}]"
+                        @setValue = setValue
+                    />
                 </div>
             </div>
             <!-- file -->
@@ -81,6 +109,7 @@
 </template>
 <script setup>
 import FileInput from '@/components/FileInput.vue';
+import TextInput from '@/components/TextInput.vue';
 import { reactive, ref, watch } from 'vue';
 
 import { useCommFunc } from '@/core/helper/common.js';
@@ -90,7 +119,7 @@ const state = reactive({
     fileNum: null,
     fileList: [],
     inputType1: {
-        value: '',
+        value: '123',
         error: false
     },
     inputType2: {
@@ -110,7 +139,10 @@ watch(state, () => {
     state.inputType2.value.length > 5 ? state.inputType2.error = true : state.inputType2.error = false;
     state.inputType3.value.length > 9 ? state.inputType3.error = true : state.inputType3.error = false;
 });
-
+const setValue = (value) => {
+    console.log(value);
+    state.inputType1.value = value;
+};
 
  /**
  * @inputfile 파일업로드

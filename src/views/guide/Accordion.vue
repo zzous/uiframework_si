@@ -120,7 +120,7 @@ const props = defineProps(
         itemTitle: String,
         itemContent: String
     });
-// 슬롯이 유무 판단
+// 슬롯 유무 판단
 const hasAccTitleSlot = computed(() => !!slots.acc_title);
 const hasAccContentSlot = computed(() => !!slots.acc_con);
 const state = reactive({
