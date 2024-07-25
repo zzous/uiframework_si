@@ -7,12 +7,9 @@
             <div class="memotitle">기본사용</div>
             <ul class="memolist">
                 <li>html5 기본 태그로 사용</li>
-                <li>부모 태그 필수 사용(<strong class="tagstyle">&lt;div class="formInputbox" &gt;&lt;/div&gt;</strong>) </li>
-                <li>디자인 변경 및 태그 확장성이 용이 하도록 <strong class="tagstyle">&lt;label&gt;,&lt;input&gt;</strong>태그 영역 분리 하여 사용</li>
-                <li>error메세지 처리는 <strong class="tagstyle">&lt;div class="errormessage"&gt;,&lt;/div&gt;</strong>태그추가 하여 처리함</li>
                 <li>파일 업로드<strong class="tagstyle">&lt;input type="file"&gt;</strong> 태그를 사용하고 CSS로 변형하여 디자인 변경</li>
+                <li>업로드된 파일 리스트는 따로 추출하여 프론트에서 추가, 삭제 처리</li>
                 <li>업로드된 파일 리스트는 <strong class="tagstyle">&lt;div class="upload-file-box"&gt;</strong> 태그에 처리함(샘플 페이지 참고)</li>
-                <li>부모 태그에 클래스 처리 하여 아이콘, 테이블 형태로 변경 가능(샘플 페이지 참고)</li>
                 
             </ul>
         </div>
@@ -42,17 +39,7 @@ const state = reactive({
     codeSample: [
         {
             title: 'HTML',
-            sampleCodeJS: `
-<div class="formInputbox">
-    <div class="labelbox">
-        <label for="input1">텍스트 입력</label>
-    </div>
-    <div class="inputbox text">
-        <input type="text" placeholder="텍스트를 입력하세요" id="input1">
-        <div class="errormessage">error message</div>
-    </div>
-</div>
-//파일 업로드 버튼
+            sampleCodeJS: `//파일 업로드 버튼
 <div class="btn-file">
     <input type="file" id="upload-file" hidden="">
     <label class="btn-up" for="upload-file">파일첨부</label>
@@ -63,35 +50,92 @@ const state = reactive({
         <button type="button" class="del-all"><span class="offscreen">전체파일삭제</span></button>
         <span class="name">파일명</span><span class="volume">용량</span>
     </div>
+    //파일 리스트가 없는 경우
     <div class="upload-file-list"><div class="nonefile">등록된 파일이 없습니다.</div></div>
-</div>
-`
+</div>`
+        },
+        {
+            title: '템플릿에서 컴포넌트로 사용 시',
+            sampleCodeJS: `<!-- 
+    :fileList: 업로드 파일 리스트
+    @uploadFile: 파일 업로드 API처리
+    @deleteFile 파일 삭제 API처리
+-->
+<FileInput
+    :fileList="state.fileList"
+    @uploadFile="uploadFile"
+    @deleteFile = "deleteFile"
+/>
+\<script setup>
+import { reactive, watch } from 'vue';
+const state = reactive({
+    fileList: []
+});
+ /**
+ * @inputfile 파일업로드
+ *  단일 파일 업로드
+ *  API 처리 후  response로 받은값 저장 필요(삭제시 필요)
+ */
+const uploadFile = async (value) => {
+    const formData = new FormData();
+    formData.append('file', value); 
+    state.fileList.push(value);
+    try {
+        // await 업로드 API 처리 후  response로 받은값 저장 필요(삭제시 필요)
+        // state.uploadFiles.push(response로 받은값);
+        console.log(formData);
+    } catch (error) {
+        console.log(error);
+    }
+};
+ /**
+ * @inputfile 파일 삭제
+ * 전체 or 단일 삭제 처리 필요
+ */
+const deleteFile = (value) => {
+    console.log(value);
+    if (value === undefined) {
+        state.fileList = [];
+        // await 삭제 API 
+    } else {
+        state.fileList.splice(value, 1);
+        // await 삭제 API 
+        // state.uploadFiles.splice(value, 1)
+    }
+};
+<\/script>`
+        },
+        {
+            title: 'VUE COMPONENT',
+            sampleCodeJS: `<template>
+    <div class="card" :style="flex-basis:\${state.cardWidth}px">
+        <div class="titlebox img" v-if="state.cardTitle">
+            <h1 class="pagetitle" >
+                {{state.cardTitle}}
+                <span class="subtext">{{state.cardSubtext}}</span>
+            </h1>
+            <slot name="btnArea"></slot>
+        </div>
+        <slot name="cardContent"  />
+    </div>
+</template>
+\<script setup>
+import { computed, reactive } from 'vue';
+const props = defineProps({
+    cardWidth: Number, 
+    cardTitle: String,
+    cardSubtext: String 
+});
+const state = reactive({
+    cardTitle: computed(() => props.cardTitle),
+    cardWidth: computed(() => props.cardWidth),
+    cardSubtext: computed(() => props.cardSubtext)
+})
+<\/script>`
         },
         {
             title: 'CSS',
-            sampleCodeJS: `inputbox{position: relative;}
-.inputbox.text input[type="text"]{width:100%;height: 30px;padding: 6px 10px;border-radius: 5px;border:solid 1px #ddd; line-height:28px}
-.inputbox.text input[type="text"]:disabled{background: #F7F9FA;}
-.inputbox.text input[type="text"]:hover, .inputbox.text input[type="text"]:focus{border-color:var(--point-txt-color)}
-.inputbox.text.icon:after{content:''; display:block;width:20px; height:20px; position: absolute; left:3px; top:5px;
-background:url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none'
- xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.9165 11.6666H12.2581L12.0248 11.4416C13.0248 10.275 13.5415 8.68331 13.2581 6.99164C12.8665 4.67497 10.9331 2.82497 8.59979 2.54164C5.07479 2.10831 2.10812 5.07497 2.54146 8.59997C2.82479 10.9333 4.67479 12.8666 6.99146 13.2583C8.68312 13.5416 10.2748 13.025 11.4415 12.025L11.6665 12.2583V12.9166L15.2081 16.4583C15.5498 16.8 16.1081 16.8 16.4498 16.4583C16.7915 16.1166 16.7915 15.5583 16.4498 15.2166L12.9165 11.6666ZM7.91646 11.6666C5.84146 11.6666 4.16646 9.99164 4.16646 7.91664C4.16646 5.84164 5.84146 4.16664 7.91646 4.16664C9.99146 4.16664 11.6665 5.84164 11.6665 7.91664C11.6665 9.99164 9.99146 11.6666 7.91646 11.6666Z' fill='%23444444'/%3E%3C/svg%3E") no-repeat}
-.inputbox.text.icon input{padding-left:23px}
-.formInputbox .labelbox{font-size:12px; margin-bottom:5px;}
-.formInputbox.error .inputbox.text input[type="text"]{border-color:var(--error-color)}
-.formInputbox .errormessage{color:var(--error-color); font-size:12px; padding-left:16px; margin-top:7px;background: url('/images/error_outline.svg') no-repeat left center; display: none;}
-.formInputbox.error .errormessage{display:block}
-.formInputbox.labelleft{display:flex;align-items: center;}
-.formInputbox.labelleft .labelbox{flex:0 0 130px; font-size:14px;}
-.formInputbox.labelleft.bg{height:100%;}
-.formInputbox.labelleft.bg .labelbox{background:#eee; margin-bottom:0; align-self: stretch; display: flex; align-items: center; justify-content: center; padding:10px 0;}
-.formInputbox.labelleft.bg .inputbox.text{width:100%;padding:10px 20px 10px 15px}
-.formtable .formtable-col{border:solid 1px #ddd}
-.formtable.half {display: flex; }
-.formtable.half .formtable-col{flex:1 1 auto}
-.formtable.half .formtable-col:nth-of-type(odd){border-right:none}
-
-/** input file **/
+            sampleCodeJS: `/** input file **/
 .btn-file { display: inline-block; }
 .btn-file label { display: block; height: 28px; line-height: 28px; padding: 0 8px; border: 1px solid var(--base-bd-color); background-color: #fff; font-size: 12px; color: #464646; border-radius: 3px; cursor: pointer; }
 .btn-file label:hover,
@@ -111,19 +155,7 @@ d='M12 13.5H4C3.72386 13.5 3.5 13.2761 3.5 13V3C3.5 2.72386 3.72386 2.5 4 2.5H8.
 .upload-file-box .upload-file-list .upload-file-list-item .img { display: inline-block; position: relative; width: 100px; }
 .upload-file-box .upload-file-list .upload-file-list-item .img img { width: 100%; }
 `
-        },
-//         {
-//             title: 'JS',
-//             sampleCodeJS: `// 오픈 이벤트
-// const openAcc = (event) => {
-//     const parEle = event.target.parentElement;
-//     if (parEle.classList.contains('open')) {
-//         parEle.classList.remove('open');
-//     } else {
-//         parEle.classList.add('open');
-//     }
-// };`  
-//   },
+        }
     ]
 });
 const toggleAcc = (idx) => {

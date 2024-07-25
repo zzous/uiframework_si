@@ -57,6 +57,10 @@ const state = reactive({
 -->
 <PageNavigation :cntPerPage='pager.size' :itemCount='pager.totalCnt' :currentPage="pager.current" @changedPage="onChangedPage" />
 \<script setup>
+/**
+    * @페이징클릭
+    * num 현재 선택한 버튼
+*/
 const onChangedPage = (num) => {
     console.log(num);
     pager.current = num;

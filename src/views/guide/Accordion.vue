@@ -120,7 +120,11 @@ const props = defineProps(
         itemTitle: String,
         itemContent: String
     });
-// 슬롯 유무 판단
+/**
+    * @슬롯유무판단
+    * hasAccTitleSlot 타이틀 버튼영역
+    * hasAccContentSlo 콘텐츠 영역
+*/
 const hasAccTitleSlot = computed(() => !!slots.acc_title);
 const hasAccContentSlot = computed(() => !!slots.acc_con);
 const state = reactive({
@@ -128,7 +132,10 @@ const state = reactive({
     content: computed(() => props.itemContent)
    
 });
-// 아코디언 오픈
+/**
+    * @아코디언오픈
+    * event 클릭한영역
+*/
 const openAcc = (event) => {
     const parEle = event.currentTarget.parentElement;
     if (parEle.classList.contains('open')) {

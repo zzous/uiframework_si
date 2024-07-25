@@ -80,7 +80,10 @@ const state = reactive({
             field: 'ablestorage',
             maxWidth: 220,
             cellRenderer: (params) => {
-                //태그 추가 및 이벤트 처리 
+                /**
+                    * @테이블셀이벤트
+                    * params 셀데이터
+                */
                 const tagString = '<div class="barChart" id="ablestorage-'(params.node.rowIndex)'"><em class="bar" style="width:(30)%"></em></div> <em class="datarate">)(30)%</em>';
                 const tagTarget = document.createElement('div');
                 tagTarget.classList.add('barbox');
@@ -93,7 +96,10 @@ const state = reactive({
             flex: 1,
             maxWidth: 220,
             cellRenderer: (params) => {
-                //태그 추가 및 이벤트 처리 
+                /**
+                    * @테이블셀이벤트
+                    * params 셀데이터
+                */
                 const tagString = '<div class="switch"><input type="checkbox" id="usetype-'(params.node.rowIndex)'" /><label for="usetype-(params.node.rowIndex)">미사용</label></div>';
                 const tagTarget = document.createElement('div');
                 tagTarget.classList.add('checkbox');

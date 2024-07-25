@@ -132,26 +132,32 @@ const state = reactive({
     elHeight: 0,
     tabbtwidth: 0
 });
+/**
+    * @Active 처리
+    * index 탭 순번
+    * tabUrl 탭 url 처리
+    * eleH 탭 콘텐츠 높이
+*/
 const onClickTab = (index) => {
     const tabElements = document.querySelectorAll('.tabcontent');
-    // 탭버튼 Active 처리
     state.tabNum = index;
     tabElements.forEach((item, idx) => {
         item.children[0].classList.remove('view');
     });
-    // 탭콘텐츠 모션 처리 클래스 추가 
     setTimeout(() => {
         tabElements[index].children[0].classList.add('view');
     }, 400);
-
     const eleH = tabElements[index].children[0].clientHeight;
     state.elHeight = eleH;
-    // 탭 url 처리
     const tabUrl = '/tab?tabid=\${index}';
     goToPage(tabUrl);
     
 };
-// 탭 초기설정
+/**
+    * @초기 Active 처리
+    * index 탭 순번
+    * eleH 탭 콘텐츠 높이
+*/
 onMounted(() => {
     nextTick(() => {
         const tabElements = document.querySelectorAll('.tabcontent');
@@ -163,7 +169,6 @@ onMounted(() => {
         const eleH = tabElements[0].children[0].clientHeight;
         state.elHeight = eleH;
         const tabbtn = document.querySelectorAll('.tablist');
-        console.log(tabbtn);
     });
     
 });
@@ -176,7 +181,11 @@ onMounted(() => {
     route.path = prefix + route.path;
     return route;
 });
-//라우터 path
+/**
+    * @라우터path
+    * index 탭 순번
+    * /:tabid 주소쿼리
+*/
 ...withPrefix('/tab', [
     {
         path: '/',

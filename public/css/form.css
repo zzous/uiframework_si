@@ -421,6 +421,7 @@ input[type="checkbox"].readonly:disabled + label::before {
   background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.15035 2.85486C8.95535 2.65986 8.64035 2.65986 8.44535 2.85486L6.00035 5.29486L3.55535 2.84986C3.36035 2.65486 3.04535 2.65486 2.85035 2.84986C2.65535 3.04486 2.65535 3.35986 2.85035 3.55486L5.29535 5.99986L2.85035 8.44486C2.65535 8.63986 2.65535 8.95486 2.85035 9.14986C3.04535 9.34486 3.36035 9.34486 3.55535 9.14986L6.00035 6.70486L8.44535 9.14986C8.64035 9.34486 8.95535 9.34486 9.15035 9.14986C9.34535 8.95486 9.34535 8.63986 9.15035 8.44486L6.70535 5.99986L9.15035 3.55486C9.34035 3.36486 9.34035 3.04486 9.15035 2.85486Z' fill='%23767676'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
 }
+.upload-file-box .upload-file-head .del-all:disabled{opacity: .5;}
 .upload-file-box .upload-file-list .upload-file-list-item {
   position: relative;
   padding: 8px 10px 8px 32px;

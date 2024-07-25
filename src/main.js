@@ -22,6 +22,10 @@ window.emitter = eventBus;
 /** @moment */
 import dayjs from 'dayjs';
 
+/** @request */
+import request from '@/core/request';
+window.$api = request;
+
 const app = createApp(App);
 app.use(createPinia());
 app.use(router);

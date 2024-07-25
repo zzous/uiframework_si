@@ -4,22 +4,6 @@
             <div class="flex" style="justify-content:flex-end">
                 <button type="button" class="btn posi" @click="goToPage('/guide?guideName=FormInput')">가이드 페이지 </button>
             </div>
-            <!-- <div class="btn-file"><input type="file" id="upload-file" hidden="" ref="fileUpload" @change="uploadFile"><label class="btn-up" for="upload-file">파일첨부</label></div>
-            <div class="upload-file-box">
-                <div class="upload-file-head flex space-between">
-                    <button type="button" class="del-all "><span class="offscreen">전체파일삭제</span></button>
-                    <span class="name">파일명</span><span class="volume">용량</span>
-                </div>
-                <div class="upload-file-list">
-                    <div class="nonefile" v-if="state.fileList.length === 0">등록된 파일이 없습니다.</div>
-                    <div class="upload-file-list-item flex space-between" v-for="(item, index) in state.fileList" :key="index">
-                        <button type="button" class="btn del btn-secondary"><span class="offscreen">파일삭제</span></button>
-                        <span class="name">{{ item.name }}</span>
-                        <span class="volume" v-if="(item.size / (1024 * 1024)) < 0.1 ">0.1 MB</span>
-                        <span class="volume" v-else>{{ (item.size / (1024 * 1024)).toFixed(1) }} MB</span>
-                    </div>
-                </div>
-            </div> -->
         
             <!-- default -->
             <div class="guideTitle">form input - text</div>
@@ -97,7 +81,11 @@
             </div>
             <!-- file -->
             <div class="guideTitle">form input - file</div>
-            <FileInput :fileList="state.fileList" @uploadFile="uploadFile" />
+            <FileInput
+                :fileList="state.fileList"
+                @uploadFile="uploadFile"
+                @deleteFile = "deleteFile"
+            />
             <div class="guideTitle">form - textarea</div>
             <!-- textarea -->
             <div class="textarea">
@@ -129,7 +117,8 @@ const state = reactive({
     inputType3: {
         value: '',
         error: false
-    }
+    },
+    uploadFiles: []
 });
  /**
  * @input 에러체크
@@ -139,6 +128,9 @@ watch(state, () => {
     state.inputType2.value.length > 5 ? state.inputType2.error = true : state.inputType2.error = false;
     state.inputType3.value.length > 9 ? state.inputType3.error = true : state.inputType3.error = false;
 });
+/**
+ * @input value upDate
+ */
 const setValue = (value) => {
     console.log(value);
     state.inputType1.value = value;
@@ -151,12 +143,30 @@ const uploadFile = async (value) => {
     const formData = new FormData();
     formData.append('file', value); //단일 파일만 업로드시
     state.fileList.push(value);
-    
     try {
-        //  API 처리
-        console.log('form');
+        // await 업로드 API 처리 후  response로 받은값 저장 필요(삭제시 필요)
+        // state.uploadFiles.push(response로 받은값);
+        console.log(formData);
     } catch (error) {
         console.log(error);
     }
 };
+ /**
+ * @inputfile 파일 삭제
+ */
+const deleteFile = (value) => {
+    console.log(value);
+    if (value === undefined) {
+        state.fileList = [];
+        // await 삭제 API 처리
+        // 전체 삭제 처리
+    } else {
+        state.fileList.splice(value, 1);
+        // await 삭제 API 
+        // 단일 처리  
+        // state.uploadFiles.splice(value, 1)
+    }
+};
+
+
 </script>

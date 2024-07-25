@@ -78,7 +78,31 @@ const state = reactive({
     :value = "state.inputType1.value"
     :className="['labelleft', 'bg', {error:state.inputType1.error}]"
     @setValue = setValue
-/>`
+/>
+\<script setup>
+import { reactive, watch } from 'vue';
+const state = reactive({
+    fileNum: null,
+    fileList: [],
+    inputType1: {
+        value: '123',
+        error: false
+    },
+});
+/**
+ * @input 에러체크
+ */
+watch(state, () => {
+    state.inputType1.value.length > 5 ? state.inputType1.error = true : state.inputType1.error = false;
+});
+/**
+ * @input value upDate
+ */
+const setValue = (value) => {
+    console.log(value);
+    state.inputType1.value = value;
+};
+<\/script>`
         },
         {
             title: 'VUE COMPONENT',
@@ -151,19 +175,7 @@ background:url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20
 .formtable.half {display: flex; }
 .formtable.half .formtable-col{flex:1 1 auto}
 .formtable.half .formtable-col:nth-of-type(odd){border-right:none}`
-        },
-//         {
-//             title: 'JS',
-//             sampleCodeJS: `// 오픈 이벤트
-// const openAcc = (event) => {
-//     const parEle = event.target.parentElement;
-//     if (parEle.classList.contains('open')) {
-//         parEle.classList.remove('open');
-//     } else {
-//         parEle.classList.add('open');
-//     }
-// };`  
-//   },
+        }
     ]
 });
 const toggleAcc = (idx) => {
