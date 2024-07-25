@@ -34,7 +34,6 @@
                                 <ul v-if="item.depth.length > 0">
                                     <!-- 2depth -->
                                     <li v-for="(depth, idx) in item.depth" :key="idx" :class="['depth2', {depth:depth.depth.length > 0}, {thispage:state.thisPage == depth.pagelink}]">
-                                        
                                         <button type="button" class="menutext" @click="menuClick(depth.pagelink,'depth2', index, idx)">
                                             <em class="text">{{ depth.menu }}</em>
                                         </button>
@@ -54,9 +53,7 @@
                     </div>
                 </div>
                 <div class="contentwrap">
-                    
                     <div class="content">
-                        
                         <!-- 컨텐츠 영역 -->
                         <RouterView />
                     </div>
@@ -89,7 +86,9 @@ const state = reactive({
             pagelink: null,
             depth: [
                 { menu: '대시보드', pagelink: '/dashboard', depth: [] },
-                { menu: '카드형태 페이지', pagelink: '/boxlayout', depth: [] },
+                { menu: '카드형태 페이지', pagelink: null, depth: [
+                    { menu: '카드', pagelink: '/boxlayout', depth: [] }
+                ] },
                 { menu: '테이블 페이지', pagelink: '/tablelayout', depth: [] },
                 { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] }
             ]
@@ -215,9 +214,9 @@ watch(route, () => {
 
 
 .logo{width:60px; overflow:hidden; }
-.lnb-menu-list > h1{margin-bottom:20px;font-size:20px; font-weight:700;color:var(--point-txt-color) }
+.lnb-menu-list > h1{margin-bottom:20px;font-size:20px; font-weight:700;color:var(--primary-txt-color) }
 .lnb-menu-list > h1:before{content:"";display:block; width:40px; height:40px; background-repeat: no-repeat;
-background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5' fill='%23042440'/%3E%3C/svg%3E");}
+background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5' fill='%231c2135'/%3E%3C/svg%3E");}
 
 .btn-leftmenu{width:30px; height:30px; background-repeat: no-repeat; background-position:0px 0px;
     background-image: url("data:image/svg+xml,%3Csvg width='25' height='25' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1' fill='%23d2d2d2'/%3E%3C/svg%3E");}
@@ -232,25 +231,33 @@ background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox=
 
 
 
-
+/* :default */
 .lnb-menu-list .menutext > .text{position: relative; z-index:2;display:block;}
 .lnb-menu-list .menutext{display:block; position: relative; cursor: pointer; width:100%; text-align: left; color:var(--default-txt-color);}
 .lnb-menu-list > ul{margin-top:20px;}
 .lnb-menu-list > ul > li ul{height:0; transition: padding-top .3s; margin:0; }
 .lnb-menu-list > ul > li ul li{display: none;}
-.lnb-menu-list > ul > li > .menutext{padding:10px 20px 10px 30px; font-size:16px; font-weight:700; position: relative; }
-.lnb-menu-list > ul > li > .menutext:after{content:"";display:block;width:20px; height:20px; position: absolute; left:0;top:9px;
+.lnb-menu-list > ul > li > .menutext{padding:15px 20px 15px 30px; font-size:16px; font-weight:700; position: relative; }
+.lnb-menu-list > ul > li > .menutext:after{content:"";display:block;width:20px; height:20px; position: absolute; left:0;top:16px;
 background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath  d='M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z' fill='%23545ca1'/%3E%3C/svg%3E");}
+/* active */
 .lnb-menu-list li.active > .menutext:before, .lnb-menu-list li.thispage > .menutext:before{width:100%;}
 .lnb-menu-list li.active > ul, .lnb-menu-list  li.thispage > ul{height: auto; position: relative;}
 .lnb-menu-list  li.depth.active > ul > li, .lnb-menu-list  li.depth.thispage> ul > li{display: block;}
 .lnb-menu-list  li.depth.active > ul:after, .lnb-menu-list li.thispage > ul:after{content:""; display:block;width:1px; height:100%; border-left:dashed 1px var(--point-txt-color); position: absolute; left:10px; top:0}
-.lnb-menu-list > ul > li.active > .menutext, .lnb-menu-list > ul > li.thispage > .menutext{color:var(--point-txt-color);}
-.lnb-menu-list > ul > li.active > .menutext:after, .lnb-menu-list > ul > li.thispage > .menutext:after{background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath  d='M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z' fill='%23042440'/%3E%3C/svg%3E");}
+.lnb-menu-list > ul > li.active > .menutext, .lnb-menu-list > ul > li.thispage > .menutext{color:var(--primary-txt-color);}
+.lnb-menu-list > ul > li.active > .menutext:after, .lnb-menu-list > ul > li.thispage > .menutext:after{background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath  d='M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z' fill='%231c2135'/%3E%3C/svg%3E");}
 
-
-.lnb-menu-list li.depth2 .menutext{font-size:13px; padding:5px 5px 5px  20px;margin: 0 0 0 25px;width: calc(100% - 50px);}
-.lnb-menu-list li.depth2.thispage .menutext{background:var(--primary-txt-color);; color:var(--primary-wh-color); border-radius:10px;}
+/* depth2 */
+.lnb-menu-list li.depth2 .menutext{font-size:15px; padding:8px 8px 8px  20px;margin: 0 0 0 25px;width: calc(100% - 50px);}
+.lnb-menu-list li.depth2.thispage > .menutext{background:var(--primary-txt-color);; color:var(--primary-wh-color); border-radius:13px; z-index:2;}
 .lnb-menu-list li.depth2.depth > .menutext:after{width:10px; height:10px; top:8px; right:13px}
-.lnb-menu-list li.depth3 .menutext .text:after{content:''; display: block; width:3px; height:3px; border-radius:50%; background:#666; position: absolute; left:5px; top:8px;}
+
+.lnb-menu-list li.depth2.depth > ul{margin:0 25px;background:#fff; top:-12px; padding-top:12px; border-radius: 0 0 13px 13px;}
+.lnb-menu-list li.depth2.depth > ul:after{display: none;}
+.lnb-menu-list li.depth2.depth > ul > li{padding-left:10px}
+.lnb-menu-list li.depth3 .menutext{font-size:15px; padding:8px 8px 8px 20px;margin: 0 0 0 25px;width: calc(100% - 50px);}
+
+
+
 </style>

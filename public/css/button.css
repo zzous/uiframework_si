@@ -31,7 +31,7 @@
   font-size: 12px;
 }
 .btn:hover:not(:disabled) {
-  background-color: #f0f7ff;
+  background-color: #d2dbe3;
   color: var(--point-txt-color);
 }
 
@@ -66,8 +66,8 @@
 }
 .btn.posi:hover:not(:disabled) {
   color: var(--base-wh-color);
-  background-color: #4c2c8a;
-  border-color: #4c2c8a;
+  background-color: var(--base-hover-color);
+  border-color: var(--base-hover-color);
 }
 .btn.posi:disabled {
   background-color: #f6f6f6;

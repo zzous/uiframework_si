@@ -1,9 +1,12 @@
 :root {
   --base-txt-color: #202020;
   --strong-txt-color: #202020;
-  --primary-txt-color: #5b5f97;
-  --point-txt-color: #042440;
+  --primary-txt-color: #1c2135;
+  /* --primary-txt-color: #5b5f97; */
+  --point-txt-color: #5a6794;
   --default-txt-color: #545ca1;
+  --base-hover-color: #8794c0;
+  --point-hover-color: #b6cade;
   /* --point-txt-color: #1d3577; */
   
   /* --point-txt-color: #ffc145; */
