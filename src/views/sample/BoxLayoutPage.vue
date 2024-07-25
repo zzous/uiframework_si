@@ -11,7 +11,7 @@
                                 <span  class="infolabel"> / 진행중 </span>
                                 <strong class="infovalue">10건</strong>
                             </div>
-                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%; background: var(--point-green-color);"></em></div> <em class="datarate" style="color:#">30%</em></div>
+                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%; background: var(--point-green-color);"></em></div> <em class="datarate">30%</em></div>
                         </div>
                         
                         <div  class="myjobinfo orderlist">

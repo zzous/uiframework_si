@@ -258,7 +258,7 @@
   width: 35px;
   height: 35px;
   border-radius: 5px;
-  background-color: var(--point-green-color);
+  background-color: var( --point-purple-color);
   background-repeat: no-repeat;
   position: relative;
   background-position: 8px 7px;

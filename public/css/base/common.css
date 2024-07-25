@@ -1,22 +1,28 @@
 :root {
   --base-txt-color: #202020;
   --strong-txt-color: #202020;
-  --primary-txt-color: #21e8e4;
-  --point-txt-color: #5142b2;
-  --point-purple-color: #9c7eff;
+  --primary-txt-color: #5b5f97;
+  --point-txt-color: #042440;
+  --default-txt-color: #545ca1;
+  /* --point-txt-color: #1d3577; */
+  
+  /* --point-txt-color: #ffc145; */
+  --point-purple-color: #b8b8d1;
   --point-green-color: #dcfc34;
   --point-bar-color: #189f92;
   --base-box-color: #c9c9d4;
-  --base-wh-color: #ffffff;
+  --base-wh-color: #fffffb;
+  --primary-wh-color: #ffffff;
   --gray-box-color: #f1f1f1;
   --placeholder-txt-color: #ccc;
   --base-bg-color: #f7f9fa;
   --base-bd-color: #ddd;
+  --base-gray-color: #eee;
   --base-disable-color: #999;
   --base-bd1-color: #ccc;
   --bd1-color: #d2d2d2;
   --bd2-color: #ebebeb;
-  --error-color: #ea7c77;
+  --error-color: #ff6b6c;
 }
 html {
   height: 100%;
