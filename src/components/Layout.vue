@@ -86,9 +86,11 @@ const state = reactive({
             pagelink: null,
             depth: [
                 { menu: '대시보드', pagelink: '/dashboard', depth: [] },
-                { menu: '카드형태 페이지', pagelink: null, depth: [
-                    { menu: '카드', pagelink: '/boxlayout', depth: [] }
-                ] },
+                { menu: '카드형태 페이지', pagelink: null,
+                    depth: [
+                        { menu: '카드', pagelink: '/boxlayout', depth: [] }
+                    ]
+                },
                 { menu: '테이블 페이지', pagelink: '/tablelayout', depth: [] },
                 { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] }
             ]
@@ -118,7 +120,6 @@ const state = reactive({
                 { menu: 'input 스타일', pagelink: '/forminput', depth: [] },
                 { menu: 'radio 스타일', pagelink: '/formradio', depth: [] },
                 { menu: 'checkbox 스타일', pagelink: '/formcheck', depth: [] },
-                // { menu: 'select 스타일', pagelink: '/formselect', depth: [] },
                 { menu: 'Editor 스타일', pagelink: '/ckeditor', depth: [] }
             ]
         },
@@ -217,7 +218,6 @@ watch(route, () => {
 .lnb-menu-list > h1{margin-bottom:20px;font-size:20px; font-weight:700;color:var(--primary-txt-color) }
 .lnb-menu-list > h1:before{content:"";display:block; width:40px; height:40px; background-repeat: no-repeat;
 background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5' fill='%231c2135'/%3E%3C/svg%3E");}
-
 .btn-leftmenu{width:30px; height:30px; background-repeat: no-repeat; background-position:0px 0px;
     background-image: url("data:image/svg+xml,%3Csvg width='25' height='25' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1' fill='%23d2d2d2'/%3E%3C/svg%3E");}
 .myinfo{ position: relative; z-index: 2;}
@@ -248,7 +248,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox=
 .lnb-menu-list > ul > li.active > .menutext, .lnb-menu-list > ul > li.thispage > .menutext{color:var(--primary-txt-color);}
 .lnb-menu-list > ul > li.active > .menutext:after, .lnb-menu-list > ul > li.thispage > .menutext:after{background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath  d='M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z' fill='%231c2135'/%3E%3C/svg%3E");}
 
-/* depth2 */
+/* depth2 active*/
 .lnb-menu-list li.depth2 .menutext{font-size:15px; padding:8px 8px 8px  20px;margin: 0 0 0 25px;width: calc(100% - 50px);}
 .lnb-menu-list li.depth2.thispage > .menutext, .lnb-menu-list li.depth2.active > .menutext{background:var(--primary-txt-color); color:var(--primary-wh-color); border-radius:13px; z-index:2;}
 .lnb-menu-list li.depth2.depth > .menutext:after{width:10px; height:10px; top:8px; right:13px}
@@ -256,7 +256,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox=
 .lnb-menu-list li.depth2.depth > ul{margin:0 25px;background:var(--primary-txt-color); top:-12px; border-radius: 0 0 13px 13px;}
 .lnb-menu-list li.depth2.depth > ul:after{display: none;}
 
-/* depth3*/
+/* depth3 active*/
 .lnb-menu-list li.depth3 .menutext{font-size:15px; padding:8px 8px 8px 10px;width: calc(100% - 50px); color:var(--primary-wh-color); opacity: .6;}
 .lnb-menu-list li.depth3 .menutext:after{content:"";display:block;width:5px; height:1px; position: absolute; left:0;top:16px;background:var(--primary-wh-color);}
 .lnb-menu-list li.depth3.active > .menutext,  .lnb-menu-list li.depth3.thispage > .menutext{opacity: 1;}
