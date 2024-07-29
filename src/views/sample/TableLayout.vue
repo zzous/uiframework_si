@@ -16,6 +16,7 @@
                     </div>
                     <DatePicker ref="datepicker" :dayOpionType=state.dayOpionType  @selectDay ="selectDay"/>
                 </div>
+                
             </div>
             <div class="tbl-wrap">
                 <div class="table-util flex space-between">
@@ -267,8 +268,5 @@ const onChangedPage = (num) => {
 
 </script>
 <style>
-.tbl_search{ margin:20px 0 40px 0; padding:20px; border:solid 1px #ddd; background:#f1f1f1; }
-.tbl_searchin{display: flex; justify-content: space-between; align-items: center;}
-.tbl_searchin .formInputbox{width:300px}
-.subTitle{font-size:15px; padding-left:26px;margin-bottom:10px; background:url('/images/title_search.svg') no-repeat left center/18px;}
+
 </style>

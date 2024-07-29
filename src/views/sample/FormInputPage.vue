@@ -99,7 +99,6 @@
 import FileInput from '@/components/FileInput.vue';
 import TextInput from '@/components/TextInput.vue';
 import { reactive, ref, watch } from 'vue';
-
 import { useCommFunc } from '@/core/helper/common.js';
 const { goToPage } = useCommFunc();
 

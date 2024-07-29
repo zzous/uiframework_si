@@ -1,6 +1,6 @@
 <template>
     <div style="height:calc(100% - 30px);">
-        <div :class="['layout', state.menuTop]">
+        <div class="layout">
             <header>
                 <div class="myinfo" >
                         <div class="fulllogo"><img src="/images/logo.svg" /></div>
@@ -22,7 +22,6 @@
             </header>
             <div class="contents">
                 <div class="lnb">
-                    <!-- <button class="btn-leftmenu"></button> -->
                     <div class="lnb-menu-list">
                         <h1> 사용자 관리</h1>
                         <ul>
@@ -51,15 +50,19 @@
                             </li>
                         </ul>
                     </div>
+                    <button class="nav-toggle"></button>
                 </div>
                 <div class="contentwrap">
                     <div class="content">
                         <!-- 컨텐츠 영역 -->
+                         <div class="navigation" v-if="state.thisPage !=='/dashboard' && state.thisPage !=='/boxlayout'">
+                            <span class="home"></span>
+                            <span v-for="(item, index) in state.breadcrumbs" :key="index">{{ item.menu }}</span>
+                         </div>
                         <RouterView />
                     </div>
                 </div>
             </div>
-            
         </div>
         <footer>
             <div class="flex-center">Powered by STRATO Cloud Management Platform</div>
@@ -80,17 +83,36 @@ const router = useRouter();
 const route = useRoute();
 
 const state = reactive({
-    menuTop: '',
     menuList: [
+        {menu: '샘플 페이지',
+            pagelink: null,
+            depth: [
+                { menu: '이력조회',
+                    pagelink: null,
+                    depth: [
+                        { menu: '차단내역조회', pagelink: '/spamsample1', depth: [] }
+                    ]
+                },
+                { menu: '가입자관리', pagelink: '', depth: [] },
+                { menu: '운영자 차단/허용관리',
+                    pagelink: null,
+                    depth: [
+                        { menu: '악성 URL', pagelink: '', depth: [] }
+                    ]
+                },
+                { menu: '동적필터링',
+                    pagelink: null,
+                    depth: [
+                        { menu: '동적 시뮬레이터 조회', pagelink: '', depth: [] }
+                    ]
+                }
+            ]
+        },
         {menu: '가이드 활용 페이지',
             pagelink: null,
             depth: [
                 { menu: '대시보드', pagelink: '/dashboard', depth: [] },
-                { menu: '카드형태 페이지', pagelink: null,
-                    depth: [
-                        { menu: '카드', pagelink: '/boxlayout', depth: [] }
-                    ]
-                },
+                { menu: '카드형태 페이지', pagelink: '/boxlayout', depth: [] },
                 { menu: '테이블 페이지', pagelink: '/tablelayout', depth: [] },
                 { menu: '차트 활용 페이지', pagelink: '/chart', depth: [] }
             ]
@@ -134,21 +156,32 @@ const state = reactive({
             ]
         }
     ],
-    thisPage: ''
-});
-const onChangePage = () => {
-    state.menuTop === 'menuTop' ? state.menuTop = '' : state.menuTop = 'menuTop';
-};
+    thisPage: '',
+    depth1Menu: '',
+    depth2Menu: '',
+    depth3Menu: '',
+    breadcrumbs: null
 
-// 메뉴 클릭시 active
-const menuClick = (url, depthType, depth1, depth2, depth3) => {
+});
+
+
+/**
+    * 메뉴 클릭 이벤트
+    * @param {string} url - 이동경로
+    * @param {string} depthType - 뎁스 구분
+    * @param {number} depth1Idx - 1뎁스 인덱스
+    * @param {number} depth2Idx - 2뎁스 인덱스
+    * @param {number} depth3Idx - 3뎁스 인덱스
+    
+*/
+const menuClick = (url, depthType, depth1Idx, depth2Idx, depth3Idx) => {
     const menuItemsDepth1 = document.querySelectorAll('.lnb-menu-list li.depth1');
     const menuItemsDepth2 = document.querySelectorAll('.lnb-menu-list li.depth2');
     const menuItemsDepth3 = document.querySelectorAll('.lnb-menu-list li.depth3');
     // depth1 비활성화
     if (depthType === 'depth1') {
         menuItemsDepth1.forEach((item, index) => {
-            if (index !== depth1) {
+            if (index !== depth1Idx) {
                 item.classList.remove('active');
             }
         });
@@ -156,7 +189,7 @@ const menuClick = (url, depthType, depth1, depth2, depth3) => {
     // depth2 비활성화
     if (depthType === 'depth2') {
         menuItemsDepth2.forEach((item, index) => {
-            if (index !== depth2) { item.classList.remove('active'); }
+            if (index !== depth2Idx) { item.classList.remove('active'); }
         });
     }
     // depth3 비활성화
@@ -165,7 +198,7 @@ const menuClick = (url, depthType, depth1, depth2, depth3) => {
             item.classList.remove('active');
         });
     }
-    // active
+    // active 클래스 추가 
     const clickedSpan = event.target;
     const parentLi = clickedSpan.closest('li');
     parentLi.classList.add('active');
@@ -176,7 +209,10 @@ const menuClick = (url, depthType, depth1, depth2, depth3) => {
 };
 
 
-// 해당 페이지 active
+/**
+    * 페이지 초기 접속 시 메뉴 활성화
+    * 클래스 추가(thispage)
+*/
 const thisPageCheck = () => {
     const menuItems = document.querySelectorAll('.lnb-menu-list li');
     menuItems.forEach(item => {
@@ -190,16 +226,43 @@ const thisPageCheck = () => {
         }
     });
 };
-
+/**
+    * 페이지 초기 접속 시 메뉴 활성화
+    * url비교 후 함수 호출
+*/
 onMounted(() => {
-    // 현재 메뉴 active
     state.thisPage = route.path;
     nextTick(() => {
         thisPageCheck();
     });
+    state.breadcrumbs = checkThisPage(state.menuList, state.thisPage);
 });
+/**
+    * navigation
+    * @param {Array} menuList - 전체메뉴리스트
+    * @param {string} targetPagelink - 현재페이지의 링크
+    * @param {Array} path - 페이지 링크와 맞는 요소를 담을 배열
+*/
+const checkThisPage = (menuList, targetPagelink, path = []) => {
+    for (const item of menuList) {
+        const currentPath = [...path, item]; // 현재 경로에 현재 아이템을 추가
+        if (item.pagelink === targetPagelink) {
+            return currentPath; // 경로를 찾으면 반환
+        }
+        if (item.depth.length > 0) {
+            const foundPath = checkThisPage(item.depth, targetPagelink, currentPath);
+            if (foundPath) {
+                return foundPath; // 재귀적으로 찾으면 반환
+            }
+        }
+    }
+    return null;
+};
+/**
+    * 메뉴 변경 감지 후 해당 메뉴 활성화
+    * url비교 후 함수 호출
+*/
 watch(route, () => {
-    // 메뉴 변경 감지
     if (Object.keys(route.query).length === 0) {
         state.thisPage = route.path;
         const menuItems = document.querySelectorAll('.lnb-menu-list li.thispage');
@@ -208,8 +271,12 @@ watch(route, () => {
             thisPageCheck();
         });
     }
+    state.breadcrumbs = checkThisPage(state.menuList, state.thisPage);
+
+    
 });
 </script>
+
 <style>
 
 
@@ -263,5 +330,17 @@ background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox=
 .lnb-menu-list li.depth2.depth.active > ul{ padding-top:12px;}
 
 
+#adminNav { position: fixed; left: 0; top: 60px; bottom: 0; width: 250px; border-width: 0 1px 1px 1px; border-style: solid; border-color: var(--base-bd-color); background-color: #fff; z-index: 1; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); transition: left 0.4s ease-out; }
+#adminNav::after { content: ''; position: absolute; top: 0; left: 100%; right: 0; bottom: 0; background-color: #fff; opacity: 0; transition: 0.3s ease-out; }
+.nav-toggle { position: absolute; top: 11px; right: -40px; width: 40px; height: 40px; background-color: #fff; border: 1px solid #d2d2d2; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1); transition: 0.3s ease-out;     z-index: 9;}
+.nav-toggle::after { content: ''; position: absolute; top: 50%; left: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; background-image: url("data:image/svg+xml,%3Csvg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.3401 14.91L4.43015 9L10.3402 3.09L8.75015 1.5L1.25015 9L8.75015 16.5L10.3401 14.91Z' fill='%23767676'/%3E%3Cpath d='M17.0913 14.91L11.1813 9L17.0913 3.09L15.5013 1.5L8.00131 9L15.5013 16.5L17.0913 14.91Z' fill='%23767676'/%3E%3C/svg%3E"); background-size: 18px 18px; transition: 0.3s ease-out; }
+.nav-toggle:hover, .nav-toggle:focus { background-color: var(--primary-txt-color); border-color: var(--primary-txt-color); }
+.nav-toggle:hover::after,.nav-toggle:focus::after { background-image: url("data:image/svg+xml,%3Csvg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.3401 14.91L4.43015 9L10.3402 3.09L8.75015 1.5L1.25015 9L8.75015 16.5L10.3401 14.91Z' fill='white'/%3E%3Cpath d='M17.0913 14.91L11.1813 9L17.0913 3.09L15.5013 1.5L8.00131 9L15.5013 16.5L17.0913 14.91Z' fill='white'/%3E%3C/svg%3E"); }
+.nav-toggle.hide::after { transform: rotate(180deg); }
 
+
+.navigation{margin-top: 30px; display: flex; justify-content: flex-end; padding-right: 30px;}
+.navigation > span +span {padding-left:20px;position: relative;}
+.navigation > span +span:after {content:">"; display:block; position: absolute; left:8px; top:0}
+.navigation > span.home{background:url('/images/icon_home.svg') no-repeat left center;width:15px; height:15px; }
 </style>

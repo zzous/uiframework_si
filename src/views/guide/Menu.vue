@@ -43,8 +43,7 @@ const state = reactive({
     codeSample: [
         {
             title: 'HTML',
-            sampleCodeJS: `
-<div class="lnb-menu-list">
+            sampleCodeJS: `<div class="lnb-menu-list">
     <ul>
         <!-- 1depth -->
         <li v-for="(item, index) in state.menuList" :key="index" :class="['depth1',{depth:item.depth.length > 0}, {thispage:item.pagelink === state.thisPage}]">
@@ -107,8 +106,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox=
         },
         {
             title: 'DATA',
-            sampleCodeJS: `
-menuList: [
+            sampleCodeJS: `menuList: [
     {menu: 'menu1', pagelink: '/section', depth: [] },
     {menu: 'menu2',
         pagelink: '',

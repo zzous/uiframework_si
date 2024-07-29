@@ -122,6 +122,11 @@ const routes = [
                 path: '/dashboard',
                 name: 'dashboard',
                 component: () => import('@/views/sample/DashBoradPage.vue')
+            },
+            {
+                path: '/spamsample1',
+                name: 'spamsample1',
+                component: () => import('@/views/sample/SpamSample1.vue')
             }
         ]
     },

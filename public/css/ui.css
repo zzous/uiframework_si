@@ -26,7 +26,7 @@
 .pageBgbox{position: relative;padding: 30px; }
 .contents { display: flex; height: calc(100% - 80px); width:100%;background: var(--base-wh-color);}
 .layout .lnb { flex: 0 0 280px; padding-top: 40px; padding-left: 20px; background: var(--base-gray-color); }
-.contentwrap .content { height: calc(100% - 80px); width: 100%; overflow: auto; }
+.contentwrap .content { height:100%; width: 100%; overflow: auto; }
 footer { background: var(--primary-txt-color); width: 100%; height: 30px; font-size: 12px; font-weight: 700; color: var(--base-wh-color); }
 
 
