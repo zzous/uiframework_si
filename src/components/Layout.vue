@@ -23,7 +23,7 @@
             <div class="contents">
                 <div class="lnb">
                     <div class="lnb-menu-list">
-                        <h1> 사용자 관리</h1>
+                        <h1> {{state.breadcrumbs[(state.breadcrumbs.length -1)]?.menu}}</h1>
                         <ul>
                             <!-- 1depth -->
                             <li v-for="(item, index) in state.menuList" :key="index" :class="['depth1',{depth:item.depth.length > 0}, {thispage:state.thisPage == item.pagelink}]">
@@ -93,7 +93,7 @@ const state = reactive({
                         { menu: '차단내역조회', pagelink: '/spamsample1', depth: [] }
                     ]
                 },
-                { menu: '가입자관리', pagelink: '', depth: [] },
+                { menu: '가입자관리', pagelink: '/spamsample2', depth: [] },
                 { menu: '운영자 차단/허용관리',
                     pagelink: null,
                     depth: [
@@ -160,7 +160,7 @@ const state = reactive({
     depth1Menu: '',
     depth2Menu: '',
     depth3Menu: '',
-    breadcrumbs: null
+    breadcrumbs: []
 
 });
 
@@ -327,7 +327,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox=
 .lnb-menu-list li.depth3 .menutext{font-size:15px; padding:8px 8px 8px 10px;width: calc(100% - 50px); color:var(--primary-wh-color); opacity: .6;}
 .lnb-menu-list li.depth3 .menutext:after{content:"";display:block;width:5px; height:1px; position: absolute; left:0;top:16px;background:var(--primary-wh-color);}
 .lnb-menu-list li.depth3.active > .menutext,  .lnb-menu-list li.depth3.thispage > .menutext{opacity: 1;}
-.lnb-menu-list li.depth2.depth.active > ul{ padding-top:12px;}
+.lnb-menu-list li.depth2.depth.active > ul, .lnb-menu-list li.depth2.depth.thispage> ul{ padding-top:12px;}
 
 
 #adminNav { position: fixed; left: 0; top: 60px; bottom: 0; width: 250px; border-width: 0 1px 1px 1px; border-style: solid; border-color: var(--base-bd-color); background-color: #fff; z-index: 1; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); transition: left 0.4s ease-out; }
