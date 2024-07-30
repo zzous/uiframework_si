@@ -1,75 +1,85 @@
 <template>
     <div class="pageView">
-        <div class="cardwrap">
-            <CardBox :cardWidth="590" :cardTitle="'오늘 나의 업무'" :cardSubtext="'사용자가 처리해야할 업무입니다.'" style="min-height:100px;">
-                <template #cardContent>
-                    <div style=" display: flex; flex-wrap: wrap;">
-                        <div class="myjobinfo totolist">
-                            <div class="infopar">
-                                <span class="infolabel">할일</span>
-                                <strong class="infovalue">36건</strong>
-                                <span  class="infolabel"> / 진행중 </span>
-                                <strong class="infovalue">10건</strong>
+        <div class="pageBgbox">
+            <div style="margin:30px 0;"><button type="button" class="btn" @click="goToPage('/guide?guideName=BarCharHor')">가이드 페이지</button></div>
+            <div class="cardwrap">
+                <CardBox :cardWidth="590" :cardTitle="'오늘 나의 업무'" :cardSubtext="'사용자가 처리해야할 업무입니다.'" style="min-height:100px;">
+                    <template #cardContent>
+                        <div style=" display: flex; flex-wrap: wrap;">
+                            <div class="myjobinfo totolist">
+                                <div class="infopar">
+                                    <span class="infolabel">할일</span>
+                                    <strong class="infovalue">36건</strong>
+                                    <span  class="infolabel"> / 진행중 </span>
+                                    <strong class="infovalue">10건</strong>
+                                </div>
+                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%; background: var(--point-green-color);"></em></div> <em class="datarate">30%</em></div>
                             </div>
-                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%; background: var(--point-green-color);"></em></div> <em class="datarate">30%</em></div>
-                        </div>
-                        
-                        <div  class="myjobinfo orderlist">
-                            <div class="infopar">
-                                <span class="infolabel">결재할 업무</span>
-                                <strong class="infovalue">28건</strong>
-                                <span class="infolabel">/ 진행중</span>
-                                <strong class="infovalue">10건</strong>
+                            
+                            <div  class="myjobinfo orderlist">
+                                <div class="infopar">
+                                    <span class="infolabel">결재할 업무</span>
+                                    <strong class="infovalue">28건</strong>
+                                    <span class="infolabel">/ 진행중</span>
+                                    <strong class="infovalue">10건</strong>
+                                </div>
+                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:50%"></em></div> <em class="datarate">50%</em></div>
                             </div>
-                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:50%"></em></div> <em class="datarate">50%</em></div>
-                        </div>
-                        <div class="myjobinfo mystatus">
-                            <div class="infopar">
-                                <span class="infolabel">나의 작업 현황</span>
-                                <strong class="infovalue">28건</strong>
+                            <div class="myjobinfo mystatus">
+                                <div class="infopar">
+                                    <span class="infolabel">나의 작업 현황</span>
+                                    <strong class="infovalue">28건</strong>
+                                </div>
+                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%"></em></div> <em class="datarate">30%</em></div>
                             </div>
-                            <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:30%"></em></div> <em class="datarate">30%</em></div>
                         </div>
-                    </div>
-                </template>
-            </CardBox>
-            <CardBox :cardWidth="500" :cardTitle="'나의 알림목록'"  :cardSubtext="'최근 알림 목록입니다.'">
-                <template #cardContent>
-                    <div class="ui-no-date"><p>알림이 없습니다.</p></div>
-                </template>
-            </CardBox>
-            <CardBox :cardWidth="300" :cardTitle="'나의 결재 현황'" :cardSubtext="'대기중인 업무와 처리된 업무 내용입니다'">
-                <template #cardContent>
-                    <div style="height: calc(100% - 72px); ">
-                        <BarChartHor :unit="state.unit" :chartBar="state.chartBar1" :chartId="'ChartBar2'" :chartClass="'chartNolegend'"  :chartColorType="['854cf5','189F92', 'F38C25' ]"></BarChartHor>
-                    </div>
-                </template>
-            </CardBox>
-            <CardBox :cardWidth="800" :cardTitle="'나의 할일'"  :cardSubtext="'사용자가 작업 해야할 작업 목록입니다'">
-                <template #cardContent>
-                    <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                    rowSelection="multiple"
-                        class="ag-theme-alpine" :domLayout="'autoHeight'">
-                    </AgGridVue>
-                </template>
-            </CardBox>
-            
-            <CardBox :cardWidth="800" :cardTitle="'내가 요청한 결재목록'"  :cardSubtext="'사용자가 결재를 요청한 목록입니다'">
-                <template #cardContent>
-                    <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                    rowSelection="multiple"
-                        class="ag-theme-alpine" :domLayout="'autoHeight'">
-                    </AgGridVue>
-                </template>
-            </CardBox>
-            <CardBox :cardWidth="800" :cardTitle="'내가 요청받은 결재목록'" :cardSubtext="'사용자가 결재 해야할 작업 목록입니다'">
-                <template #cardContent>
-                    <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                    rowSelection="multiple"
-                        class="ag-theme-alpine" :domLayout="'autoHeight'">
-                    </AgGridVue>
-                </template>
-            </CardBox>
+                    </template>
+                </CardBox>
+                <CardBox :cardWidth="500" :cardTitle="'나의 알림목록'"  :cardSubtext="'최근 알림 목록입니다.'">
+                    <template #cardContent>
+                        <div class="ui-no-date"><p>알림이 없습니다.</p></div>
+                    </template>
+                </CardBox>
+                <CardBox :cardWidth="300" :cardTitle="'나의 결재 현황'" :cardSubtext="'대기중인 업무와 처리된 업무 내용입니다'">
+                    <template #btnArea><div><button type="button" class="btn ss" @click="onChangeChart">차트 변경</button></div></template>
+                    <template #cardContent>
+                        <div style="height: calc(100% - 72px); ">
+                            <BarChartHor
+                                :unit="state.unit"
+                                :chartBar="state.chartBar1"
+                                :chartColorType="['854cf5', '189F92', 'F38C25' ]"
+                                :chartId="'ChartBar2'"
+                                :chartClass="state.changeClass"
+                            />
+                        </div>
+                    </template>
+                </CardBox>
+                <CardBox :cardWidth="800" :cardTitle="'나의 할일'"  :cardSubtext="'사용자가 작업 해야할 작업 목록입니다'">
+                    <template #cardContent>
+                        <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                        rowSelection="multiple"
+                            class="ag-theme-alpine" :domLayout="'autoHeight'">
+                        </AgGridVue>
+                    </template>
+                </CardBox>
+                
+                <CardBox :cardWidth="800" :cardTitle="'내가 요청한 결재목록'"  :cardSubtext="'사용자가 결재를 요청한 목록입니다'">
+                    <template #cardContent>
+                        <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                        rowSelection="multiple"
+                            class="ag-theme-alpine" :domLayout="'autoHeight'">
+                        </AgGridVue>
+                    </template>
+                </CardBox>
+                <CardBox :cardWidth="800" :cardTitle="'내가 요청받은 결재목록'" :cardSubtext="'사용자가 결재 해야할 작업 목록입니다'">
+                    <template #cardContent>
+                        <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
+                        rowSelection="multiple"
+                            class="ag-theme-alpine" :domLayout="'autoHeight'">
+                        </AgGridVue>
+                    </template>
+                </CardBox>
+            </div>
         </div>
       
     </div>
@@ -94,9 +104,9 @@ const state = reactive({
         {name: 'GHI', rate: 6800, date: '202.06.11', time: '08:00'}
     ],
     chartBar1: [
-        {name: '승인대기', rate: 51,  coreType: {a: '', b: ''}, date: '202.06.11', time: '08:00'},
-        {name: '승인완료', rate: 26, coreType: {a: '', b: ''}, date: '202.06.11', time: '08:00'},
-        {name: '반려/폐기', rate: 12, coreType: {a: '', b: ''}, date: '202.06.11', time: '08:00'}
+        {name: '승인대기', rate: 51,  date: '202.06.11', time: '08:00'},
+        {name: '승인완료', rate: 26,  date: '202.06.11', time: '08:00'},
+        {name: '반려/폐기', rate: 12, date: '202.06.11', time: '08:00'}
     ],
     chartBar2: [
         {name: '블록스토리지', rate: 45, coreType: {a: '579Gib', b: '1024Gib'}, date: '202.06.11', time: '08:00'},
@@ -222,10 +232,13 @@ const state = reactive({
         headerClass: 'centered',
         cellClass: 'centered',
         flex: 1
-    }
+    },
+    changeClass: ''
 });
 
-
+const onChangeChart = () => {
+    state.changeClass == '' ? state.changeClass = 'chartNolabel' : state.changeClass = '';
+};
 
 </script>
 <style>

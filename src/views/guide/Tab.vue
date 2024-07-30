@@ -9,6 +9,7 @@
                 <li>html5 기본 태그로 사용</li>
                 <li>tabindex가 필요한 경우 <strong class="tagstyle">&lt;div class="tabcontent"&gt;</strong>태그에 추가하여 사용</li>
                 <li>현재 탭 활성화 처리 <strong class="tagstyle">active</strong> 클래스 추가 하여 처리</li>
+                <li>탭 버튼의 width의 에 따라  <strong class="tagstyle">&lt;span class="ani"&gt;</strong>의 위치와 크기 변경 처리</li>
                 <li>탭 콘텐츠 영역을 주소 처리 할 경우 라우터 path에 query로 처리함 (하단 참고)</li>
                 <li>가이드에서 제공하는 탭 컴포넌트는 <strong class="tagstyle">data-title </strong>속성값이 탭 버튼이 됨 </li>
                 <li>웹 표준을 위해 <strong class="tagstyle">role</strong>속성 작성 권고</li>
@@ -104,7 +105,7 @@ const state = reactive({
             <ul>
                 <li v-for="(item, index) in state.tabLists" :key="index" :class="{active:index === state.tabNum}">
                     <button type="button" class="btn-tab" @click="onClickTab(index)" >{{ item.tablabel }}</button>
-                    <span class="ani" :style="left:\${155*(state.tabNum)}px"></span>
+                    <span class="ani" :style="left:\${state.tabbtposi*(state.tabNum)}px; width:\${state.tabbtwidth}px"></span>
                 </li>
             </ul>
             <div class="tabdec">
@@ -130,16 +131,23 @@ const state = reactive({
     imgIcon: computed(() => props.imgIcon),
     subdec: computed(() => props.subdec),
     elHeight: 0,
+    tabbtposi: 0,
     tabbtwidth: 0
 });
 /**
-    * @Active 처리
-    * index 탭 순번
-    * tabUrl 탭 url 처리
-    * eleH 탭 콘텐츠 높이
+    * 탭 메뉴 클릭 이벤트
+    * @param {Number} index 메뉴 순번
+    * 클릭된 버튼에 active 처리(메뉴 순번 체크)
+    * bar의 크기, 위치 클릭시 마다 유동적으로 지정
+    * 탭콘텐츠 모션 처리(view 클래스 추가)
+    * 탭 콘텐츠 내용의 따라 높이 변경
+    * url이 필요한 경우 쿼리 추가 
 */
 const onClickTab = (index) => {
     const tabElements = document.querySelectorAll('.tabcontent');
+    const tabbtEle = document.querySelectorAll('.tablist ul li');
+    state.tabbtposi = index === 0 ? state.tabbtposi = 0 : state.tabbtposi = tabbtEle[(index - 1)].offsetWidth;
+    state.tabbtwidth = tabbtEle[(index)].offsetWidth;
     state.tabNum = index;
     tabElements.forEach((item, idx) => {
         item.children[0].classList.remove('view');
@@ -151,26 +159,28 @@ const onClickTab = (index) => {
     state.elHeight = eleH;
     const tabUrl = '/tab?tabid=\${index}';
     goToPage(tabUrl);
-    
 };
-/**
-    * @초기 Active 처리
-    * index 탭 순번
-    * eleH 탭 콘텐츠 높이
-*/
 onMounted(() => {
+     /**
+        * 탭 메뉴 설정 
+        * .tabcontent 태그에 작성된 data-title 속성값으로 탭 메뉴 리스트 생성
+        * nextTick 데이터 생성된 이후 돔 처리
+        * 첫번째 메뉴 콘텐츠 활성화(view 클래스 추가)
+        * 탭 콘텐츠 내용의 따라 높이 변경
+        * bar의 크기, 위치 클릭시 마다 유동적으로 지정
+    */
+    const tabElements = document.querySelectorAll('.tabcontent');
+    tabElements.forEach((tabElement, index) => {
+        state.tabLists.splice(index, 0, {tablabel: tabElement.dataset.title});
+        tabElement.children[0].classList.remove('view');
+    });
     nextTick(() => {
-        const tabElements = document.querySelectorAll('.tabcontent');
-        tabElements.forEach((tabElement, index) => {
-            tabElements[index].children[0].classList.remove('view');
-            state.tabLists.splice(index, 0, {tablabel: tabElement.dataset.title});
-        });
-        tabElements[0].children[0].classList.add('view');
         const eleH = tabElements[0].children[0].clientHeight;
         state.elHeight = eleH;
-        const tabbtn = document.querySelectorAll('.tablist');
+        tabElements[0].children[0].classList.add('view');
+        const tabbtEle = document.querySelectorAll('.tablist ul li');
+        state.tabbtwidth = tabbtEle[0].offsetWidth;
     });
-    
 });
 <\/script>`
         },

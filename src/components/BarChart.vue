@@ -2,7 +2,7 @@
     <div class="ui-chart">
         <div class="ui-bar-chart">
             <div class="ui-bar-y">
-                <strong class="unit">(횟수)</strong>
+                <strong class="unit">{{state.unitText}}</strong>
                 <ul class="ui-bar-y-unit">
                     <li v-for="(item, index) in state.unit" :key="index">
                         {{ item }}
@@ -12,7 +12,7 @@
             <div class="ui-bar-x">
                 <ul class="ui-bar-x-unit" :id="state.chartId" >
                     <li v-for="(item, index) in state.chartBar" :key="index" @mouseover.stop.prevent="onClickBar($event,index)" @mouseout.stop.prevent="onCloseTip" >
-                        <span class="bar" :style="barStyle(item.rate)"  ></span>
+                        <span class="bar" :style="barStyle(item.rate, index)" ></span>
                         <span class="x-value">{{item.name}}</span>
                         <span class="bar-tooltip">
                             <span class="t-title">{{ item.name }}</span>
@@ -34,15 +34,17 @@ import { computed, reactive } from 'vue';
 const props = defineProps(
     {
         unit: Array,
+        unitText: String,
         chartBar: Array,
         chartId: String,
-        chartColor: String
+        chartColorType: Array || String
     });
 const state = reactive({
-    chartBar: computed(() => props.chartBar),
+    unitText: computed(() => props.unitText),
     unit: computed(() => props.unit),
+    chartBar: computed(() => props.chartBar),
     chartId: computed(() => props.chartId),
-    chartColor: computed(() => props.chartColor)
+    chartColorType: computed(() => props.chartColorType)
    
 });
 /**
@@ -67,14 +69,17 @@ const valueGap = () => {
 };
 /**
     * 그래프 스타일
-    * @description 해당 값/그래프 맥스 값을 백분율로, 컬러지정
-    * @params rate 
+    * 해당 값/그래프 맥스 값을 백분율로 높이 지정
+    * 단일,다중 색상지정
+    * @params rate 그래프 비율 값
+    * @params index 그래프 순서
     * 
 */
-const barStyle = (rate) => {
+const barStyle = (rate, index) => {
     const hight = maxValue();
+    
     return {
-        backgroundColor: `#${state.chartColor}`,
+        backgroundColor: Array.isArray(state.chartColorType) ? `#${state.chartColorType[index]}` : `#${state.chartColorType}`,
         height: ((rate / hight) * 100) > 100 ? '100%' : `${((rate / hight) * 100)}%`
     };
 };
@@ -108,7 +113,7 @@ const onClickBar = (target, index) => {
     * @description 마우스 클릭 위치 계산하여 툴팁 위치 설정
     * @params target, index
 */
-const onCloseTip = ()=>{
+const onCloseTip = () => {
     const barTooltip = document.querySelectorAll(`#${state.chartId} > li > .bar-tooltip`);
     for (const child of barTooltip) {
         child.style.opacity = 0;
@@ -117,6 +122,6 @@ const onCloseTip = ()=>{
         child.style.zIndex = -1;
         child.style.marginTop = -10 + 'px';
     }
-}
+};
 
 </script>

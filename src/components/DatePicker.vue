@@ -57,7 +57,6 @@ const state = reactive({
     singleType: computed(() => props.singleType),
     /**
         * @type-1 { 1년, 6개월, 1개월, 1주일, 당일 }
-        * 일주일/당일 옵션 없음
     */
     selectDayValue: [
         { label: '1년', value: 'year' },
@@ -85,14 +84,11 @@ const initDate = () => {
     state.singleType ? setToDate(pickerData.value.date.to) : setFromDate(state.dayOpionType);
 };
 /**
-    * @start
+     * @start
     * 시작일
+    * @value { 1년:year, 6개월:month6, 1개월:month, 1주일:week, 당일:day }
 */
 const setFromDate = (value) => {
-    /**
-        * @value { 1년:year, 6개월:month6, 1개월:month, 1주일:week, 당일:day }
-        * 일주일/당일 옵션 없음
-    */
     const day = state.setDay.getTime();
     state.dayType = value;
     state.optionsType ? state.pickerStatus = true : state.pickerStatus = false;

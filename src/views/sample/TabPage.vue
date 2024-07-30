@@ -17,7 +17,7 @@
                     <div class="tabcontent" data-title="탭2">
                         <div class="tabpanel" role="tabpanel">tabcontent2<br>tabcontent2</div>
                     </div>
-                    <div class="tabcontent" data-title="탭3">
+                    <div class="tabcontent" data-title="탭버튼이 많이 크면 width가 유동적으로 ">
                         <div class="tabpanel" role="tabpanel">
                             <!-- 테이블 -->
                             <div class="tbl-wrap">
@@ -132,22 +132,7 @@ const state = reactive({
        
     }
 });
-// const onClickTab = (index) => {
-//     const tablists = document.querySelectorAll('.tabcontent');
-//     // 탭 Active 처리
-//     state.tabNum = index;
-//     // 탭콘텐츠 모션 처리
-//     tablists.forEach((item, index) => {
-//         item.children[0].classList.remove('view');
-//     });
-//     setTimeout(() => {
-//         tablists[index].children[0].classList.add('view');
-//     }, 400);
-//     // 탭콘텐츠 url 처리
-//     const tabUrl = `/tab?tabid=${index}`;
-//     goToPage(tabUrl);
-    
-// };
+
 
 // 페이징 처리
 const pager = reactive({
@@ -167,18 +152,7 @@ watch(state, () => {
     state.inputType2.value.length > 5 ? state.inputType2.error = true : state.inputType2.error = false;
 });
 
-// 초기 설정
-onMounted(() => {
-    Object.keys(route.query).length === 0 ? state.tabNum = 0 : state.tabNum = Number(route.query.tabid);
-    const tablists = document.querySelectorAll('.tabcontent');
-    // 탭콘텐츠 모션 처리
-    tablists.forEach((item, index) => {
-        item.children[0].classList.remove('view');
-    });
-    setTimeout(() => {
-        tablists[state.tabNum].children[0].classList.add('view');
-    }, 400);
-});
+
 </script>
 <style>
 .title_text{font-size:16px; font-weight:700; color:#333; margin:20px 0;}

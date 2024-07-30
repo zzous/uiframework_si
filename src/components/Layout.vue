@@ -1,6 +1,6 @@
 <template>
-    <div style="height:calc(100% - 30px);">
-        <div class="layout">
+    <div :style="`height:calc(100% - ${state.footerH}px);`">
+        <div :class="['layout', {flip:state.flipMenu}]">
             <header>
                 <div class="myinfo" >
                         <div class="fulllogo"><img src="/images/logo.svg" /></div>
@@ -50,11 +50,14 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="nav-toggle"></button>
+                    <button :class="['nav-toggle', {hide:state.flipMenu}]" @click="onChangeNavi"></button>
                 </div>
                 <div class="contentwrap">
                     <div class="content">
-                        <!-- 컨텐츠 영역 -->
+                        <!--
+                            컨텐츠 영역
+                            navigation은 라우터 path로 예외처리
+                         -->
                          <div class="navigation" v-if="state.thisPage !=='/dashboard' && state.thisPage !=='/boxlayout'">
                             <span class="home"></span>
                             <span v-for="(item, index) in state.breadcrumbs" :key="index">{{ item.menu }}</span>
@@ -64,11 +67,10 @@
                 </div>
             </div>
         </div>
-        <footer>
+        <footer id="footer">
             <div class="flex-center">Powered by STRATO Cloud Management Platform</div>
         </footer>
         <ConfirmModal />
-        <!-- <ChartTool /> -->
     </div>
 </template>
 <script setup>
@@ -81,7 +83,6 @@ import { useCommFunc } from '@/core/helper/common.js';
 const { goToPage } = useCommFunc();
 const router = useRouter();
 const route = useRoute();
-
 const state = reactive({
     menuList: [
         {menu: '샘플 페이지',
@@ -160,7 +161,9 @@ const state = reactive({
     depth1Menu: '',
     depth2Menu: '',
     depth3Menu: '',
-    breadcrumbs: []
+    breadcrumbs: [],
+    footerH: null,
+    flipMenu: false
 
 });
 
@@ -236,6 +239,7 @@ onMounted(() => {
         thisPageCheck();
     });
     state.breadcrumbs = checkThisPage(state.menuList, state.thisPage);
+    state.footerH = document.querySelector('#footer').offsetHeight;
 });
 /**
     * navigation
@@ -275,6 +279,9 @@ watch(route, () => {
 
     
 });
+const onChangeNavi = () => {
+    state.flipMenu = !state.flipMenu;
+};
 </script>
 
 <style>
@@ -330,17 +337,11 @@ background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox=
 .lnb-menu-list li.depth2.depth.active > ul, .lnb-menu-list li.depth2.depth.thispage> ul{ padding-top:12px;}
 
 
-#adminNav { position: fixed; left: 0; top: 60px; bottom: 0; width: 250px; border-width: 0 1px 1px 1px; border-style: solid; border-color: var(--base-bd-color); background-color: #fff; z-index: 1; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); transition: left 0.4s ease-out; }
-#adminNav::after { content: ''; position: absolute; top: 0; left: 100%; right: 0; bottom: 0; background-color: #fff; opacity: 0; transition: 0.3s ease-out; }
-.nav-toggle { position: absolute; top: 11px; right: -40px; width: 40px; height: 40px; background-color: #fff; border: 1px solid #d2d2d2; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1); transition: 0.3s ease-out;     z-index: 9;}
-.nav-toggle::after { content: ''; position: absolute; top: 50%; left: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; background-image: url("data:image/svg+xml,%3Csvg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.3401 14.91L4.43015 9L10.3402 3.09L8.75015 1.5L1.25015 9L8.75015 16.5L10.3401 14.91Z' fill='%23767676'/%3E%3Cpath d='M17.0913 14.91L11.1813 9L17.0913 3.09L15.5013 1.5L8.00131 9L15.5013 16.5L17.0913 14.91Z' fill='%23767676'/%3E%3C/svg%3E"); background-size: 18px 18px; transition: 0.3s ease-out; }
-.nav-toggle:hover, .nav-toggle:focus { background-color: var(--primary-txt-color); border-color: var(--primary-txt-color); }
-.nav-toggle:hover::after,.nav-toggle:focus::after { background-image: url("data:image/svg+xml,%3Csvg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.3401 14.91L4.43015 9L10.3402 3.09L8.75015 1.5L1.25015 9L8.75015 16.5L10.3401 14.91Z' fill='white'/%3E%3Cpath d='M17.0913 14.91L11.1813 9L17.0913 3.09L15.5013 1.5L8.00131 9L15.5013 16.5L17.0913 14.91Z' fill='white'/%3E%3C/svg%3E"); }
-.nav-toggle.hide::after { transform: rotate(180deg); }
-
-
+/* navigation*/
 .navigation{margin-top: 30px; display: flex; justify-content: flex-end; padding-right: 30px;}
 .navigation > span +span {padding-left:20px;position: relative;}
 .navigation > span +span:after {content:">"; display:block; position: absolute; left:8px; top:0}
 .navigation > span.home{background:url('/images/icon_home.svg') no-repeat left center;width:15px; height:15px; }
+
+
 </style>

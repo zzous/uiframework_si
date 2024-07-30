@@ -32,7 +32,7 @@ const onClickTip = (e, type) => {
     console.log(document.querySelector('.pageView').getBoundingClientRect().top);
     const ele = e.target.nextSibling;
    
-    const clientRect =   e.target.getBoundingClientRect().top -document.querySelector('.pageView').getBoundingClientRect().top ;
+    const clientRect =   e.target.getBoundingClientRect().top - document.querySelector('.pageView').getBoundingClientRect().top ;
     const clientRectleft =   e.target.getBoundingClientRect().left - document.querySelector('.pageView').getBoundingClientRect().left;
     if (type === 'left') {
         state.offsetTop = clientRect - 10;

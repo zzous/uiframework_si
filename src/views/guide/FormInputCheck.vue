@@ -38,8 +38,7 @@ const state = reactive({
     codeSample: [
         {
             title: 'HTML',
-            sampleCodeJS: `
-//단일사용
+            sampleCodeJS: `//단일사용
 <span class="checkbox"><input type="checkbox" id="input11" name="checkgroup"><label for="input11">버튼명</label></span>
 //버튼 형태로 사용
 <div class="checkbox-group btn-group">
@@ -91,19 +90,7 @@ const state = reactive({
 .switch input[type="radio"]:checked+label::after, .switch input[type="checkbox"]:checked+label::after{left:4px}
 .switch input[type="radio"]+label:checked:before, .switch input[type="checkbox"]:checked+label::before{background-color: var(--point-txt-color);}
 `
-        },
-//         {
-//             title: 'JS',
-//             sampleCodeJS: `// 오픈 이벤트
-// const openAcc = (event) => {
-//     const parEle = event.target.parentElement;
-//     if (parEle.classList.contains('open')) {
-//         parEle.classList.remove('open');
-//     } else {
-//         parEle.classList.add('open');
-//     }
-// };`  
-//   },
+        }
     ]
 });
 const toggleAcc = (idx) => {

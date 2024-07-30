@@ -62,7 +62,13 @@
                 <CardBox class="paytable" :cardTitle="'월별 현황'">
                     <template #cardContent>
                         <div style="height:100px">
-                            <BarChart :unit="state.unit" :chartBar="state.chartBar" :chartId="'ChartBar4'" :chartColorType="'5142b2'"></BarChart>
+                            <BarChart
+                                :unit="state.unit"
+                                :chartBar="state.chartBar"
+                                :unitText ="'(횟수)'"
+                                :chartId="'ChartBar4'"
+                                :chartColorType="'5142b2'"
+                            />
                         </div>
                     </template>
                 </CardBox>
@@ -83,7 +89,8 @@
                             
                                 <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 17,400</strong></div>
                                 <span class="label">사용량</span>
-                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:10%"></em></div> <em class="datarate">10%</em></div>
+                                <BarSimple :rate="'50'" :id="'chart1'"  />
+                                
                             </div>
                         </div>
                     </template>
@@ -98,7 +105,7 @@
                                 </div>
                                 <div class="totalCount"><span class="label">합계 금액</span><strong>₩ 2,017,400</strong></div>
                                 <span class="label">사용량</span>
-                                <div class="barbox"><div class="barChart" id="ablestorage-0"><em class="bar" style="width:50%"></em></div> <em class="datarate">50%</em></div>
+                                <BarSimple :rate="'30'" :id="'chart1'"  />
                             </div>
                         </div>
                     </template>
@@ -134,6 +141,7 @@
 import { defineComponent, onMounted, reactive, computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import DatePicker from '@/components/DatePicker.vue';
+import BarSimple from '@/components/BarSimple.vue';
 import { useCommFunc } from '@/core/helper/common.js';
 const {  dayJS, goToPage } = useCommFunc();
 const state = reactive({
@@ -195,7 +203,6 @@ const state = reactive({
         {label: 'AWS Secrets Manager', cost: '0.03'},
         {label: 'EC2 - Other', cost: '261.96'}
     ]
-
 });
 const onChangeSelect  = (event) => {
     const openEle = event.currentTarget.parentNode;
@@ -264,10 +271,10 @@ const onClickSelsect = (label) => {
 .open.select-wrap .btnselectlist ul li:nth-of-type(3){transition-delay: .3s;}
 .open.select-wrap .btnselectlist ul li:nth-of-type(4){transition-delay: .35s;}
 .open.select-wrap .btnselectlist ul li:nth-of-type(5){transition-delay: .4s;}
-.accountCard{border-radius:10px; padding:20px; background:var(--primary-txt-color);position: relative;width:250px; height:296px;}
+.accountCard{border-radius:10px; padding:20px; background:var(--default-txt-color);position: relative;width:250px; height:296px;}
 .accountCard:before{content:'';display: block; width:30px; height:30px;background:url('/images/icon_chartbg.svg') no-repeat 0 0/100%; margin-bottom:15px;}
 .accountCard .label{font-size:13px; margin-bottom:5px;display: block;  letter-spacing:-1px;}
-.accountCard  .cardStrong{font-weight: 700; font-size: 18px;}
+.accountCard .cardStrong{font-weight: 700; font-size: 18px;}
 .totalCount{margin:10px 0;}
 .totalCount > strong{font-size: 30px; letter-spacing:-1px;}
 .totalCount > strong em{font-size: 20px; letter-spacing:-1px;}

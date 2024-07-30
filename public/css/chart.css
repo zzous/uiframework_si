@@ -1,303 +1,44 @@
-.ui-chart {
-  height: 100%;
-  min-height: 300px;
-  padding-bottom: 30px;
-}
-.ui-bar-chart {
-  display: flex;
-  position: relative;
-  height: 100%;
-  padding-bottom: 20px;
-}
-.ui-bar-chart .ui-bar-x {
-  flex: 1;
-  border-bottom: 1px solid #d2d2d2;
-}
-.ui-bar-x .unit {
-  position: absolute;
-  bottom: -4px;
-  right: 0;
-  font-size: 12px;
-}
-.ui-bar-chart .ui-bar-y {
-  border-right: 1px solid #d2d2d2;
-}
-.ui-bar-y .unit {
-  position: absolute;
-  top: -3px;
-  left: 0;
-  font-size: 12px;
-}
-.ui-bar-x-unit {
-  display: flex;
-  height: 100%;
-  margin-right: 30px;
-}
-.ui-bar-x-unit li {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-.ui-bar-x-unit li .bar {
-  position: absolute;
-  bottom: 0;
-  left: 25%;
-  width: 50%;
-  background-color: var(--point-txt-color);
-  border-radius: 5px 5px 0 0;
-  cursor: pointer;
-}
-.ui-chart .ratetext {
-  display: none;
-}
-
+.ui-chart { height: 100%; min-height: 300px; padding-bottom: 30px; } 
+.ui-bar-chart { display: flex; position: relative; height: 100%; padding-bottom: 20px; }
+.ui-bar-chart .ui-bar-x { flex: 1; border-bottom: 1px solid #d2d2d2; }
+.ui-bar-x .unit { position: absolute; bottom: -4px; right: 0; font-size: 12px; }
+.ui-bar-chart .ui-bar-y { border-right: 1px solid #d2d2d2; } 
+.ui-bar-y .unit { position: absolute; top: -3px; left: 0; font-size: 12px; }
+.ui-bar-x-unit { display: flex; height: 100%; margin-right: 30px; }
+.ui-bar-x-unit li { position: relative; width: 100%; height: 100%; text-align: center; }
+.ui-bar-x-unit li .bar { position: absolute; bottom: 0; left: 25%; width: 50%; background-color: var(--point-txt-color); border-radius: 5px 5px 0 0; cursor: pointer; }
+.ui-chart .ratetext { display: none; }
 .ui-bar-x-unit li .x-value,
-.ui-bar-x-unit li .x-value {
-  position: absolute;
-  bottom: -26px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
-.ui-bar-y-unit {
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-end;
-  justify-self: flex-end;
-  height: 100%;
-}
-.ui-bar-y-unit li {
-  display: flex;
-  flex-direction: column-reverse;
-  position: relative;
-  height: 100%;
-  padding-right: 20px;
-  line-height: 0;
-}
-.ui-bar-y-unit li::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 6px;
-  height: 1px;
-  background-color: #d2d2d2;
-}
-.ui-bar-y-unit li .bar {
-  background-color: var(--point-bar-color);
-  border-radius: 0 5px 5px 0;
-}
-.ui-bar-chart.hor {
-  display: block;
-}
-.ui-bar-chart.hor .ui-bar-y {
-  display: flex;
-  height: 100%;
-  border: none;
-}
-.ui-bar-chart.hor .ui-bar-y-unit {
-  width: 100%;
-  flex-direction: column;
-}
-.ui-bar-chart.hor .ui-bar-y-unit li {
-  flex-direction: unset;
-  align-items: center;
-  width: 100%;
-  line-height: normal;
-  padding-right: 0;
-}
-.ui-bar-chart.hor .ui-bar-y-unit li::after {
-  display: none;
-}
-.ui-bar-chart.hor .ui-bar-y-unit li .lb {
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  position: relative;
-  width: 20%;
-  height: 100%;
-  padding-right: 14px;
-  text-align: right;
-  border-right: 1px solid #d2d2d2;
-}
-.ui-bar-chart.hor .ui-bar-y-unit li .graph {
-  display: block;
-  position: relative;
-  width: 80%;
-  height: 100%;
-}
-.ui-bar-chart.hor .ui-bar-y-unit li .graph .bar {
-  position: absolute;
-  top: 25%;
-  left: 0;
-  height: 50%;
-  border-radius: 0 5px 5px 0;
-  background-color: var(--point-bar-color);
-}
-.ui-bar-chart.hor .ui-bar-x {
-  margin-left: 20%;
-}
-.ui-bar-chart.hor .ui-bar-x-unit {
-  margin-right: 0;
-  position: relative;
-  left: -27px;
-}
-.ui-bar-chart.hor .ui-bar-x-unit li::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  width: 1px;
-  height: 6px;
-  background-color: #d2d2d2;
-}
-.ui-bar-chart.hor .ui-bar-x-unit li:nth-of-type(1)::before {
-  display: none;
-}
+.ui-bar-x-unit li .x-value { position: absolute; bottom: -26px; left: 0; width: 100%; text-align: center; }
+.ui-bar-y-unit { display: flex; flex-direction: column-reverse; align-items: flex-end; justify-self: flex-end; height: 100%; }
+.ui-bar-y-unit li { display: flex; flex-direction: column-reverse; position: relative; height: 100%; padding-right: 20px; line-height: 0; }
+.ui-bar-y-unit li::after { content: ""; position: absolute; bottom: 0; right: 0; width: 6px; height: 1px; background-color: #d2d2d2; }
+.ui-bar-y-unit li .bar { background-color: var(--point-bar-color); border-radius: 0 5px 5px 0; }
+.ui-bar-chart.hor { display: block; }
+.ui-bar-chart.hor .ui-bar-y { display: flex; height: 100%; border: none; }
+.ui-bar-chart.hor .ui-bar-y-unit { width: 100%; flex-direction: column; }
+.ui-bar-chart.hor .ui-bar-y-unit li { flex-direction: unset; align-items: center; width: 100%; line-height: normal; padding-right: 0; }
+.ui-bar-chart.hor .ui-bar-y-unit li::after { display: none; }
+.ui-bar-chart.hor .ui-bar-y-unit li .lb { display: flex; align-items: center; justify-content: end; position: relative; width: 20%; height: 100%; padding-right: 14px; text-align: right; border-right: 1px solid #d2d2d2; }
+.ui-bar-chart.hor .ui-bar-y-unit li .graph { display: block; position: relative; width: 80%; height: 100%; }
+.ui-bar-chart.hor .ui-bar-y-unit li .graph .bar { position: absolute; top: 25%; left: 0; height: 50%; border-radius: 0 5px 5px 0; background-color: var(--point-bar-color); }
+.ui-bar-chart.hor .ui-bar-x { margin-left: 20%; } 
+.ui-bar-chart.hor .ui-bar-x-unit { margin-right: 0; position: relative; left: -27px; }
+.ui-bar-chart.hor .ui-bar-x-unit li::before { content: ""; position: absolute; top: -6px; left: 50%; width: 1px; height: 6px; background-color: #d2d2d2; }
+.ui-bar-chart.hor .ui-bar-x-unit li:nth-of-type(1)::before { display: none; }
+.ui-chart.chartNolabel .ui-bar-x { display: none; } 
+.ui-chart.chartNolabel .ratetext { display: block; position: absolute; right: 0px; bottom: -13px; display: flex; align-items: center; }
+.ui-chart.chartNolabel .rateValue{ margin-left: 10px; font-size: 14px; font-weight: 700; }
+.ui-chart.chartNolabel .ui-bar-chart.hor .ui-bar-y-unit li{ flex-wrap: wrap; margin: 8px 0; padding-right: 60px; }
+.ui-chart.chartNolabel .ui-bar-chart.hor .ui-bar-y-unit li .lb{ border: none; width: 100%; text-align: left; justify-content: flex-start; }
+.ui-chart.chartNolabel .ui-bar-chart.hor .ui-bar-y-unit li .graph { width: 100%; height: 10px; background: #eee; border-radius: 10px; }
+.ui-chart.chartNolabel .ui-bar-chart.hor .ui-bar-y-unit li .graph .bar{ height: 100%; left: 0; top: 0; border-radius: 10px; }
 
-.ui-chart.chartNolegend .ui-bar-x,
-.ui-chart.chartCompare .ui-bar-x {
-  display: none;
-}
-.ui-chart.chartNolegend .ratetext,
-.ui-chart.chartCompare .ratetext {
-  display: block;
-  position: absolute;
-  right: 0px;
-  bottom: -13px;
-  display: flex;
-  align-items: center;
-}
-.ui-chart.chartCompare .ratetext {
-  bottom: auto;
-  top: 0px;
-  flex-direction: row-reverse;
-}
-.ui-chart.chartNolegend .coreType,
-.ui-chart.chartCompare .coreType {
-  display: block;
-  font-size: 12px;
-  text-align: center;
-}
-.ui-chart.chartNolegend .coreType .coreall,
-.ui-chart.chartCompare .coreType .coreall {
-  width: 100%;
-  font-size: 11px;
-  display: block;
-}
-.ui-chart.chartNolegend .rateValue,
-.ui-chart.chartCompare .rateValue {
-  margin-left: 10px;
-  font-size: 14px;
-  font-weight: 700;
-}
-.ui-chart.chartCompare .rateValue {
-  margin-left: 0;
-  margin-right: 10px;
-}
-.ui-chart.chartNolegend .ui-bar-chart.hor .ui-bar-y-unit li,
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li {
-  flex-wrap: wrap;
-  margin: 8px 0;
-  padding-right: 60px;
-}
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li {
-  height: auto;
-  padding-right: 0;
-}
-.ui-chart.chartNolegend .ui-bar-chart.hor .ui-bar-y-unit li .lb,
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .lb {
-  border: none;
-  width: 100%;
-  text-align: left;
-  justify-content: flex-start;
-}
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .lb {
-  margin-bottom: 10px;
-}
-.ui-chart.chartNolegend .ui-bar-chart.hor .ui-bar-y-unit li .graph,
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .graph {
-  width: 100%;
-  height: 10px;
-  background: #eee;
-  border-radius: 10px;
-}
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .graph {
-  height: 20px;
-  border-radius: 0px;
-}
-.ui-chart.chartNolegend .ui-bar-chart.hor .ui-bar-y-unit li .graph .bar,
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .graph .bar {
-  height: 100%;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
-}
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y-unit li .graph .bar {
-  border-radius: 0;
-}
-.ui-chart.chartCompare .ui-bar-chart.hor .ui-bar-y {
-  height: auto;
-}
-
-.bar-tooltip {
-  opacity: 0;
-  position: fixed;
-  padding: 10px;
-  border: 1px solid #d2d2d2;
-  background-color: var(--base-wh-color);
-  border-radius: 5px;
-  font-size: 11px;
-  color: #666;
-  transform: translateX(-50%);
-  z-index: 10;
-  transition: opacity 0.3s, margin-top 0.3s;
-  margin-top: -10px;
-}
-.bar-tooltip::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  margin-left: -5px;
-  border-width: 1px 1px 0 0;
-  border-style: solid;
-  border-color: #d2d2d2;
-  background-color: var(--base-wh-color);
-  transform: rotate(135deg);
-}
-.bar-tooltip .t-sales-num {
-  display: block;
-  margin-top: 3px;
-  color: var(--point-txt-color);
-  text-align: right;
-}
-.bar-tooltip .t-countbox {
-  color: var(--base-txt-color);
-  display: flex;
-  justify-content: space-between;
-}
-.bar-tooltip .t-count {
-  font-weight: bold;
-  color: var(--point-txt-color);
-  margin-left: 10px;
-}
-.bar-tooltip .t-title {
-  display: block;
-  font-weight: bold;
-  color: var(--base-txt-color);
-  font-size: 13px;
-  margin-bottom: 5px;
-  text-align: left;
-}
-.bar-tooltip .t-date {
-  display: block;
-  text-align: left;
-  margin-top: 5px;
-}
-.bar:hover .bar-tooltip {
-  display: block;
-}
+.bar-tooltip { opacity: 0; position: fixed; padding: 10px; border: 1px solid #d2d2d2; background-color: var(--base-wh-color); border-radius: 5px; font-size: 11px; color: #666; transform: translateX(-50%); z-index: 10; transition: opacity 0.3s, margin-top 0.3s; margin-top: -10px; }
+.bar-tooltip::after { content: ""; position: absolute; bottom: -5px; left: 50%; width: 8px; height: 8px; margin-left: -5px; border-width: 1px 1px 0 0; border-style: solid; border-color: #d2d2d2; background-color: var(--base-wh-color); transform: rotate(135deg); }
+.bar-tooltip .t-sales-num { display: block; margin-top: 3px; color: var(--point-txt-color); text-align: right; }
+.bar-tooltip .t-countbox { color: var(--base-txt-color); display: flex; justify-content: space-between; }
+.bar-tooltip .t-count { font-weight: bold; color: var(--point-txt-color); margin-left: 10px; }
+.bar-tooltip .t-title { display: block; font-weight: bold; color: var(--base-txt-color); font-size: 13px; margin-bottom: 5px; text-align: left; }
+.bar-tooltip .t-date { display: block; text-align: left; margin-top: 5px; }
+.bar:hover .bar-tooltip { display: block; }

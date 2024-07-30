@@ -71,11 +71,11 @@ import { reactive, watch } from 'vue';
 const state = reactive({
     fileList: []
 });
- /**
- * @inputfile 파일업로드
- *  단일 파일 업로드
- *  API 처리 후  response로 받은값 저장 필요(삭제시 필요)
- */
+/**
+    * @inputfile 파일업로드
+    *  단일 파일 업로드
+    *  API 처리 후  response로 받은값 저장 필요(삭제시 필요)
+*/
 const uploadFile = async (value) => {
     const formData = new FormData();
     formData.append('file', value); 
@@ -88,10 +88,10 @@ const uploadFile = async (value) => {
         console.log(error);
     }
 };
- /**
- * @inputfile 파일 삭제
- * 전체 or 단일 삭제 처리 필요
- */
+/**
+    * @inputfile 파일 삭제
+    * 전체 or 단일 삭제 처리 필요
+*/
 const deleteFile = (value) => {
     console.log(value);
     if (value === undefined) {
@@ -108,29 +108,52 @@ const deleteFile = (value) => {
         {
             title: 'VUE COMPONENT',
             sampleCodeJS: `<template>
-    <div class="card" :style="flex-basis:\${state.cardWidth}px">
-        <div class="titlebox img" v-if="state.cardTitle">
-            <h1 class="pagetitle" >
-                {{state.cardTitle}}
-                <span class="subtext">{{state.cardSubtext}}</span>
-            </h1>
-            <slot name="btnArea"></slot>
+    <div>
+        <div class="btn-file"><input type="file" id="upload-file" hidden="" ref="fileUpload" @change="onChangeFile"><label class="btn-up" for="upload-file">파일첨부</label></div>
+        <div class="upload-file-box">
+            <div class="upload-file-head flex space-between">
+                <button type="button" class="del-all" @click="onDelete()" :disabled="state.fileList.length === 0"><span class="offscreen">전체파일삭제</span></button>
+                <span class="name">파일명</span><span class="volume">용량</span>
+            </div>
+            <div class="upload-file-list">
+                <div class="nonefile" v-if="state.fileList.length === 0">등록된 파일이 없습니다.</div>
+                <div class="upload-file-list-item flex space-between" v-for="(item, index) in state.fileList" :key="index">
+                    <button type="button" class="btn del btn-secondary" @click="onDelete(index)"><span class="offscreen">파일삭제</span></button>
+                    <span class="name">{{ item.name }}</span>
+                    <span class="volume" v-if="(item.size / (1024 * 1024)) < 0.1 ">0.1 MB</span>
+                    <span class="volume" v-else>{{ (item.size / (1024 * 1024)).toFixed(1) }} MB</span>
+                </div>
+            </div>
         </div>
-        <slot name="cardContent"  />
     </div>
 </template>
 \<script setup>
-import { computed, reactive } from 'vue';
-const props = defineProps({
-    cardWidth: Number, 
-    cardTitle: String,
-    cardSubtext: String 
-});
+import { getCurrentInstance, computed, reactive, ref } from 'vue';
+const props = defineProps(
+    {
+        fileList: Array
+    });
+const emit = defineEmits(['uploadFile', 'deleteFile']);
+const fileUpload = ref(null);
 const state = reactive({
-    cardTitle: computed(() => props.cardTitle),
-    cardWidth: computed(() => props.cardWidth),
-    cardSubtext: computed(() => props.cardSubtext)
-})
+    fileList: computed(() => props.fileList)
+});
+/**
+    * @inputfile 파일업로드
+    *  선택된 파일 form변경
+*/
+const onChangeFile = (e) => {
+    const value = Array.from(fileUpload.value.files)[0];
+    emit('uploadFile', value);
+    e.target.value = '';
+};
+/**
+    * @inputfile 파일삭제
+    * 리스트만 삭제
+*/
+const onDelete = (value) => {
+    emit('deleteFile', value);
+};
 <\/script>`
         },
         {

@@ -8,24 +8,15 @@
                         <span class="graph"  >
                             <span class="bar" :style="barStyle(item.rate, index)" @mouseover.stop.prevent="onClickBar($event,index)" @mouseout.stop.prevent="onCloseTip"></span>
                         </span>
-                        <span class="ratetext" v-if="state.chartClass && item.coreType">
-                            <span class="coreType">
-                                <em class="core">{{ item.coreType.a }}</em>
-                                <em class="core">/</em>
-                                <em class="core">{{ item.coreType.b }}</em>
-                                <em class="coreall" v-if="item.coreType.all">전체({{ item.coreType.all }})</em>
-                            </span>
-                            <em class="rateValue" :style="state.chartColorType ?`color:#${state.chartColorType[index]}`:`color:#${state.chartColor}`">{{ item.rate }}%</em>
+                        <span class="ratetext">
+                            <em class="rateValue" :style="Array.isArray(state.chartColorType) ?`color:#${state.chartColorType[index]}`:`color:#${state.chartColorType}`">{{ item.rate }}%</em>
                         </span>
                         <span class="bar-tooltip">
                             <span class="t-title">{{ item.name }}</span>
                             <span class="t-countbox">
                                 <em>{{item.name}}</em>
-                                <!---->
-                                <em class="t-count" v-if="state.chartClass" :style="state.chartColorType ?`color:#${state.chartColorType[index]}`:`color:#${state.chartColor}`" >{{item.rate}}%</em>
-                                <em class="t-count" v-else>{{item.rate}}건</em>
+                                <em class="t-count" :style=" Array.isArray(state.chartColorType) ?`color:#${state.chartColorType[index]}`:`color:#${state.chartColorType}`" >{{item.rate}}%</em>
                             </span>
-                            <strong class="t-sales-num" v-if="!state.chartClass">{{item.rate}}원</strong>
                             <span class="t-date">{{item.date}}{{item.time}}</span>
                         </span>
                     </li>
@@ -47,16 +38,14 @@ const props = defineProps(
     {
         unit: Array,
         chartBar: Array,
-        chartColorType: Array,
+        chartColorType: Array || String,
         chartId: String,
-        chartColor: String,
         chartClass: String
     });
 const state = reactive({
     chartBar: computed(() => props.chartBar),
     unit: computed(() => props.unit),
     chartId: computed(() => props.chartId),
-    chartColor: computed(() => props.chartColor),
     chartClass: computed(() => props.chartClass),
     chartColorType: computed(() => props.chartColorType)
    
@@ -83,15 +72,18 @@ const valueGap = () => {
 };
 /**
     * 그래프 스타일
-    * @description 해당 값/그래프 맥스 값을 백분율로, 컬러지정
-    * @params rate 
+    * 해당 값/그래프 맥스 값을 백분율로 높이 지정
+    * 단일,다중 색상지정
+    * 데이터가 %가 아닌 건으로 들어오는 경우 width계산식((rate / hight) * 100) > 100 ? '100%' : `${((rate / hight) * 100)}%`
+    * @params rate 그래프 비율 값
+    * @params index 그래프 순서
     * 
 */
 const barStyle = (rate, index) => {
     const hight = maxValue();
     return {
-        backgroundColor: state.chartColorType ? `#${state.chartColorType[index]}` : `#${state.chartColor}`,
-        width: state.chartClass ? `${rate}%` : ((rate / hight) * 100) > 100 ? '100%' : `${((rate / hight) * 100)}%`
+        backgroundColor: Array.isArray(state.chartColorType) ? `#${state.chartColorType[index]}` : `#${state.chartColorType}`,
+        width: `${rate}%`
     };
 };
 /**
@@ -123,7 +115,7 @@ const onClickBar = (target, index) => {
     * @description 마우스 클릭 위치 계산하여 툴팁 위치 설정
     * @params target, index
 */
-const onCloseTip = ()=>{
+const onCloseTip = () => {
     const barTooltip = document.querySelectorAll(`#${state.chartId} > li > .bar-tooltip`);
     for (const child of barTooltip) {
         child.style.opacity = 0;
@@ -132,5 +124,5 @@ const onCloseTip = ()=>{
         child.style.zIndex = -1;
         child.style.marginTop = -10 + 'px';
     }
-}
+};
 </script>

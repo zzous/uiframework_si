@@ -37,6 +37,9 @@ import Table from '@/views/guide/Table.vue';
 import DatePicker from '@/views/guide/DatePicker.vue';
 import Pageing from '@/views/guide/Pageing.vue';
 import Setting from '@/views/guide/Setting.vue';
+import BarChartSimple from '@/views/guide/BarChartSimple.vue';
+import BarChart from '@/views/guide/BarChart.vue';
+import BarCharHor from '@/views/guide/BarCharHor.vue';
 import { useCommFunc } from '@/core/helper/common.js';
 const { goToPage } = useCommFunc();
 const router = useRouter();
@@ -57,6 +60,9 @@ const state = reactive({
         {label: '폼-input', name: 'FormInput'},
         {label: '폼-input-file', name: 'FormFile'},
         {label: '폼-radio,checkbox', name: 'FormInputCheck'},
+        {label: '차트-기본bar', name: 'BarChartSimple'},
+        {label: '차트-bar세로형', name: 'BarChart'},
+        {label: '차트-bar가로형', name: 'BarCharHor'},
         {label: '데이터피커', name: 'DatePicker'},
         {label: '툴팁', name: 'ToolTip'},
         {label: '모달팝업', name: 'Modal'}
@@ -81,6 +87,9 @@ const componentsMap = {
     'FormInput': { component: FormInput, title: '폼-input' },
     'FormFile': { component: FormFile, title: '폼-input-file' },
     'FormInputCheck': { component: FormInputCheck, title: '폼-radio,checkbox' },
+    'BarChartSimple': { component: BarChartSimple, title: '차트-기본bar' },
+    'BarChart': { component: BarChart, title: '차트-bar세로형' },
+    'BarCharHor': { component: BarCharHor, title: '차트-bar가로형' },
     'DatePicker': { component: DatePicker, title: '데이터피커' },
     'Modal': { component: Modal, title: '모달팝업' },
     'ToolTip': { component: ToolTip, title: '툴팁' }
