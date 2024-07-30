@@ -38,31 +38,60 @@ const state = reactive({
     codeSample: [
         {
             title: 'HTML',
-            sampleCodeJS: `
-<!--alert-->
-<div class="toolTip">
+            sampleCodeJS: `<div class="toolTip">
     <button type="button" class="btn-tooltip">툴팁</button>
     <div class="tooltipbox left open"> <div>툴팁 내용</div></div>
 </div>`
         },
         {
-            title: 'CSS',
-            sampleCodeJS: `/* 툴팁 */
-.toolTip { display: inline-block; } 
-.tooltipbox { padding: 10px 15px; background: rgba(0, 0, 0, 0.5); color: #fff; font-size: 12px; border-radius: 3px; position: absolute; width: max-content; display: none; }
-.tooltipbox.open { display: block; }
-.tooltipbox:after { content: ""; display: block; position: absolute; width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-right: 4px solid rgba(0, 0, 0, 0.5); /* 화살표 */ left: -4px; top: 14px; }
-.tooltipbox.bottom:after { border-top: 4px solid transparent; border-left: 4px solid transparent; border-bottom: 4px solid rgba(0, 0, 0, 0.5); /* 화살표 */ border-right: 4px solid transparent; left: 50%; top: -8px; }
-.tooltipbox.right:after { border-top: 4px solid transparent; border-left: 4px solid rgba(0, 0, 0, 0.5); /* 화살표 */ border-bottom: 4px solid transparent; border-right: 4px solid transparent; left: 100%; top: calc(50% - 4px); }
-.tooltipbox.top:after { border-top: 4px solid transparent; border-left: 4px solid transparent; border-top: 4px solid rgba(0, 0, 0, 0.5); /* 화살표 */ border-bottom: 4px solid transparent; border-right: 4px solid transparent; left: 50%; top: 100%; }`
+            title: '템플릿에서 컴포넌트로 사용 시',
+            sampleCodeJS: `<!-- 
+    :toolContent: 툴팁내용(String)
+    :toolType: 툴팁 위치(String)
+    #toolTipcon 툴팁 내용 추가 슬롯명
+-->
+<ToolTip :toolContent="'툴팁 설명입니다.'" :toolType="'top'" />`
         },
         {
-            title: 'JS',
-            sampleCodeJS: `
-//툴팁 오픈
+            title: 'VUE COMPONENT',
+            sampleCodeJS: `<template>
+    <div class="toolTip">
+        <button type="button" class="btn-tooltip" @click="onClickTip($event, state.toolType)"></button>
+        <div :class="['tooltipbox', state.toolType]" :style="'top:\${(state.offsetTop)}px; left:\${(state.offsetLeft)}px'" @click="onCloseTip">
+            {{ toolContent }}
+            <slot name="toolTipcon"></slot>
+        </div>
+    </div>
+</template>
+\<script setup>
+import { onMounted, reactive, computed, ref } from 'vue';
+const props = defineProps(
+    {
+        toolType: {
+            type: String,
+            default: 'left',
+            description: '툴팁 위치'
+        },
+        toolContent: String
+        
+    });
+const emit = defineEmits(['selectDay']);
+const state = reactive({
+    toolType: computed(() => props.toolType),
+    toolContent: computed(() => props.toolContent),
+    offsetTop: null,
+    offsetLeft: null
+});
+/**
+    * 툴팁 열기
+    * @parms e 클릭 이벤트
+    * @parms type 툴팁 위치
+    * 
+*/
 const onClickTip = (e, type) => {
+    console.log(document.querySelector('.pageView').getBoundingClientRect().top);
     const ele = e.target.nextSibling;
-    const clientRect =   e.target.getBoundingClientRect().top -document.querySelector('.pageView').getBoundingClientRect().top ;
+    const clientRect =   e.target.getBoundingClientRect().top - document.querySelector('.pageView').getBoundingClientRect().top ;
     const clientRectleft =   e.target.getBoundingClientRect().left - document.querySelector('.pageView').getBoundingClientRect().left;
     if (type === 'left') {
         state.offsetTop = clientRect - 10;
@@ -79,10 +108,26 @@ const onClickTip = (e, type) => {
     }
     ele.classList.contains('open') ? ele.classList.remove('open') : ele.classList.add('open');
 };
-//툴팁 닫기
+/**
+    * 툴팁 닫기
+    * @parms e 클릭 이벤트
+    * 
+*/
 const onCloseTip = (e) => {
     e.target.classList.remove('open');
-};`
+};
+<\/script>`
+        },
+        {
+            title: 'CSS',
+            sampleCodeJS: `/* 툴팁 */
+.toolTip { display: inline-block; } 
+.tooltipbox { padding: 10px 15px; background: rgba(0, 0, 0, 0.5); color: #fff; font-size: 12px; border-radius: 3px; position: absolute; width: max-content; display: none; }
+.tooltipbox.open { display: block; }
+.tooltipbox:after { content: ""; display: block; position: absolute; width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-right: 4px solid rgba(0, 0, 0, 0.5); /* 화살표 */ left: -4px; top: 14px; }
+.tooltipbox.bottom:after { border-top: 4px solid transparent; border-left: 4px solid transparent; border-bottom: 4px solid rgba(0, 0, 0, 0.5); /* 화살표 */ border-right: 4px solid transparent; left: 50%; top: -8px; }
+.tooltipbox.right:after { border-top: 4px solid transparent; border-left: 4px solid rgba(0, 0, 0, 0.5); /* 화살표 */ border-bottom: 4px solid transparent; border-right: 4px solid transparent; left: 100%; top: calc(50% - 4px); }
+.tooltipbox.top:after { border-top: 4px solid transparent; border-left: 4px solid transparent; border-top: 4px solid rgba(0, 0, 0, 0.5); /* 화살표 */ border-bottom: 4px solid transparent; border-right: 4px solid transparent; left: 50%; top: 100%; }`
         }
     ]
 });

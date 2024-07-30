@@ -28,10 +28,15 @@ const state = reactive({
     offsetTop: null,
     offsetLeft: null
 });
+/**
+    * 툴팁 열기
+    * @parms e 클릭 이벤트
+    * @parms type 툴팁 위치
+    * 
+*/
 const onClickTip = (e, type) => {
     console.log(document.querySelector('.pageView').getBoundingClientRect().top);
     const ele = e.target.nextSibling;
-   
     const clientRect =   e.target.getBoundingClientRect().top - document.querySelector('.pageView').getBoundingClientRect().top ;
     const clientRectleft =   e.target.getBoundingClientRect().left - document.querySelector('.pageView').getBoundingClientRect().left;
     if (type === 'left') {
@@ -49,6 +54,11 @@ const onClickTip = (e, type) => {
     }
     ele.classList.contains('open') ? ele.classList.remove('open') : ele.classList.add('open');
 };
+/**
+    * 툴팁 닫기
+    * @parms e 클릭 이벤트
+    * 
+*/
 const onCloseTip = (e) => {
     e.target.classList.remove('open');
 };

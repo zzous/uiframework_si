@@ -39,8 +39,7 @@ const state = reactive({
     codeSample: [
         {
             title: 'HTML',
-            sampleCodeJS: `
-<!--alert-->
+            sampleCodeJS: `<!--alert-->
 <div class="ui-alert warning">
     <div class="ui-alert-wrap">
         <div class="modal-header">
@@ -74,8 +73,7 @@ const state = reactive({
             </div>
         </div>
     </div>
-</div>
-`
+</div>`
         },
         {
             title: 'CSS',
