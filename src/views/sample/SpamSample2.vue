@@ -6,7 +6,7 @@
             <div class="tbl_search">
                 <h2 class="subTitle">검색  조건</h2>
                 <div class="tbl_searchin">
-                    <div class="searchItem widthFixed">
+                    <div class="searchItem full">
                         <TextInput
                             :label="'가입자번호'"
                             :icon="false"

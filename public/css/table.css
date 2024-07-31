@@ -99,18 +99,24 @@
 
 /* 테이블 상단 검색 */
 .tbl_search{ margin:20px 0 40px 0; padding:20px; border:solid 1px #ddd; background:#f1f1f1; position: relative; }
-.tbl_searchin{display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap;}
+.tbl_searchin{}
 .subTitle{font-size:18px; padding-left:26px;margin-bottom:20px; background:url('/images/title_search.svg') no-repeat left center/17px;}
-.searchItem{display: flex;justify-content:flex-start; align-items: center;}
-.searchItem.full{width:100%; margin:10px 0;margin-left:0 !important;}
-.searchItem.widthFixed > .formInputbox{width:320px;}
-.searchItem.widthFixed > .formInputbox .inputbox{width:100%;}
+.searchItemDate{width:100%;; display: flex; align-items: center;}
+.itemlable{margin-right:10px; min-width: 100px;}
+.searchItem .labelbox{flex:0 0 100px !important; margin-right:10px !important}
+.searchItem{ display: flex; align-items: center;}
+.searchItem.both{width:675px;margin-top:10px; margin-left:0 !important;}
+.searchItem.both > div{width:50%}
+.searchItem.both > div .inputbox{flex:1}
+.searchItem.both > div+div{margin-left:10px;}
+.searchItem.full{width:675px;margin-top:10px;}
+.searchItem.full > div{width:100%}
+.searchItem.full > div .inputbox{flex:1;}
 .searchItem .itemlable{margin-right:10px;}
 .searchItem + .searchItem{margin-left:15px;}
-.searchItem.full + .searchItem{margin-left:0px;}
-.searchItem .formInputbox.labelleft .labelbox{flex:0 0 auto; margin-right:10px; margin-bottom:0}
 .searchItem .inputbox.text input[type="text"]{height:32px; line-height: 32px;width:100%;}
-.searchItem  .custom-select{min-width:226px}
+.searchItem  .selectlabelbox{display: flex;align-items: center;}
+.searchItem  .selectlabelbox .custom-select{width:100%;}
 
 
 /* 버튼 영역 */
@@ -118,5 +124,5 @@
 .btnwrap button + button{margin-left:15px;}
 .btnwrap.center{justify-content: center;}
 .btnwrap.right{justify-content: flex-end;}
-.tbl_search .btnwrap{position: absolute; right:30px; top:60px; margin-top:0;}
+.tbl_search .btnwrap{position: absolute; right:30px; bottom:30px; margin-top:0;}
 

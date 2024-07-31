@@ -98,7 +98,7 @@ const state = reactive({
                 { menu: '운영자 차단/허용관리',
                     pagelink: null,
                     depth: [
-                        { menu: '악성 URL', pagelink: '', depth: [] }
+                        { menu: '악성 URL', pagelink: '/spamsample3', depth: [] }
                     ]
                 },
                 { menu: '동적필터링',

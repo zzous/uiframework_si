@@ -1,21 +1,32 @@
 <template>
     <div class="pageView">
         <div class="pageBgbox">
-            <TitleBox :pageTitle="'SMS/MMS 차단내역조회'" :subdec="'(22)'" :imgIcon="true"></TitleBox>
+            <TitleBox :pageTitle="'악성URL'" :subdec="'(22)'" :imgIcon="true"></TitleBox>
             <!-- 검색조건 -->
             <div class="tbl_search">
                 <h2 class="subTitle">검색  조건</h2>
                 <div class="tbl_searchin">
                     <div class="searchItemDate">
-                        <div class="itemlable">기간</div>
+                        <div class="itemlable">기간 조회</div>
                         <DatePicker ref="datepicker" :dayOpionType=state.dayOpionType  @selectDay ="selectDay"/>
                     </div>
-                    <div class="searchItem full">
+                    
+                    <div class="searchItem both">
                         <TextInput
-                            :label="'고객번호'"
+                            :label="'악성 URL'"
                             :icon="false"
                             :placeholder="'고객번호 7자리를 입력해 주세요'"
                             :id="'input1'"
+                            :error="'다시 입력해 주세요'"
+                            :value = "''"
+                            :className="['labelleft', {error:state.inputType3.error}]"
+                            @setValue = setValue
+                        />
+                        <TextInput
+                            :label="'비고'"
+                            :icon="false"
+                            :placeholder="'고객번호 7자리를 입력해 주세요'"
+                            :id="'input2'"
                             :error="'다시 입력해 주세요'"
                             :value = "''"
                             :className="['labelleft', {error:state.inputType3.error}]"
@@ -47,26 +58,29 @@
                 </div>
             </div>
             <div class="tbl-wrap">
+                <div class="table-util flex justify-end">
+                    <div class="btn-set-m flex align-end">
+                        <span class="table-total">조회결과 총 <strong>{{state.rowData.length}}</strong>건</span>
+                        <button type="button" class="btn btn-ss">
+                            <span class="ico-download"></span>파일다운로드
+                        </button>
+                    </div>
+                </div>
+            
                 <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                    class="ag-theme-alpine" :domLayout="'autoHeight'" rowSelection="multiple">
+                    class="ag-theme-alpine" :domLayout="'autoHeight'" >
                 </AgGridVue>
                 <div class="ui-no-date" v-if="state.rowData.length === 0"><p>내용이 없습니다.</p></div>
             </div>
-            <div  class="btnwrap right"><button type="button" class="btn posi">메세지 복원</button></div>
+            
             <!-- 페이징 컴포넌트 -->
             <PageNavigation :cntPerPage='pager.size' :itemCount='pager.totalCnt' :currentPage="pager.current"
              @changedPage="onChangedPage" />
-             <TitleBox :pageTitle="'RCS 차단내역조회'" :subdec="'(22)'" :imgIcon="true" style="margin:50px 0  20px 0;"></TitleBox>
-             <div class="tbl-wrap">
-                <AgGridVue :columnDefs="state.value" :rowData="state.rowData" :defaultColDef="state.defaultColDef"
-                    class="ag-theme-alpine" :domLayout="'autoHeight'" rowSelection="multiple">
-                </AgGridVue>
-                <div class="ui-no-date" v-if="state.rowData.length === 0"><p>내용이 없습니다.</p></div>
+             <div  class="btnwrap center">
+                <button type="button" class="btn posi">등록</button>
+                <button type="button" class="btn">선택삭제</button>
             </div>
-            <div  class="btnwrap right"><button type="button" class="btn posi">RCS 메세지 복원</button></div>
-            <!-- 페이징 컴포넌트 -->
-            <PageNavigation :cntPerPage='pager.size' :itemCount='pager.totalCnt' :currentPage="pager.current"
-             @changedPage="onChangedPage" />
+             
         </div>
     </div>
 </template>
@@ -92,15 +106,39 @@ const state = reactive({
         error: false
     },
     value: [
-        { headerName: '복원구분', headerCheckboxSelection: true, checkboxSelection: true, maxWidth: 120 },
-        { headerName: '차단사유',  field: 'cloudtype', flex: 1},
-        { headerName: '메세지수신시간',  field: 'abled', flex: 1 },
-        { headerName: '발신번호',  field: 'block',  maxWidth: 100},
-        { headerName: '회신번호',  field: 'data', maxWidth: 100 },
-        { headerName: 'SMS/MMS',  field: 'zone', flex: 1 },
-        { headerName: '상세정보',  field: 'positon', flex: 1 }
+        { headerName: '#', valueGetter: 'node.rowIndex + 1', maxWidth: 60 },
+        { headerCheckboxSelection: true, checkboxSelection: true, maxWidth: 80 },
+        { headerName: '악성URL',  field: 'url', flex: 1},
+        { headerName: '비고',  field: 'etc', maxWidth: 150},
+        { headerName: '건수',  field: 'num',  maxWidth: 100},
+        { headerName: '등록일',  field: 'registdate', maxWidth: 150 },
+        { headerName: '최종차단일',  field: 'stopdate', maxWidth: 120 },
+        { headerName: '수정',
+            field: 'edit',
+            maxWidth: 250,
+            cellRenderer: (params) => {
+                const tagString = `<div class="tablebt"><button class="btn btn-ss submit" id="edit-${params.node.rowIndex}">수정</button> <button class="btn btn-ss error" id="del-${params.node.rowIndex}">삭제</button></div>`;
+                const tagTarget = document.createElement('div');
+                tagTarget.classList.add('btns');
+                tagTarget.innerHTML = tagString;
+                const buttoneditTarget = tagTarget.querySelector(`#edit-${params.node.rowIndex}`);
+                const buttondelTarget = tagTarget.querySelector(`#del-${params.node.rowIndex}`);
+                buttoneditTarget.addEventListener('click', (event) => {
+                    console.log(`${params.node.rowIndex} 줄 수정버튼 클릭`);
+                });
+                buttondelTarget.addEventListener('click', (event) => {
+                    console.log(`${params.node.rowIndex} 줄 삭제버튼 클릭`);
+                });
+                return tagTarget;
+            }
+        }
     ],
-    rowData: [],
+    rowData: [
+        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '2024.04.03 1120', stopdate: '2024.04.03'},
+        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '2024.04.03 1120', stopdate: '2024.04.03'},
+        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '2024.04.03 1120', stopdate: '2024.04.03'},
+        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '2024.04.03 1120', stopdate: '2024.04.03'}
+    ],
     defaultColDef: {
         sortable: false,
         filter: false,
@@ -115,16 +153,16 @@ const  selectDay = (fromDay, toDay) => {
     console.log(dayJS(fromDay).format('YYYY-MM-DD'), dayJS(toDay).format('YYYY-MM-DD'));
 };
 /**
- * @input 에러체크
- */
+    * @input 에러체크
+*/
 watch(state, () => {
     state.inputType1.value.length > 5 ? state.inputType1.error = true : state.inputType1.error = false;
     state.inputType2.value.length > 5 ? state.inputType2.error = true : state.inputType2.error = false;
     state.inputType3.value.length > 9 ? state.inputType3.error = true : state.inputType3.error = false;
 });
 /**
- * @input value upDate
- */
+    * @input value upDate
+*/
 const setValue = (value) => {
     console.log(value);
     state.inputType1.value = value;
@@ -145,3 +183,7 @@ const onChangedPage = (num) => {
 
 
 </script>
+<style scoped>
+.custom-select + .itemlable{margin-left:10px;}
+.searchItem .formInputbox +.formInputbox {margin-left:10px}
+</style>

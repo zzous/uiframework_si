@@ -132,6 +132,11 @@ const routes = [
                 path: '/spamsample2',
                 name: 'spamsample2',
                 component: () => import('@/views/sample/SpamSample2.vue')
+            },
+            {
+                path: '/spamsample3',
+                name: 'spamsample3',
+                component: () => import('@/views/sample/SpamSample3.vue')
             }
         ]
     },
