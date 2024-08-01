@@ -51,6 +51,23 @@
                             </select>
                         </div>
                     </div>
+                    <div class="searchItem full">
+                        <div class="labelbox">코드명</div>
+                        <div class="formSingleBox">
+                            <span class="radio" >
+                                <input type="radio" id="input4" />
+                                <label for="input4">코드</label>
+                            </span>
+                            <span class="radio" >
+                                <input type="radio" id="input4" />
+                                <label for="input4">코드</label>
+                            </span>
+                            <span class="radio" >
+                                <input type="radio" id="input4" />
+                                <label for="input4">코드</label>
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <div class="btnwrap">
                     <button type="button" class="btn posi">조회</button>
@@ -111,8 +128,20 @@ const state = reactive({
         { headerName: '악성URL',  field: 'url', flex: 1},
         { headerName: '비고',  field: 'etc', maxWidth: 150},
         { headerName: '건수',  field: 'num',  maxWidth: 100},
-        { headerName: '등록일',  field: 'registdate', maxWidth: 150 },
-        { headerName: '최종차단일',  field: 'stopdate', maxWidth: 120 },
+        { headerName: '등록일',
+            field: 'registdate',
+            maxWidth: 150,
+            valueGetter: (params) => {
+                return dayJS(params.data.registdate).format('YYYY-MM-DD hh:mm:ss');
+            }
+        },
+        { headerName: '최종차단일',
+            field: 'stopdate',
+            maxWidth: 120,
+            valueGetter: (params) => {
+                return dayJS(params.data.registdate).format('YYYY-MM-DD');
+            }
+        },
         { headerName: '수정',
             field: 'edit',
             maxWidth: 250,
@@ -134,10 +163,10 @@ const state = reactive({
         }
     ],
     rowData: [
-        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '2024.04.03 1120', stopdate: '2024.04.03'},
-        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '2024.04.03 1120', stopdate: '2024.04.03'},
-        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '2024.04.03 1120', stopdate: '2024.04.03'},
-        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '2024.04.03 1120', stopdate: '2024.04.03'}
+        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '202404031120', stopdate: '20240403'},
+        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '202404031120', stopdate: '20240403'},
+        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '202404031120', stopdate: '20240403'},
+        {url: 'www.naver.com', etc: '운영자 차단등록', num: '0', registdate: '202404031120', stopdate: '20240403'}
     ],
     defaultColDef: {
         sortable: false,

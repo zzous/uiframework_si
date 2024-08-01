@@ -46,7 +46,7 @@
 .tbl-wrap .ag-header-row:not(:first-child) .ag-header-group-cell.ag-header-group-cell-with-group { border-top: none; }
 .centered .ag-header-cell-label { justify-content: center !important; }
 .ag-row .centered { justify-content: center !important; text-align: center; }
-.tbl-wrap .table-util { margin-bottom: 10px; } 
+.tbl-wrap .table-util { margin: 10px 0; } 
 .tbl-wrap .ag-header-container { width: 100% !important; } 
 .tbl-wrap .ag-center-cols-container { width: 100% !important; }
 .tbl-wrap .ag-root-wrapper { border: none; }
@@ -109,7 +109,7 @@
 .searchItem.both > div{width:50%}
 .searchItem.both > div .inputbox{flex:1}
 .searchItem.both > div+div{margin-left:10px;}
-.searchItem.full{width:675px;margin-top:10px;}
+.searchItem.full{width:675px;margin-top:10px; margin-left:0 !important;}
 .searchItem.full > div{width:100%}
 .searchItem.full > div .inputbox{flex:1;}
 .searchItem .itemlable{margin-right:10px;}
@@ -117,7 +117,7 @@
 .searchItem .inputbox.text input[type="text"]{height:32px; line-height: 32px;width:100%;}
 .searchItem  .selectlabelbox{display: flex;align-items: center;}
 .searchItem  .selectlabelbox .custom-select{width:100%;}
-
+.selectlabelbox.full .custom-select{width:100%;}
 
 /* 버튼 영역 */
 .btnwrap{margin-top:30px; display: flex;}

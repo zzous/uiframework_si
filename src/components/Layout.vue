@@ -57,11 +57,11 @@
                         <!--
                             컨텐츠 영역
                             navigation은 라우터 path로 예외처리
-                         -->
-                         <div class="navigation" v-if="state.thisPage !=='/dashboard' && state.thisPage !=='/boxlayout'">
+                        -->
+                        <div class="navigation" v-if="state.thisPage !=='/dashboard' && state.thisPage !=='/boxlayout'">
                             <span class="home"></span>
                             <span v-for="(item, index) in state.breadcrumbs" :key="index">{{ item.menu }}</span>
-                         </div>
+                        </div>
                         <RouterView />
                     </div>
                 </div>
@@ -101,10 +101,10 @@ const state = reactive({
                         { menu: '악성 URL', pagelink: '/spamsample3', depth: [] }
                     ]
                 },
-                { menu: '동적필터링',
+                { menu: '설정관리',
                     pagelink: null,
                     depth: [
-                        { menu: '동적 시뮬레이터 조회', pagelink: '', depth: [] }
+                        { menu: '트래픽 감시 제외 관리', pagelink: '/spamsample4', depth: [] }
                     ]
                 }
             ]
