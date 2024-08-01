@@ -1,17 +1,50 @@
-import { ref, inject } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-
+<template>
+    <div class="guidecontent">
+        <div class="guidetitle">{{ title }}
+            <button type="button" class="btn-sample" @click="goToPage('/dashboard')">샘플페이지 보기</button>
+        </div>
+        <div class="guidememo">
+            <div class="memotitle">기본사용</div>
+            <ul class="memolist">
+                <li>헬스케어 사용 기준(2023)</li>
+                <li>validation, img사이즈 체크</li>
+            </ul>
+        </div>
+        <div class="codewrap" v-for="(item, index) in state.codeSample" :key="index">
+            <div :class="['codetitle', state.className]" >
+                <span @click="toggleAcc(index)">{{item.title}}</span>
+                <button type="button" class="btn btn-ss" @click="copyCode(item.sampleCodeJS)"> <span class="ico-menu"></span> 복사하기</button>
+            </div>
+                  <div :class="['code', item.title]" >
+<pre>
+<code>
+{{ item.sampleCodeJS }}
+</code>
+</pre>
+            </div>
+        </div>
+    </div>
+</template>
+<script setup>
+import { defineComponent, onMounted, reactive, computed, getCurrentInstance } from 'vue';
+import { useRouter } from 'vue-router';
+import { useCommFunc } from '@/core/helper/common.js';
+const props = defineProps({ title: String });
+const { goToPage } = useCommFunc();
+const state = reactive({
+    className: '',
+    codeSample: [
+        {
+            title: 'common.js',
+            sampleCodeJS: `import { useRouter, useRoute } from 'vue-router';
 export function useCommFunc() {
-    const router = useRouter();
-    //모달 데이터
-    const $Modal = inject('$Modal');
-    const dayJS = inject('dayJS');
     const goToPage = (params) => {
         router.push(params);
     };
     /**
      * images size check ( width * height )
      * @file image
+     * @callback 
     */
     const getImageInfo = (file, callback) => {
         console.log('>>load reader', file);
@@ -74,15 +107,6 @@ export function useCommFunc() {
         const fomatted = brn?.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3');
         return fomatted;
     };
-
-    const getCommonCode = async (code, callback) => {
-        try {
-            const response = await _getCommonCode(code);
-            callback(response.data.data.list);
-        } catch (error) {
-            console.log(error);
-        }
-    };
     /**
      * 페이지 새로고침
      * 
@@ -114,8 +138,8 @@ export function useCommFunc() {
             console.log(error);
         }
     };
-
-    return {
+};
+return {
         goToPage,
         pageReload,
         getCommonCode,
@@ -123,11 +147,40 @@ export function useCommFunc() {
         formatterBrn,
         validPassword,
         validEmail,
-        getImageInfo,
-        
-
-        $Modal,
-        dayJS
-
-    };
+        getImageInfo
+};`
+        },
+        {
+            title: '템플릿에서 사용 시',
+            sampleCodeJS: `\<script setup>
+import { onMounted, reactive, computed, ref } from 'vue';
+import { useCommFunc } from '@/core/helper/common.js';
+const { goToPage, pageReload, getImageInfo ... } = useCommFunc();
+const fileListUp = async (type) => {
+    await getImageInfo(업로드된 파일, imageSizeCallback);
+    const imageSizeCallback = (callback) => {
+    console.log(callback.width, callback.fileType);
+    // 이미지 크기, 파일 확장자
+    goToPage('라우터 주소')
 }
+<\/script>`
+        }
+    ]
+});
+const toggleAcc = (idx) => {
+    const tag = document.getElementsByClassName('codewrap');
+    tag[idx].classList.contains('up') ? tag[idx].classList.remove('up') : tag[idx].classList.add('up');
+};
+const copyCode = (code) => {
+    navigator.clipboard.writeText(code)
+        .then(() => {
+            alert('코드가 클립보드에 복사되었습니다.');
+        })
+        .catch((err) => {
+            console.error('클립보드 복사 실패:', err);
+            alert('클립보드 복사에 실패했습니다.');
+        });
+};
+
+</script>
+

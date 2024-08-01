@@ -40,6 +40,11 @@ import Setting from '@/views/guide/Setting.vue';
 import BarChartSimple from '@/views/guide/BarChartSimple.vue';
 import BarChart from '@/views/guide/BarChart.vue';
 import BarCharHor from '@/views/guide/BarCharHor.vue';
+import Slide from '@/views/guide/Slide.vue';
+import Request from '@/views/guide/Request.vue';
+import Eslint from '@/views/guide/Eslint.vue';
+import Common from '@/views/guide/Common.vue';
+import CKedit from '@/views/guide/CKedit.vue';
 import { useCommFunc } from '@/core/helper/common.js';
 const { goToPage } = useCommFunc();
 const router = useRouter();
@@ -47,6 +52,9 @@ const route = useRoute();
 const state = reactive({
     guideMenu: [
         {label: '버전정보', name: 'Setting'},
+        {label: 'request 설정', name: 'Request'},
+        {label: 'eslint 설정', name: 'Eslint'},
+        {label: '공통함수 설정', name: 'Common'},
         {label: '페이지 레이아웃', name: 'PageLayout'},
         {label: '카드', name: 'Card'},
         {label: '메뉴', name: 'Menu'},
@@ -65,7 +73,9 @@ const state = reactive({
         {label: '차트-bar가로형', name: 'BarCharHor'},
         {label: '데이터피커', name: 'DatePicker'},
         {label: '툴팁', name: 'ToolTip'},
-        {label: '모달팝업', name: 'Modal'}
+        {label: '모달팝업', name: 'Modal'},
+        {label: '슬라이드', name: 'Slide'},
+        {label: '에디터', name: 'CKedit'},
         // {label: '토스트 팝업', name: 'Toast'},
         // {label: '페이징', name: 'Pageing'},
         // {label: '데이터피커', name: 'Datepicker'}
@@ -74,6 +84,9 @@ const state = reactive({
 });
 const componentsMap = {
     'Setting': { component: Setting, title: '버전정보' },
+    'Request': { component: Request, title: 'request 설정' },
+    'Eslint': { component: Eslint, title: 'eslint 설정' },
+    'Common': { component: Common, title: '공통함수 설정' },
     'PageLayout': { component: PageLayout, title: '페이지 레이아웃' },
     'Menu': { component: Menu, title: '메뉴' },
     'Card': { component: Card, title: '카드' },
@@ -92,7 +105,9 @@ const componentsMap = {
     'BarCharHor': { component: BarCharHor, title: '차트-bar가로형' },
     'DatePicker': { component: DatePicker, title: '데이터피커' },
     'Modal': { component: Modal, title: '모달팝업' },
-    'ToolTip': { component: ToolTip, title: '툴팁' }
+    'ToolTip': { component: ToolTip, title: '툴팁' },
+    'Slide': { component: Slide, title: '슬라이드' },
+    'CKedit': { component: CKedit, title: '에디터' }
     // 'Toast': { component: ToolTip, title: '토스트' },
 };
 const currentPageComponent = shallowRef(PageLayout);

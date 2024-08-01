@@ -6,8 +6,6 @@ export function _uploadEditFile(formData) {
         timeout: 6000
     });
 }
-
-
 export function _uploadFile(formData) {
     console.log(formData);
     return $api({
