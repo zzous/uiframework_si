@@ -106,6 +106,12 @@ const state = reactive({
                     depth: [
                         { menu: '트래픽 감시 제외 관리', pagelink: '/spamsample4', depth: [] }
                     ]
+                },
+                { menu: '동적필터링',
+                    pagelink: null,
+                    depth: [
+                        { menu: '동적 시뮬레이터 조회', pagelink: '/spamsample5', depth: [] }
+                    ]
                 }
             ]
         },

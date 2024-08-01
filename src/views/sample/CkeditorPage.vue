@@ -14,7 +14,6 @@
 import { reactive, onMounted } from 'vue';
 import { initializeEditor } from '@/core/helper/editor.js';
 import editor from '@/components/CkEditor.vue';
-
 import { useCommFunc } from '@/core/helper/common.js';
 const { goToPage } = useCommFunc();
 const state = reactive({

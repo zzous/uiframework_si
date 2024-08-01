@@ -73,10 +73,11 @@ const modal = (type, className) => {
             }
         })
             .then(success => {
-                console.log(success);
+                console.log(success, '확인버튼 클릭 시 처리');
+                
             })
             .catch(error => {
-                console.log(error);
+                console.log(error, '취소버튼 클릭 시 처리');
             });
     }
 };
@@ -96,7 +97,6 @@ const showModal = () => {
     isShow.value = true;
 };
 const showToast = (type) => {
-    console.log('111');
     switch (type) {
         case 'success':
             return toast('토스트 성공 메세지를 작성합니다.', 2000, 'success');
