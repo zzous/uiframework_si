@@ -74,21 +74,22 @@ const state = reactive({
             sampleCodeJS: `<!-- 
     role: 롤 작성 권고
     data-title: 속성 입력 후 입력값 필수 처리(탭 버튼 텍스트)
+    data-url: 탭 클릭시 url이 필요한 변경이 들어가는 경우
     #tabcons 탭  콘텐츠 작성 슬롯
     #tabsubdec 탭 버튼 우측에 텍스트 추가시
 -->
-<Tabs>
+<Tabs :id="'id'">
     <template #tabsubdec>
         <div>우측에 텍스트 추가시 사용 슬롯</div>
     </template>
     <template #tabcons>
-        <div class="tabcontent" data-title="탭1">
+        <div class="tabcontent" data-title="탭1" data-url="url정보">
             <div class="tabpanel" role="tabpanel">tabcontent1</div>
         </div>
-        <div class="tabcontent" data-title="탭2">
+        <div class="tabcontent" data-title="탭2" data-url="url정보">
             <div class="tabpanel" role="tabpanel">tabcontent2<br>tabcontent2</div>
         </div>
-        <div class="tabcontent" data-title="탭3">
+        <div class="tabcontent" data-title="탭3" data-url="url정보">
             <div class="tabpanel" role="tabpanel">
                 
             </div>
@@ -99,12 +100,12 @@ const state = reactive({
         {
             title: 'VUE COMPONENT',
             sampleCodeJS: `<template>
-    <div class="tabswrap">
+    <div class="tabswrap" :id="state.id">
         <!-- 탭버튼 -->
         <div class="tablist" role="tablist" >
             <ul>
                 <li v-for="(item, index) in state.tabLists" :key="index" :class="{active:index === state.tabNum}">
-                    <button type="button" class="btn-tab" @click="onClickTab(index)" >{{ item.tablabel }}</button>
+                    <button type="button" class="btn-tab" @click="onClickTab(index, taburl)" >{{ item.tablabel }}</button>
                     <span class="ani" :style="left:\${state.tabbtposi*(state.tabNum)}px; width:\${state.tabbtwidth}px"></span>
                 </li>
             </ul>
@@ -123,13 +124,17 @@ import { computed, reactive, onMounted,  nextTick } from 'vue';
 import { useCommFunc } from '@/core/helper/common.js';
 const { goToPage } = useCommFunc();
 const props = defineProps({
-    subdec: [Number, String]
+    subdec: [Number, String],
+    url: String,
+    id: String
 });
 const state = reactive({
     tabNum: 0,
     tabLists: [],
     imgIcon: computed(() => props.imgIcon),
     subdec: computed(() => props.subdec),
+    url: computed(() => props.url),
+    id: computed(() => props.id),
     elHeight: 0,
     tabbtposi: 0,
     tabbtwidth: 0
@@ -143,9 +148,9 @@ const state = reactive({
     * 탭 콘텐츠 내용의 따라 높이 변경
     * url이 필요한 경우 쿼리 추가 
 */
-const onClickTab = (index) => {
-    const tabElements = document.querySelectorAll('.tabcontent');
-    const tabbtEle = document.querySelectorAll('.tablist ul li');
+const onClickTab = (index, url) => {
+    const tabElements = document.querySelectorAll('#\${state.id} .tabcontent');
+    const tabbtEle = document.querySelectorAll('#\${state.id} .tablist ul li');
     state.tabbtposi = index === 0 ? state.tabbtposi = 0 : state.tabbtposi = tabbtEle[(index - 1)].offsetWidth;
     state.tabbtwidth = tabbtEle[(index)].offsetWidth;
     state.tabNum = index;
@@ -157,8 +162,10 @@ const onClickTab = (index) => {
     }, 400);
     const eleH = tabElements[index].children[0].clientHeight;
     state.elHeight = eleH;
-    const tabUrl = '/tab?tabid=\${index}';
-    goToPage(tabUrl);
+    if (url) {
+        const tabUrl = '/tab?tabid=\${index}';
+        goToPage(tabUrl);
+    }
 };
 onMounted(() => {
      /**
@@ -169,16 +176,16 @@ onMounted(() => {
         * 탭 콘텐츠 내용의 따라 높이 변경
         * bar의 크기, 위치 클릭시 마다 유동적으로 지정
     */
-    const tabElements = document.querySelectorAll('.tabcontent');
+    const tabElements = document.querySelectorAll('#\${state.id} .tabcontent');
     tabElements.forEach((tabElement, index) => {
-        state.tabLists.splice(index, 0, {tablabel: tabElement.dataset.title});
+        state.tabLists.splice(index, 0, {tablabel: tabElement.dataset.title, taburl: tabElement.dataset.url});
         tabElement.children[0].classList.remove('view');
     });
     nextTick(() => {
         const eleH = tabElements[0].children[0].clientHeight;
         state.elHeight = eleH;
         tabElements[0].children[0].classList.add('view');
-        const tabbtEle = document.querySelectorAll('.tablist ul li');
+        const tabbtEle = document.querySelectorAll('#\${state.id} .tablist ul li');
         state.tabbtwidth = tabbtEle[0].offsetWidth;
     });
 });

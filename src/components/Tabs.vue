@@ -1,10 +1,10 @@
 <template>
-    <div class="tabswrap">
+    <div class="tabswrap" :id="state.id">
         <!-- 탭버튼 -->
         <div class="tablist" role="tablist">
             <ul>
                 <li v-for="(item, index) in state.tabLists" :key="index" :class="{active:index === state.tabNum}">
-                    <button type="button" class="btn-tab" @click="onClickTab(index)" >{{ item.tablabel }}</button>
+                    <button type="button" class="btn-tab" @click="onClickTab(index, taburl)" >{{ item.tablabel }}</button>
                     <span class="ani" :style="`left:${state.tabbtposi*(state.tabNum)}px; width:${state.tabbtwidth}px`"></span>
                 </li>
             </ul>
@@ -23,13 +23,17 @@ import { computed, reactive, onMounted,  nextTick } from 'vue';
 import { useCommFunc } from '@/core/helper/common.js';
 const { goToPage } = useCommFunc();
 const props = defineProps({
-    subdec: [Number, String]
+    subdec: [Number, String],
+    url: String,
+    id: String
 });
 const state = reactive({
     tabNum: 0,
     tabLists: [],
     imgIcon: computed(() => props.imgIcon),
     subdec: computed(() => props.subdec),
+    url: computed(() => props.url),
+    id: computed(() => props.id),
     elHeight: 0,
     tabbtposi: 0,
     tabbtwidth: 0
@@ -43,9 +47,9 @@ const state = reactive({
     * 탭 콘텐츠 내용의 따라 높이 변경
     * url이 필요한 경우 쿼리 추가 
 */
-const onClickTab = (index) => {
-    const tabElements = document.querySelectorAll('.tabcontent');
-    const tabbtEle = document.querySelectorAll('.tablist ul li');
+const onClickTab = (index, url) => {
+    const tabElements = document.querySelectorAll(`#${state.id} .tabcontent`);
+    const tabbtEle = document.querySelectorAll(`#${state.id} .tablist ul li`);
     state.tabbtposi = index === 0 ? state.tabbtposi = 0 : state.tabbtposi = tabbtEle[(index - 1)].offsetWidth;
     state.tabbtwidth = tabbtEle[(index)].offsetWidth;
     state.tabNum = index;
@@ -57,8 +61,10 @@ const onClickTab = (index) => {
     }, 400);
     const eleH = tabElements[index].children[0].clientHeight;
     state.elHeight = eleH;
-    const tabUrl = `/tab?tabid=${index}`;
-    goToPage(tabUrl);
+    if (url) {
+        const tabUrl = `/tab?tabid=${index}`;
+        goToPage(tabUrl);
+    }
 };
 onMounted(() => {
      /**
@@ -69,16 +75,16 @@ onMounted(() => {
         * 탭 콘텐츠 내용의 따라 높이 변경
         * bar의 크기, 위치 클릭시 마다 유동적으로 지정
     */
-    const tabElements = document.querySelectorAll('.tabcontent');
+    const tabElements = document.querySelectorAll(`#${state.id} .tabcontent`);
     tabElements.forEach((tabElement, index) => {
-        state.tabLists.splice(index, 0, {tablabel: tabElement.dataset.title});
+        state.tabLists.splice(index, 0, {tablabel: tabElement.dataset.title, taburl: tabElement.dataset.url});
         tabElement.children[0].classList.remove('view');
     });
     nextTick(() => {
         const eleH = tabElements[0].children[0].clientHeight;
         state.elHeight = eleH;
         tabElements[0].children[0].classList.add('view');
-        const tabbtEle = document.querySelectorAll('.tablist ul li');
+        const tabbtEle = document.querySelectorAll(`#${state.id} .tablist ul li`);
         state.tabbtwidth = tabbtEle[0].offsetWidth;
     });
 });

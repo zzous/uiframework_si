@@ -88,6 +88,10 @@ const state = reactive({
         {menu: '샘플 페이지',
             pagelink: null,
             depth: [
+                { menu: '대시보드',
+                    pagelink: '/spamsample6',
+                    depth: []
+                },
                 { menu: '이력조회',
                     pagelink: null,
                     depth: [
