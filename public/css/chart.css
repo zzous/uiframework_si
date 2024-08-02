@@ -27,10 +27,10 @@
 .ui-bar-chart.hor .ui-bar-x-unit li::before { content: ""; position: absolute; top: -6px; left: 50%; width: 1px; height: 6px; background-color: #d2d2d2; }
 .ui-bar-chart.hor .ui-bar-x-unit li:nth-of-type(1)::before { display: none; }
 .ui-chart.chartNolabel .ui-bar-x { display: none; } 
-.ui-chart.chartNolabel .ratetext { display: block; position: absolute; right: 0px; bottom: -13px; display: flex; align-items: center; }
+.ui-chart.chartNolabel .ratetext { display: block; position: absolute; right: 0px; bottom: -4px; display: flex; align-items: center; }
 .ui-chart.chartNolabel .rateValue{ margin-left: 10px; font-size: 14px; font-weight: 700; }
 .ui-chart.chartNolabel .ui-bar-chart.hor .ui-bar-y-unit li{ flex-wrap: wrap; margin: 8px 0; padding-right: 60px; }
-.ui-chart.chartNolabel .ui-bar-chart.hor .ui-bar-y-unit li .lb{ border: none; width: 100%; text-align: left; justify-content: flex-start; }
+.ui-chart.chartNolabel .ui-bar-chart.hor .ui-bar-y-unit li .lb{ border: none; width: 100%; text-align: left; justify-content: flex-start;margin-bottom:5px; }
 .ui-chart.chartNolabel .ui-bar-chart.hor .ui-bar-y-unit li .graph { width: 100%; height: 10px; background: #eee; border-radius: 10px; }
 .ui-chart.chartNolabel .ui-bar-chart.hor .ui-bar-y-unit li .graph .bar{ height: 100%; left: 0; top: 0; border-radius: 10px; }
 
